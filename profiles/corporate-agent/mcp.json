@@ -13,7 +13,11 @@
       "connect_timeout": 60
     },
     "notebooklm": {
-      "command": "~/.local/bin/notebooklm-mcp",
+      "command": "notebooklm-mcp",
+      "enabled": true
+    },
+    "codegraph": {
+      "command": "npx -y @colbymchenry/codegraph mcp",
       "enabled": true
     },
     "paperclip": {

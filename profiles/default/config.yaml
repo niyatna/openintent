@@ -642,7 +642,7 @@ slack:
   require_mention: true
 streaming:
   buffer_threshold: 24
-  cursor: " ▉"
+  cursor: "▉"
   edit_interval: 0.8
   enabled: true
   fresh_final_after_seconds: 60
