@@ -1,0 +1,12 @@
+name: galyarder-framework
+skills:
+- galyarder-execution-doctrine
+- galyarder-financial-services-workflows
+- galyarder-framework-router
+- tool-grounded-responses
+- using-galyarder-framework
+description: 'Category bundle: Galyarder framework skills plus the framework-and-presence
+  grounding umbrella for keiya.'
+instruction: Use this only when the user intentionally wants the whole category/folder
+  context. For normal work, prefer the lean core bundle plus exact routed skills to
+  avoid context noise.

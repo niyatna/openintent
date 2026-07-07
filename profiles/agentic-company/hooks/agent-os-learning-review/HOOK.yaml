@@ -1,0 +1,14 @@
+name: agent-os-learning-review
+description: Queue session learnings for human-reviewed promotion; never auto-promote memory or skills.
+version: 0.3.0
+events:
+  - on_session_end
+  - on_session_finalize
+  - session:end
+handler: handler.py
+mode: queue_only
+queue: learning-review/queue.jsonl
+review_tool: scripts/agent-os-learning-review-queue.py
+safety:
+  auto_promote: false
+  requires_human_review: true

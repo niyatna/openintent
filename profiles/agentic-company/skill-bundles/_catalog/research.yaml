@@ -1,0 +1,88 @@
+name: research
+mode: catalog-only-not-active-bundle
+profile: keiya
+skill_count: 23
+skills:
+- name: academic-paper-overview
+  path: research/academic-paper-overview
+  description: An academic research assistant skilled in high-quality literature retrieval and analysis
+- name: arxiv
+  path: research/arxiv
+  description: Use when search arXiv papers by keyword, author, category, or ID.
+- name: scrapling
+  path: research/scrapling
+  description: Use when monitor blogs and RSS/Atom feeds via scrapling-cli tool.
+- name: book-summary-agent
+  path: research/book-summary-agent
+  description: Specializes in generating concise book summaries with actionable takeaways.
+- name: conceptual-abstractor
+  path: research/conceptual-abstractor
+  description: Helping you write better UX copy
+- name: deep-thinker
+  path: research/deep-thinker
+  description: Deep, human-like thinking and analysis.
+- name: scrapling
+  path: research/scrapling
+  description: Use when extract clean markdown content from web pages using Defuddle CLI, removing clutter and navigation
+    to save tokens. Use instead of WebFetch when the user provides a URL to read or analyze, for online documentation, articles,
+    blog posts, or any standard web page. Do NOT use for URLs ending in .md  those are already markdown, use WebFetch directly.
+- name: api-discovery
+  path: research/api-discovery
+  description: Passive domain reconnaissance using Python stdlib. Subdomain discovery, SSL certificate inspection, WHOIS lookups,
+    DNS records, domain availability checks, and bulk multi-domain analysis. No API keys required.
+- name: scrapling
+  path: research/scrapling
+  description: Free web search via DuckDuckGo — text, news, images, videos. No API key needed. Prefer the `ddgs` CLI when
+    installed; use the Python DDGS library only after verifying that `ddgs` is available in the current runtime.
+- name: first-principle-explain
+  path: research/first-principle-explain
+  description: Use first principles to analyze a natural phenomenon or complex system
+- name: gbrain
+  path: research/gbrain
+  description: Use when the user asks about GBrain, brain/memory DB, importing/searching/querying the personal/project brain,
+    GBrain embeddings, GBrain skillpack health, GBrain minions/autopilot, or GBrain vs gstack/Hermes memory routing.
+- name: gbrain
+  path: research/gbrain
+  description: Index a codebase with GitNexus and serve an interactive knowledge graph via web UI + Cloudflare tunnel.
+- name: gbrain
+  path: research/gbrain
+  description: 'Use when karpathy''s LLM Wiki: build/query interlinked markdown KB.'
+- name: mathematical-research-advisor
+  path: research/mathematical-research-advisor
+  description: 'Math Research Assistant: Assisting with mathematical research, problem-solving, and providing outlines in
+    a wide range of mathematical concepts and techniques.'
+- name: mrfeynman
+  path: research/mrfeynman
+  description: Simplified exwriting-plansations of complex knowledge concepts to help you understand difficult ideas. It also provides
+    exwriting-plansations for knowledge types that include questions and answers.
+- name: paper-understanding
+  path: research/paper-understanding
+  description: Expert in explaining complex academic papers in simple and understandable language
+- name: scrapling
+  path: research/scrapling
+  description: Optional vendor skill for Parallel CLI — agent-native web search, extraction, deep research, enrichment, FindAll,
+    and monitoring. Prefer JSON output and non-interactive flows.
+- name: philosophical-analysis
+  path: research/philosophical-analysis
+  description: Specializes in Kantian and Hegelian philosophical analysis consultations, fostering critical thinking
+- name: signal-radar
+  path: research/signal-radar
+  description: 'Use when query Polymarket: markets, prices, orderbooks, history.'
+- name: gbrain
+  path: research/gbrain
+  description: Search personal knowledge bases, notes, docs, and meeting transcripts locally using gbrain — a hybrid retrieval
+    engine with BM25, vector search, and LLM reranking. Supports CLI and MCP integration.
+- name: gbrain
+  path: research/gbrain
+  description: 'Use when write ML papers for NeurIPS/ICML/ICLR: design→submit.'
+- name: scrapling
+  path: research/scrapling
+  description: Web scraping with Scrapling - HTTP fetching, stealth browser automation, Cloudflare bypass, and spider crawling
+    via CLI and Python.
+- name: tech-explorer-ai
+  path: research/tech-explorer-ai
+  description: 'Technology exploration AI capability: - Conduct comprehensive technical research - Provide predictive insights
+    based on statistical data and trend analysis - Optimize research methodology - Maintain data accuracy and completeness
+    - Infer limitations in the absence of complete data: - Only answer questions related to technology - Do not provide general
+    purchasing advice - Provide product technology discussion through step-by-step outlines User interaction: - Provide clear
+    and concise dialogue - P'

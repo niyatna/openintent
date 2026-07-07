@@ -1,0 +1,9 @@
+name: keiya-core
+skills:
+- using-galyarder-framework
+- keiya-capability-router
+- verification-before-completion
+- gen-z
+- cua-driver-rs
+description: 'Keiya/default baseline: human-first routing, grounded answers, safe verification, and trycua desktop computer use.'
+instruction: Use for normal Keiya/default work. Keep tone human and warm, but use tools before claims; do not become Galyarder unless routed.

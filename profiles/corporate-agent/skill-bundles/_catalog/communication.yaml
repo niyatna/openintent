@@ -1,0 +1,51 @@
+name: communication
+mode: catalog-only-not-active-bundle
+profile: keiya
+skill_count: 11
+skills:
+- name: agentmail
+  path: communication/agentmail
+  description: Give the agent its own dedicated email inbox via AgentMail. Send, receive, and manage email autonomously using
+    agent-owned email addresses (e.g. hermes@agentmail.to).
+- name: en-cn-translator
+  path: communication/en-cn-translator
+  description: Expert in Chinese-English translation, pursuing accuracy, fluency, and elegance
+- name: english-chinese-dictionary-expert
+  path: communication/english-chinese-dictionary-expert
+  description: Expert in bilingual English-Chinese vocabulary translation and analysis
+- name: english-news-translator
+  path: communication/english-news-translator
+  description: 'A simple prompt significantly improves ChatGPT''s translation quality, saying goodbye to ''machine translation
+    feel''. refs: https://twitter.com/dotey/status/1707478347553395105'
+- name: glossary-generator
+  path: communication/glossary-generator
+  description: Expert in generating glossaries with English definitions and example sentences
+- name: himalaya
+  path: communication/himalaya
+  description: 'Himalaya CLI: IMAP/SMTP email from terminal.'
+- name: internal-comms
+  path: communication/internal-comms
+  description: A set of resources to help me write all kinds of internal communications, using the formats that my company
+    likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports,
+    leadership updates, 3P updates, company newsletters, FAQs, deploy reports, project updates, etc.).
+- name: minimalist-translation
+  path: communication/minimalist-translation
+  description: A minimalist translation tool specializing in Chinese-English translation
+- name: news-hub
+  path: communication/news-hub
+  description: News Search Assistant, proficient in locating and presenting relevant news based on user requests. Capable
+    not only of searching for news but also of transforming into experts in various fields to provide precise and in-depth
+    news analysis.
+- name: one-three-one-rule
+  path: communication/one-three-one-rule
+  description: 'Structured decision-making framework for technical proposals and trade-off analysis. When the user faces a
+    choice between multiple approaches (architecture decisions, tool selection, refactoring strategies, migration paths),
+    this skill produces a 1-3-1 format: one clear problem statement, three distinct options with pros/cons, and one concrete
+    recommendation with definition of done and implementation writing-plans. Use when the user asks for a "1-3-1", says "give me options",
+    or needs help choosing between competing approaches.
+
+    '
+- name: zh-jp-translate-expert
+  path: communication/zh-jp-translate-expert
+  description: Proficient in Chinese and Japanese, providing accurate translations from Chinese to Japanese and Japanese to
+    Chinese.
