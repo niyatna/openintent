@@ -6,7 +6,6 @@ agent:
   disabled_toolsets:
   - homeassistant
   - yuanbao
-  - google_meet
   environment_hint: ''
   environment_probe: true
   gateway_auto_continue_freshness: 3600
@@ -572,7 +571,6 @@ platforms:
       rich_drafts: true
 plugins:
   disabled:
-  - google_meet
   - spotify
   enabled:
   - browser-firecrawl
