@@ -77,7 +77,11 @@ def save_key(key):
 
     # Write agent .env file for env_file in docker-compose
     with open(ENV_FILE, "w") as f:
-        f.write(f"9ROUTER_API_KEY={key.strip()}\n")
+        key_val = key.strip()
+        f.write(f"9ROUTER_API_KEY={key_val}\n")
+        f.write(f"HINDSIGHT_API_KEY={key_val}\n")
+        f.write(f"HINDSIGHT_API_LLM_API_KEY={key_val}\n")
+        f.write(f"HINDSIGHT_LLM_API_KEY={key_val}\n")
     os.chmod(ENV_FILE, 0o600)
     print(f"[init] agent env file written to {ENV_FILE}")
 
