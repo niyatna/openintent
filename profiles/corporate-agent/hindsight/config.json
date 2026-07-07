@@ -1,6 +1,6 @@
 {
   "mode": "local_external",
-  "api_url": "http://127.0.0.1:9177",
+  "api_url": "http://hindsight-api:8888",
   "apiKey": "",
   "api_key": "",
   "timeout": 300,
@@ -10,13 +10,13 @@
   "retain_user_prefix": "User",
   "retain_assistant_prefix": "Assistant",
   "banks": {
-    "hermes": {
-      "bankId": "hermes",
+    "corporate": {
+      "bankId": "corporate",
       "budget": "mid",
       "enabled": true
     }
   },
-  "bank_id": "hermes",
+  "bank_id": "corporate",
   "recall_budget": "mid",
   "recall_types": [
     "world",
