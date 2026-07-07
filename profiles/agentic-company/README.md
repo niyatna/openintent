@@ -1,15 +1,15 @@
-# niyatna Hermes Profile Distribution
+# agentic-company Hermes Profile Distribution
 
-Version: `0.1.0`
+Version: `1.0.0`
 
-Niyatna Hermes profile: formation operator, secure department workflows, HQ task coordination, memory updates, automations, and Proof of Intent.
+Niyatna Hermes profile: agentic-company. Handles company OS operations, files, issue backlogs, and internal system tasks.
 
 ## Install / update
 
 ```bash
-hermes profile install /home/galyarder/.hermes/profile-distributions/niyatna-profile --name niyatna --alias
-hermes profile update niyatna
-hermes profile info niyatna
+hermes profile install ./profiles/agentic-company --name agentic-company --alias
+hermes profile update agentic-company
+hermes profile info agentic-company
 ```
 
 ## Secrets and memory
@@ -31,4 +31,4 @@ Hermes runtime hot-memory loading uses `HERMES_HOME/memories/{USER.md,MEMORY.md}
 
 ## Source copied from
 
-`/home/galyarder/.hermes/profiles/niyatna`
+`./profiles/agentic-company`

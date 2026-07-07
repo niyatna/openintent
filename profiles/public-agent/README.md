@@ -1,15 +1,15 @@
-# niyatna Hermes Profile Distribution
+# public-agent Hermes Profile Distribution
 
-Version: `0.1.0`
+Version: `1.0.0`
 
-Niyatna Hermes profile: formation operator, secure department workflows, HQ task coordination, memory updates, automations, and Proof of Intent.
+Niyatna Hermes profile: public-agent. Handles customer relations, competitor monitoring, scraper routines, and market flows.
 
 ## Install / update
 
 ```bash
-hermes profile install /home/galyarder/.hermes/profile-distributions/niyatna-profile --name niyatna --alias
-hermes profile update niyatna
-hermes profile info niyatna
+hermes profile install ./profiles/public-agent --name public-agent --alias
+hermes profile update public-agent
+hermes profile info public-agent
 ```
 
 ## Secrets and memory
@@ -31,4 +31,4 @@ Hermes runtime hot-memory loading uses `HERMES_HOME/memories/{USER.md,MEMORY.md}
 
 ## Source copied from
 
-`/home/galyarder/.hermes/profiles/niyatna`
+`./profiles/public-agent`

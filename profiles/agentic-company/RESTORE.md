@@ -1,6 +1,6 @@
-# Galyarder Profile Restore
+# agentic-company Profile Restore
 
-This repo restores Galyarder's **profile code/personality/tooling layer** only.
+This repo restores agentic-company's **profile code/personality/tooling layer** only.
 
 It includes:
 - `SOUL.md`
@@ -30,7 +30,7 @@ The included `memories/USER.md` and `memories/MEMORY.md` are curated stable fact
 For a true same-continuity restore, combine this repo with the local private disaster recovery archive under:
 
 ```text
-/home/galyarder/.hermes/backups/disaster-recovery/
+~/.hermes/backups/disaster-recovery/
 ```
 
 Latest known archive at creation time:
@@ -43,4 +43,4 @@ sha256: 92fe9d7b456b8ad953171e63d5b00f07aa0bbfdfae80688384d3448911a9fc00
 Do not push the private archive to this repo unless it is encrypted and Galih explicitly approves.
 ## Operational agent-owned credentials
 
-Dedicated agent-owned account credentials, cookies, TOTP secrets, backup codes, and wallet keystores are local-only runtime state under `/home/galyarder/.hermes/private/credentials/agents/`. They are intentionally excluded from this profile distribution. Restore from the private credential backup / password manager, never from git.
+Dedicated agent-owned account credentials, cookies, TOTP secrets, backup codes, and wallet keystores are local-only runtime state under `~/.hermes/private/credentials/agents/`. They are intentionally excluded from this profile distribution. Restore from the private credential backup / password manager, never from git.

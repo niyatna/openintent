@@ -1,15 +1,15 @@
-# niyatna Hermes Profile Distribution
+# corporate-agent Hermes Profile Distribution
 
-Version: `0.1.0`
+Version: `1.0.0`
 
-Niyatna Hermes profile: formation operator, secure department workflows, HQ task coordination, memory updates, automations, and Proof of Intent.
+Niyatna Hermes profile: corporate-agent. Handles corporate strategy, runway budget gates, founder intent, and investment decisions.
 
 ## Install / update
 
 ```bash
-hermes profile install /home/galyarder/.hermes/profile-distributions/niyatna-profile --name niyatna --alias
-hermes profile update niyatna
-hermes profile info niyatna
+hermes profile install ./profiles/corporate-agent --name corporate-agent --alias
+hermes profile update corporate-agent
+hermes profile info corporate-agent
 ```
 
 ## Secrets and memory
@@ -31,4 +31,4 @@ Hermes runtime hot-memory loading uses `HERMES_HOME/memories/{USER.md,MEMORY.md}
 
 ## Source copied from
 
-`/home/galyarder/.hermes/profiles/niyatna`
+`./profiles/corporate-agent`
