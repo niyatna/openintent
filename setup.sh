@@ -67,6 +67,8 @@ if [ ! -f .env ]; then
     BETTER_AUTH_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
     JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
     INITIAL_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
+    DASHBOARD_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
+    DASHBOARD_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
 
     cat <<ENVEOF > .env
 # OpenIntent Shared Environment Variables
@@ -76,6 +78,10 @@ BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
 JWT_SECRET=${JWT_SECRET}
 INITIAL_PASSWORD=${INITIAL_PASSWORD}
 
+# Dashboard Basic Auth & Session Secrets
+DASHBOARD_USERNAME=admin
+DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
+DASHBOARD_SECRET=${DASHBOARD_SECRET}
 # Internal Compose Network Endpoints
 # 9ROUTER_API_KEY is generated at runtime by the bootstrap container
 # using 9router's own POST /api/keys endpoint
@@ -86,7 +92,9 @@ HINDSIGHT_PORT=9177
 ENVEOF
     
     echo -e "${GREEN}-> .env file created successfully!${NC}"
-    echo -e "${YELLOW}Default Admin Password generated for 9router: ${INITIAL_PASSWORD}${NC} (saved securely in .env)"
+    echo -e "${YELLOW}Default Admin Password generated for 9router: ${INITIAL_PASSWORD}${NC}"
+    echo -e "${YELLOW}Default Admin Username for Dashboard: admin${NC}"
+    echo -e "${YELLOW}Default Admin Password for Dashboard: ${DASHBOARD_PASSWORD}${NC} (saved securely in .env)"
 else
     echo -e "${GREEN}-> .env file already exists. Skipping prompts.${NC}"
 fi
