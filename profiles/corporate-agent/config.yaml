@@ -1,6 +1,6 @@
 model:
   base_url: 'http://9router:20128/v1'
-  default: anthropic/claude-3.5-sonnet
+  default: oc/deepseek-v4-flash-free
   provider: 9router
 providers:
   9router:
@@ -11,11 +11,12 @@ agent:
   gateway_timeout: 1800
   tool_use_enforcement: true
   environment_probe: true
-  system_prompt: 'Corporate Agent: Founder, Owner, CEO, CMO, CFO, COO, Investor. key_env=9ROUTER_API_KEY. Connects to 9router:20128.'
+  system_prompt: 'Corporate Agent: Founder, Owner, CEO, CMO, CFO, COO, Investor. key_env=9ROUTER_API_KEY. Connects to 9router:20128. Default target: oc/deepseek-v4-flash-free.'
   prefill_messages_file: prefill.json
   personalities:
-    galyarder: 'Galyarder: hardened strategic operating soul.'
-    niyatna: 'Niyatna Agent: calm, premium, business-friendly.'
+    default: "Default Agent (Operations): handles company OS, task backlog, local files, config checks, and hindsight indexing."
+    corporate: "Corporate Agent: handles strategic roadmap reviews, budget gates/approvals, and ROI forecasting."
+    public: "Public Agent: handles customer support, competitor tracking, web scraping, and market flows."
 display:
   compact: true
   show_reasoning: false
@@ -33,7 +34,7 @@ memory:
   memory_char_limit: 20000
   user_char_limit: 16000
 delegation:
-  model: anthropic/claude-3.5-sonnet
+  model: oc/deepseek-v4-flash-free
   provider: 9router
   base_url: http://9router:20128/v1
   api_key: ${9ROUTER_API_KEY}
