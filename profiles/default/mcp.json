@@ -1,8 +1,7 @@
 {
   "$schema": "https://hermes-agent.nousresearch.com/schemas/mcp.json",
   "version": 1,
-  "description": "Profile-local MCP manifest for Galyarder. NotebookLM uses the single-home OS binary; runtime config.yaml remains the active source used by Hermes.",
-  "runtime_note": "Do not remove mcp_servers from config.yaml until Hermes runtime explicitly loads profile-local mcp.json.",
+  "description": "Profile-local MCP manifest. NotebookLM uses the single-home OS binary; runtime config.yaml remains the active source used by Hermes.",
   "mcp_servers": {
     "context7": {
       "url": "https://mcp.context7.com/mcp",
@@ -14,11 +13,11 @@
       "connect_timeout": 60
     },
     "notebooklm": {
-      "command": "/home/galyarder/.local/bin/notebooklm-mcp",
+      "command": "~/.local/bin/notebooklm-mcp",
       "enabled": true
     },
     "paperclip": {
-      "command": "/home/galyarder/.hermes/scripts/paperclip-mcp-stdio.py",
+      "command": "python3 /opt/data/scripts/paperclip-mcp-stdio.py",
       "enabled": true,
       "timeout": 120,
       "connect_timeout": 30

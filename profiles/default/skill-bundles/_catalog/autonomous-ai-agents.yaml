@@ -5,8 +5,8 @@ skill_count: 28
 skills:
 - name: agent-accounts
   path: autonomous-ai-agents/agent-accounts
-  description: Use when setting up, auditing, or extending dedicated agent-owned accounts for Keiya/Galyarder, including Google,
-    GitHub, X, wallet, profile backups, access-hardening, and Mahiru/Waguri-style autonomy boundaries.
+  description: Use when setting up, auditing, or extending dedicated agent-owned accounts for default/corporate-agent/public-agent, including Google,
+    GitHub, X, wallet, profile backups, access-hardening, and standard autonomy boundaries.
 - name: agent-accounts
   path: autonomous-ai-agents/agent-accounts
   description: Use when signing into dedicated agent-owned Google, GitHub, X/Twitter, Notion/Linear OAuth, or similar accounts

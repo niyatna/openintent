@@ -1,6 +1,6 @@
 # Access Rollout Runbook
 
-Purpose: implement the Mahiru/Waguri maturity loop without copying unsafe autonomy blindly.
+Purpose: implement the security maturity loop without copying unsafe autonomy blindly.
 
 Core loop:
 

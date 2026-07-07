@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Audit Keiya/Galyarder access-autonomy hardening invariants.
 
-This checks the Mahiru/Waguri maturity-loop implementation surfaces:
+This checks the security maturity-loop implementation surfaces:
 SOUL contracts, non-secret credential registry, behavior QA docs, permissions,
 and config safety settings. It does not print secret values.
 """

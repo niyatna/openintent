@@ -1,6 +1,6 @@
 # Config Hardening Audit
 
-Purpose: track Hermes config posture against the Mahiru/Waguri access/autonomy lessons.
+Purpose: track Hermes config posture against the access/autonomy lessons.
 
 ## Checklist
 
