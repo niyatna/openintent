@@ -216,11 +216,11 @@ custom_providers:
   name: 9Router Local Proxy
 dashboard:
   basic_auth:
-    password: ''
+    password: ${DASHBOARD_PASSWORD}
     password_hash: ''
-    secret: ''
-    session_ttl_seconds: 0
-    username: ''
+    secret: ${DASHBOARD_SECRET}
+    session_ttl_seconds: 86400
+    username: ${DASHBOARD_USERNAME}
   font: inter
   oauth:
     client_id: ''
