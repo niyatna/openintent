@@ -113,6 +113,7 @@ services:
   agent-operations:
     image: ghcr.io/nousresearch/hermes-agent:latest
     container_name: openintent-default
+    entrypoint: ["/bin/bash", "-c", "pip install --no-cache-dir notebooklm-mcp-cli && exec hermes"]
     profiles:
       - agents
     ports:
@@ -132,6 +133,20 @@ services:
       - openintent-network
     restart: unless-stopped
 
+  camoufox-browser:
+    image: ghcr.io/redf0x1/camofox-browser:latest
+    container_name: openintent-camoufox
+    ports:
+      - "9377:9377"
+    environment:
+      CAMOFOX_HOST: "0.0.0.0"
+      CAMOFOX_PORT: "9377"
+      CAMOFOX_AUTH_MODE: "none"
+    volumes:
+      - ./data/camoufox:/home/node/.camofox
+    networks:
+      - openintent-network
+      
   agent-corporate:
     image: ghcr.io/nousresearch/hermes-agent:latest
     container_name: openintent-corporate-agent
