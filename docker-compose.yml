@@ -113,7 +113,7 @@ services:
   agent-operations:
     image: ghcr.io/nousresearch/hermes-agent:latest
     container_name: openintent-default
-    entrypoint: ["/bin/bash", "-c", "pip install --no-cache-dir notebooklm-mcp-cli && exec hermes"]
+    entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph && pip install --no-cache-dir notebooklm-mcp-cli && exec hermes"]
     profiles:
       - agents
     ports:
