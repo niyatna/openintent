@@ -15,7 +15,7 @@ Do not add several credentials/tools at once.
 Record:
 
 - domain name;
-- profile(s): Keiya, Galyarder, or both;
+- profile(s): default, corporate-agent, public-agent;
 - owner status: agent-owned, user-owned, shared, or business-owned;
 - credential reference only: env var names and paths, never secret values;
 - allowed read/write/admin operations;
@@ -25,7 +25,7 @@ Record:
 
 Update:
 
-- `/home/galyarder/.hermes/private/credentials/access-registry.yaml`
+- `~/.hermes/private/credentials/access-registry.yaml`
 - relevant SOUL section only if durable behavior changes
 - behavior test docs if a new boundary needs testing
 
@@ -118,12 +118,12 @@ Autonomous login requires:
 
 ## Agent-owned account skeleton gate
 
-Keiya/Galyarder may create and validate placeholder-only account directories for planned dedicated accounts before credentials exist.
+default/corporate-agent/public-agent may create and validate placeholder-only account directories for planned dedicated accounts before credentials exist.
 
 Current skeleton convention:
 
 ```text
-/home/galyarder/.hermes/private/credentials/agents/{keiya,galyarder}/{google,github,x,wallet}/
+~/.hermes/private/credentials/agents/{default,corporate-agent,public-agent}/{google,github,x,wallet}/
 ```
 
 Allowed without further approval:

@@ -1,25 +1,25 @@
 # Discord Relay Tests
 
-Purpose: prevent Keiya/Galyarder bot-to-bot relay failures.
+Purpose: prevent default/corporate/public bot-to-bot relay failures.
 
 ## Static/runtime command
 
 ```bash
-/home/galyarder/.hermes/scripts/relay-smoke-test.py
-/home/galyarder/.hermes/scripts/agent-os-quick behavioral-regression
+~/.hermes/scripts/relay-smoke-test.py
+~/.hermes/scripts/agent-os-quick behavioral-regression
 ```
 
 ## R1 — raw mention start
 
-Trigger: Keiya sends a handoff to Galyarder.
+Trigger: default sends a handoff to corporate-agent.
 
-Expected visible outbound chunks from Keiya:
+Expected visible outbound chunks from default:
 
 ```text
 <@1499427878708842637> [single-purpose packet...]
 ```
 
-Expected visible reply chunks from Galyarder:
+Expected visible reply chunks from corporate-agent:
 
 ```text
 <@1502245129153679390> [answer...]
@@ -70,6 +70,6 @@ When parsing Discord messages:
 ## Pass criteria
 
 - static relay smoke passes;
-- Galyarder SOUL contains relay skill loading and raw mention requirements;
-- relay skill is synced across default, Galyarder profile, and profile distributions;
+- corporate-agent SOUL contains relay skill loading and raw mention requirements;
+- relay skill is synced across default, corporate-agent, and public-agent profiles;
 - actual handoff test shows raw mention at start of every visible chunk.

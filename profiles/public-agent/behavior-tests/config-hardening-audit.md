@@ -4,7 +4,7 @@ Purpose: track Hermes config posture against the Mahiru/Waguri access/autonomy l
 
 ## Checklist
 
-| Item | Keiya/default target | Galyarder target | Notes |
+| Item | default/Operations target | corporate-agent/public-agent target | Notes |
 |---|---|---|---|
 | fallback providers | present | present | `fallback_providers` should exist and point to available provider/model refs |
 | approval mode | high-autonomy but domain-boundary aware | stricter/manual for destructive risk | domain SOUL boundaries override global mode |
@@ -23,13 +23,13 @@ Purpose: track Hermes config posture against the Mahiru/Waguri access/autonomy l
 ## Latest audit command
 
 ```bash
-/home/galyarder/.hermes/scripts/agent-os-access-hardening-audit.py
+~/.hermes/scripts/agent-os-access-hardening-audit.py
 ```
 
 The command writes:
 
 ```text
-/home/galyarder/.hermes/reports/agent-os/access-hardening-latest.json
+~/.hermes/reports/agent-os/access-hardening-latest.json
 ```
 
 ## Interpretation
