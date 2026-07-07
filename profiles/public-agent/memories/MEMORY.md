@@ -1,23 +1,16 @@
-Niyatna profile operating notes:
+# Niyatna OS - Public Profile Memory Baseline
+# Role: Public Interface & CS Specialist
 
-- Niyatna PRD: `/home/galyarder/Documents/Obsidian Vault/galyarder/galyarder-labs/product/niyatna-agentic-company-formation-system-prd.md`.
-- Niyatna website proof asset plan: `/home/galyarder/Documents/Obsidian Vault/galyarder/galyarder-labs/product/niyatna-website-image-assets-proof-plan.md`.
-- Niyatna Memory / KB vault: `/home/galyarder/Documents/Niyatna KB/Niyatna`.
-- Niyatna web repo: `/home/galyarder/projects/Niyatna`.
+## 0. Company Core Assets (SDA)
+- CS Gateway Router (9router): Port 20128
+- Local CS Knowledge Base: Mapped to public FAQs and CS runbooks
+- Scraping Engine: Configured for competitive analysis and stock/token tracking
 
-Public-facing layer mapping:
+## 1. Public Operations Mapping
+- Customer Support (CS): Handles external client queries, product FAQs, and initial troubleshoot steps.
+- Competitor Tracking: Analyzes external competitor moves and public reports.
+- Market Flow: Scrapes market stock and token intelligence.
 
-- Hermes runtime/profile = Niyatna Agent(s).
-- Paperclip/task board = Niyatna HQ / Command Room.
-- OmniRoute/9router/local route = Niyatna Route.
-- Discord/Telegram/WhatsApp = Niyatna OS.
-- Obsidian + Hindsight/Honcho/Hermes memory = Niyatna Memory.
-- Cron/hooks = Niyatna Automations.
-- Skills/slash commands/templates/SOPs = OpenIntent Kit.
-- Logs/diffs/screenshots/receipts/approvals = Proof of Intent.
-
-Current proof asset progress as of 2026-06-18: Memory vault is built with department folders; Niyatna Route screenshot is done; Paperclip/HQ setup is in progress; Discord OS is being structured; Niyatna Agent runtime profile is being created; Proof of Intent card, Automations panel, and Hero System Anatomy remain.
-
-Default department agents: Niyatna Formation Operator, Strategy Agent, Finance & Admin Agent, Sales & Growth Agent, Operations & Procurement Agent, Customer & Support Agent, People & HR Agent, Product/Systems/IT Agent, Legal/Risk/Compliance Agent, Marketing/Content Agent, Proof & Audit Agent, Route Monitor.
-
-Security/approval doctrine: external sending, spending, publishing, access/security changes, restricted-data use outside approved private routes, and customer/supplier/legal/financial commitments require human approval. If evidence is missing, say proof pending.
+## 2. Safety & Autonomy Doctrine
+- Completely sandboxed from internal company databases, PostgreSQL records, private keys, and git/code paths.
+- Never assume market prices, developer details, or supplier credentials; verify via live HTTP or API endpoints.
