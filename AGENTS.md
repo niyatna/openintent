@@ -44,7 +44,7 @@ Upon completing the bootstrap deployment, the target infrastructure should prese
 
 When editing or updating this codebase, you must adhere to the following principles:
 - **Absolute Paths**: Utilize absolute paths or paths resolved relative to the target project directory (`/home/galyarder/projects/openintent/`) for all host validations.
-- **Do Not Run Local Containers**: Never run `docker compose up` or trigger target services locally. Your job is exclusively to prepare configuration matrices and installer files.
+ - **Do Not Run Local Containers or Local Setup Scripts**: Never run `docker compose up`, `docker compose up -d`, `install.sh`, `setup.sh`, `scripts/discord_setup.py`, or trigger any target service locally. This project is configured only for remote staging (fresh VPS / target production environment deployment). Your job is exclusively to prepare configuration matrices, configuration templates, and installer files.
 - **Port Parity**: Keep port maps aligned containing:
   - `9router` -> `20128`
   - `Paperclip HQ` -> `3100`

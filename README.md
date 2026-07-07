@@ -19,6 +19,8 @@ The kit bootstraps and provisions the Niyatna architecture consisting of five co
 
 ---
 
+⚠️ **CRITICAL DEPLOYMENT NOTICE**: Never run any installer scripts (`install.sh`, `setup.sh`), verify scripts, or docker-compose services on this local development machine. This workspace is strictly for configuring and preparing deployment bundles. All services and scripts are designed to be deployed and executed only on a clean, remote VPS / production staging server.
+
 ## Infrastructure Requirements
 
 * **Minimum Host Specs**: 2 vCPU cores, 4 GB RAM.
