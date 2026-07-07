@@ -40,10 +40,10 @@ auxiliary:
     provider: 9router
     timeout: 30
   background_review:
-    api_key: ''
-    base_url: ''
-    model: ''
-    provider: auto
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
     timeout: 120
   compression:
     api_key: ${9ROUTER_API_KEY}
@@ -58,8 +58,8 @@ auxiliary:
     provider: 9router
     timeout: 600
   kanban_decomposer:
-    api_key: ''
-    base_url: ''
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
     model: oc/deepseek-v4-flash-free
     provider: 9router
     timeout: 180
@@ -70,14 +70,14 @@ auxiliary:
     provider: 9router
     timeout: 30
   monitor:
-    api_key: ''
-    base_url: ''
-    model: ''
-    provider: auto
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
     timeout: 60
   profile_describer:
-    api_key: ''
-    base_url: ''
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
     model: oc/deepseek-v4-flash-free
     provider: 9router
     timeout: 60
@@ -401,7 +401,7 @@ mattermost:
 mcp_discovery_timeout: 1.5
 mcp_servers:
   codegraph:
-    command: /home/galyarder/.local/bin/codegraph-mcp
+    command: npx -y @colbymchenry/codegraph mcp
   context7:
     connect_timeout: 60
     enabled: true
@@ -418,7 +418,7 @@ mcp_servers:
     timeout: 120
     url: https://mcp.linear.app/mcp
   notebooklm:
-    command: /home/galyarder/.local/bin/notebooklm-mcp
+    command: notebooklm-mcp
     enabled: true
   notion:
     auth: oauth
@@ -428,9 +428,6 @@ mcp_servers:
     enabled: true
     timeout: 120
     url: https://mcp.notion.com/mcp
-  open-design:
-    command: /home/galyarder/.local/bin/od-mcp
-    enabled: true
   9router:
     auth_note: 9Router Streamable HTTP MCP.
     connect_timeout: 60
@@ -440,7 +437,7 @@ mcp_servers:
     timeout: 180
     url: http://9router:20128/api/mcp/stream
   paperclip:
-    command: /home/galyarder/.hermes/scripts/paperclip-mcp-stdio.py
+    command: python3 /opt/data/scripts/paperclip-mcp-stdio.py
     connect_timeout: 30
     enabled: true
     timeout: 120
