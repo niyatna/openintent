@@ -1,8 +1,0 @@
-name: data-science
-mode: catalog-only-not-active-bundle
-profile: keiya
-skill_count: 1
-skills:
-- name: jupyter-live-kernel
-  path: data-science/jupyter-live-kernel
-  description: Iterative Python via live Jupyter kernel (hamelnb).

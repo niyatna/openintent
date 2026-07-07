@@ -1,8 +1,0 @@
-name: red-teaming
-mode: catalog-only-not-active-bundle
-profile: keiya
-skill_count: 1
-skills:
-- name: godmode
-  path: red-teaming/godmode
-  description: 'Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.'
