@@ -1,74 +1,787 @@
-model:
-  base_url: 'http://9router:20128/v1'
-  default: oc/deepseek-v4-flash-free
-  provider: 9router
-providers:
-  9router:
-    base_url: http://9router:20128/v1
-    key_env: 9ROUTER_API_KEY
+_config_version: 31
 agent:
-  max_turns: 180
-  gateway_timeout: 1800
-  tool_use_enforcement: true
+  api_max_retries: 3
+  clarify_timeout: 600
+  coding_context: auto
+  disabled_toolsets:
+  - homeassistant
+  - yuanbao
+  - google_meet
+  environment_hint: ''
   environment_probe: true
-  system_prompt: 'Public Agent: Customer Support, competitor intelligence, and market tracking. key_env=9ROUTER_API_KEY. Connects to 9router:20128. Default target: oc/deepseek-v4-flash-free.'
-  prefill_messages_file: prefill.json
+  gateway_auto_continue_freshness: 3600
+  gateway_notify_interval: 180
+  gateway_timeout: 1800
+  gateway_timeout_warning: 900
+  image_input_mode: auto
+  max_turns: 180
+  parallel_tool_call_guidance: true
   personalities:
     default: "Default Agent (Operations): handles company OS, task backlog, local files, config checks, and hindsight indexing."
     corporate: "Corporate Agent: handles strategic roadmap reviews, budget gates/approvals, and ROI forecasting."
     public: "Public Agent: handles customer support, competitor tracking, web scraping, and market flows."
+  reasoning_effort: xhigh
+  restart_drain_timeout: 60
+  system_prompt: 'Public Agent: Customer Support, competitor intelligence, and market tracking. key_env=9ROUTER_API_KEY. Connects to 9router:20128. Default target: oc/deepseek-v4-flash-free.'
+  task_completion_guidance: true
+  tool_use_enforcement: auto
+  verbose: false
+approvals:
+  cron_mode: deny
+  destructive_slash_confirm: true
+  mcp_reload_confirm: true
+  mode: smart
+  timeout: 60
+auxiliary:
+  approval:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 30
+  background_review:
+    api_key: ''
+    base_url: ''
+    model: ''
+    provider: auto
+    timeout: 120
+  compression:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 120
+  curator:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 600
+  kanban_decomposer:
+    api_key: ''
+    base_url: ''
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 180
+  mcp:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 30
+  monitor:
+    api_key: ''
+    base_url: ''
+    model: ''
+    provider: auto
+    timeout: 60
+  profile_describer:
+    api_key: ''
+    base_url: ''
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 60
+  session_search:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    extra_body: {}
+    max_concurrency: 3
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 30
+  skills_hub:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 30
+  title_generation:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    language: ''
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 30
+  triage_specifier:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 120
+  tts_audio_tags:
+    api_key: ''
+    base_url: ''
+    model: ''
+    provider: auto
+    timeout: 30
+  vision:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    download_timeout: 30
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 180
+  web_extract:
+    api_key: ${9ROUTER_API_KEY}
+    base_url: http://9router:20128/v1
+    model: oc/deepseek-v4-flash-free
+    provider: 9router
+    timeout: 360
+bedrock:
+  discovery:
+    enabled: true
+    provider_filter: []
+    refresh_interval: 3600
+  guardrail:
+    guardrail_identifier: ''
+    guardrail_version: ''
+    stream_processing_mode: async
+    trace: disabled
+  region: ''
+browser:
+  allow_private_urls: false
+  auto_local_for_private_urls: true
+  camofox:
+    adopt_existing_tab: true
+    loopback_host_alias: host.docker.internal
+    managed_persistence: true
+    rewrite_loopback_urls: true
+    session_key: ''
+    user_id: ''
+  cdp_url: http://127.0.0.1:9222
+  cloud_provider: camofox
+  command_timeout: 30
+  dialog_policy: must_respond
+  dialog_timeout_s: 300
+  engine: auto
+  inactivity_timeout: 120
+  record_sessions: true
+  use_gateway: false
+checkpoints:
+  auto_prune: false
+  delete_orphans: true
+  enabled: true
+  max_file_size_mb: 10
+  max_snapshots: 50
+  max_total_size_mb: 500
+  min_interval_hours: 24
+  retention_days: 7
+code_execution:
+  max_tool_calls: 50
+  mode: project
+  timeout: 300
+command_allowlist:
+- script execution via heredoc
+- stop/restart system service
+compression:
+  abort_on_summary_failure: false
+  codex_gpt55_autoraise: true
+  enabled: true
+  hygiene_hard_message_limit: 400
+  in_place: false
+  protect_first_n: 3
+  protect_last_n: 20
+  target_ratio: 0.2
+  threshold: 0.7
+computer_use:
+  cua_telemetry: false
+context:
+  engine: compressor
+credential_pool_strategies:
+  9router: round_robin
+cron:
+  chronos:
+    callback_url: ''
+    expected_audience: ''
+    nas_jwks_url: ''
+    portal_url: https://portal.nousresearch.com
+  max_parallel_jobs: '10'
+  provider: ''
+  wrap_response: true
+curator:
+  archive_after_days: 90
+  backup:
+    enabled: true
+    keep: 5
+  consolidate: false
+  enabled: true
+  interval_hours: 168
+  min_idle_hours: 2
+  prune_builtins: true
+  stale_after_days: 30
+custom_providers:
+- api_mode: chat_completions
+  base_url: http://9router:20128/v1
+  key_env: 9ROUTER_API_KEY
+  model: oc/deepseek-v4-flash-free
+  name: 9Router Local Proxy
+dashboard:
+  basic_auth:
+    password: ''
+    password_hash: ''
+    secret: ''
+    session_ttl_seconds: 0
+    username: ''
+  font: inter
+  oauth:
+    client_id: ''
+    portal_url: ''
+  public_url: ''
+  show_token_analytics: true
+  theme: mono
+delegation:
+  api_key: ${9ROUTER_API_KEY}
+  api_mode: ''
+  base_url: http://9router:20128/v1
+  child_timeout_seconds: 600
+  inherit_mcp_toolsets: true
+  max_async_children: 3
+  max_concurrent_children: 3
+  max_iterations: 50
+  max_spawn_depth: 3
+  model: oc/deepseek-v4-flash-free
+  orchestrator_enabled: true
+  provider: custom
+  reasoning_effort: high
+  subagent_auto_approve: true
+discord:
+  allow_any_attachment: false
+  allow_bots: mentions
+  allowed_channels: '*'
+  auto_thread: false
+  free_response_channels: ''
+  history_backfill: true
+  history_backfill_limit: 50
+  ignore_no_mention: true
+  ignored_channels: ''
+  max_attachment_bytes: 33554432
+  no_thread_channels: '*'
+  reactions: true
+  repeat_mentions_on_split: false
+  require_mention: true
+  server_actions: ''
+  thread_require_mention: true
+  voice_fx:
+    ack_enabled: true
+    ack_phrases:
+    - Let me look into that.
+    - One moment.
+    - Checking on that now.
+    - Give me a sec.
+    - On it.
+    ambient_enabled: true
+    ambient_gain: 0.18
+    ambient_path: ''
+    duck_gain: 0.06
+    enabled: false
+    speech_gain: 1
 display:
+  background_process_notifications: error
+  bell_on_complete: true
+  busy_input_mode: interrupt
+  cli_refresh_interval: 1
   compact: true
-  show_reasoning: false
-  show_cost: true
-  skin: mono
+  copy_shortcut: auto
+  credits_notices: true
+  ephemeral_system_ttl: 0
+  file_mutation_verifier: true
+  final_response_markdown: strip
+  inline_diffs: true
+  interface: cli
+  interim_assistant_messages: true
+  language: en
+  memory_notifications: 'on'
+  persist_prompts: true
+  persistent_output: true
+  persistent_output_max_lines: 200
+  personality: ''
+  pet:
+    enabled: true
+    render_mode: auto
+    scale: 1
+    slug: cache-capy
+    unicode_cols: 0
   platforms:
     discord:
       streaming: true
       tool_progress: 'off'
-memory:
-  memory_enabled: true
-  user_profile_enabled: true
-  write_approval: false
-  provider: hindsight
-  memory_char_limit: 20000
-  user_char_limit: 16000
-delegation:
-  model: oc/deepseek-v4-flash-free
-  provider: 9router
-  base_url: http://9router:20128/v1
+    telegram:
+      allowed_chats: []
+      streaming: true
+  reasoning_full: false
+  reasoning_style: code
+  resume_display: full
+  resume_exchanges: 10
+  resume_max_assistant_chars: 200
+  resume_max_assistant_lines: 3
+  resume_max_user_chars: 300
+  resume_skip_tool_only: true
+  runtime_footer:
+    enabled: false
+    fields:
+    - model
+    - context_pct
+    - cwd
+  show_cost: true
+  show_reasoning: false
+  skin: mono
+  streaming: true
+  timestamps: false
+  tool_preview_length: 0
+  tool_progress: new
+  tool_progress_command: true
+  tool_progress_grouping: accumulate
+  tui_agents_nudge: true
+  tui_auto_resume_recent: true
+  tui_status_indicator: minimal
+  turn_completion_explainer: true
+  user_message_preview:
+    first_lines: 2
+    last_lines: 2
+fallback_providers: []
+file_read_max_chars: 1e+44
+gateway:
+  api_server:
+    max_concurrent_runs: 10
+  max_inbound_media_bytes: 134217728
+  media_delivery_allow_dirs: []
+  message_timestamps:
+    enabled: false
+  strict: false
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+goals:
+  max_turns: 20
+group_sessions_per_user: true
+hooks_auto_accept: false
+human_delay:
+  max_ms: 2500
+  min_ms: 800
+  mode: 'off'
+image_gen:
   api_key: ${9ROUTER_API_KEY}
-  max_iterations: 50
-  max_concurrent_children: 3
-  max_spawn_depth: 3
-  orchestrator_enabled: true
+  base_url: http://9router:20128/v1
+  model: cx/gpt-5.5
+  openai_compatible:
+    base_url: http://9router:20128/v1
+    model: cx/gpt-5.5
+    timeout: 420
+  provider: openai-compatible
+  timeout: 420
+  use_gateway: false
 kanban:
+  auto_decompose: true
+  auto_decompose_per_tick: 3
+  default_assignee: ''
   dispatch_in_gateway: true
   dispatch_interval_seconds: 60
+  dispatch_stale_timeout_seconds: 14400
   failure_limit: 2
-discord:
-  require_mention: true
-  allowed_channels: '*'
-  auto_thread: false
-  thread_require_mention: true
-  reactions: true
-approvals:
-  mode: smart
-  timeout: 60
-  cron_mode: deny
-security:
-  allow_private_urls: true
-  redact_secrets: true
-  tirith_enabled: true
-  website_blocklist:
-    enabled: true
-    domains: []
-code_execution:
-  mode: project
-  max_tool_calls: 50
-  timeout: 300
+  orchestrator_profile: default
+  worker_log_backup_count: 1
+  worker_log_rotate_bytes: 2097152
+`known_plugin_toolsets: {}
 logging:
+  backup_count: 3
   level: INFO
   max_size_mb: 5
-  backup_count: 3
+lsp:
+  enabled: true
+  install_strategy: auto
+  wait_mode: document
+  wait_timeout: 5
+matrix:
+  allowed_rooms: ''
+  free_response_rooms: ''
+  require_mention: true
+mattermost:
+  allowed_channels: ''
+  free_response_channels: ''
+  require_mention: true
+mcp_discovery_timeout: 1.5
+mcp_servers:
+  codegraph:
+    command: /home/galyarder/.local/bin/codegraph-mcp
+  context7:
+    connect_timeout: 60
+    enabled: true
+    headers:
+      Authorization: Bearer ${CONTEXT7_API_KEY}
+    timeout: 120
+    url: https://mcp.context7.com/mcp
+  linear:
+    auth: oauth
+    auth_note: OAuth via remote MCP; run authentication from an interactive MCP-capable
+      client/session if Hermes cannot complete OAuth headlessly.
+    connect_timeout: 60
+    enabled: true
+    timeout: 120
+    url: https://mcp.linear.app/mcp
+  notebooklm:
+    command: /home/galyarder/.local/bin/notebooklm-mcp
+    enabled: true
+  notion:
+    auth: oauth
+    auth_note: OAuth via remote MCP; Notion hosted MCP does not support fully headless
+      bearer-token automation. Connect Notion workspace/pages via OAuth.
+    connect_timeout: 60
+    enabled: true
+    timeout: 120
+    url: https://mcp.notion.com/mcp
+  open-design:
+    command: /home/galyarder/.local/bin/od-mcp
+    enabled: true
+  9router:
+    auth_note: 9Router Streamable HTTP MCP.
+    connect_timeout: 60
+    enabled: true
+    headers:
+      Cookie: auth_token=${9ROUTER_MCP_AUTH_TOKEN}
+    timeout: 180
+    url: http://9router:20128/api/mcp/stream
+  paperclip:
+    command: /home/galyarder/.hermes/scripts/paperclip-mcp-stdio.py
+    connect_timeout: 30
+    enabled: true
+    timeout: 120
+platform_toolsets:
+  cli:
+  - browser
+  - browser-cdp
+  - clarify
+  - code_execution
+  - computer_use
+  - context_engine
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - kanban
+  - mcp-codegraph
+  - memory
+  - messaging
+  - moa
+  - rl
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - video
+  - vision
+  - web
+  discord:
+  - browser
+  - clarify
+  - code_execution
+  - cronjob
+  - delegation
+  - discord
+  - file
+  - image_gen
+  - kanban
+  - memory
+  - messaging
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - vision
+  - web
+  qqbot:
+  - hermes-qqbot
+  signal:
+  - hermes-signal
+  slack:
+  - hermes-slack
+  teams:
+  - hermes-teams
+  telegram:
+  - browser
+  - clarify
+  - code_execution
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - memory
+  - messaging
+  - moa
+  - rl
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - vision
+  - web
+  - browser-cdp
+  whatsapp:
+  - browser
+  - clarify
+  - code_execution
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - memory
+  - messaging
+  - moa
+  - rl
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - vision
+  - web
+  - browser-cdp
+platforms:
+  api_server:
+    enabled: true
+  discord:
+    enabled: true
+    extra:
+      allow_bots: mentions
+      allowed_channels: '*'
+      auto_thread: false
+      history_backfill: true
+      history_backfill_limit: 50
+      ignore_no_mention: true
+      ignored_channels: ''
+      no_thread_channels: '*'
+      reactions: true
+      repeat_mentions_on_split: false
+      require_mention: true
+      thread_require_mention: true
+  email:
+    enabled: true
+  ntfy:
+    enabled: false
+    extra:
+      markdown: true
+      publish_topic: ''
+      server: https://ntfy.sh
+      topic: ''
+    home_channel:
+      chat_id: ''
+      name: Default ntfy
+      platform: ntfy
+  telegram:
+    enabled: true
+    extra:
+      rich_messages: true
+      rich_drafts: true
+plugins:
+  disabled:
+  - google_meet
+  - spotify
+  enabled:
+  - browser-firecrawl
+  - discord-platform
+  - disk-cleanup
+  - email-platform
+  - openai-compatible
+  - discord-relay-guard
+  - rtk-rewrite
+  - security-guidance
+  - telegram-platform
+  - web-brave-free
+  - web-exa
+  - web-firecrawl
+  - whatsapp-platform
+prefill_messages_file: ''
+privacy:
+  redact_pii: false
+prompt_caching:
+  cache_ttl: 5m
+providers:
+  9router:
+    base_url: http://9router:20128/v1
+    api_key: ${9ROUTER_API_KEY}
+secrets:
+  bitwarden:
+    access_token_env: BWS_ACCESS_TOKEN
+    auto_install: true
+    cache_ttl_seconds: 300
+    enabled: true
+    override_existing: true
+    project_id: ''
+    server_url: ''
+security:
+  acked_advisories: []
+  allow_lazy_installs: true
+  allow_private_urls: false
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_fail_open: true
+  tirith_path: tirith
+  tirith_timeout: 5
+  website_blocklist:
+    domains: []
+    enabled: true
+    shared_files: []
+session_reset:
+  at_hour: 0
+  idle_minutes: 1440
+  mode: both
+sessions:
+  auto_prune: true
+  min_interval_hours: 24
+  retention_days: 90
+  vacuum_after_prune: true
+  write_json_snapshots: true
+skills:
+  creation_nudge_interval: 15
+  disabled: []
+  external_dirs: []
+  guard_agent_created: true
+  inline_shell: false
+  inline_shell_timeout: 10
+  template_vars: true
+  write_approval: false
+slack:
+  allowed_channels: ''
+  free_response_channels: ''
+  require_mention: true
+streaming:
+  buffer_threshold: 24
+  cursor: " \u2589"
+  edit_interval: 0.8
+  enabled: true
+  fresh_final_after_seconds: 60
+  transport: auto
+stt:
+  elevenlabs:
+    diarize: false
+    language_code: ''
+    model_id: scribe_v2
+    tag_audio_events: false
+  enabled: true
+  groq:
+    language: id
+    model: whisper-large-v3-turbo
+  local:
+    language: Indonesia
+    model: base
+  mistral:
+    model: voxtral-mini-latest
+  openai:
+    model: whisper-1
+  provider: groq
+telegram:
+  allowed_chats: []
+  reactions: true
+terminal:
+  auto_source_bashrc: true
+  backend: local
+  container_cpu: 1
+  container_disk: 51200
+  container_memory: 5120
+  container_persistent: true
+  cwd: /opt/data/profiles/public-agent/workspace
+  daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
+  docker_extra_args: []
+  docker_forward_env: []
+  docker_image: nikolaik/python-nodejs:python3.11-nodejs20
+  docker_mount_cwd_to_workspace: false
+  docker_run_as_host_user: false
+  docker_volumes: []
+  env_passthrough: []
+  home_mode: auto
+  lifetime_seconds: 300
+  modal_image: nikolaik/python-nodejs:python3.11-nodejs20
+  modal_mode: auto
+  persistent_shell: true
+  shell_init_files: []
+  singularity_image: docker://nikolaik/python-nodejs:python3.11-nodejs20
+  timeout: 180
+  vercel_runtime: node24
 timezone: Asia/Jakarta
+tool_loop_guardrails:
+  hard_stop_after:
+    exact_failure: 5
+    idempotent_no_progress: 5
+    same_tool_failure: 8
+  hard_stop_enabled: false
+  warn_after:
+    exact_failure: 2
+    idempotent_no_progress: 2
+    same_tool_failure: 3
+  warnings_enabled: true
+tool_output:
+  max_bytes: 50000
+  max_line_length: 2000
+  max_lines: 2000
+tools:
+  tool_search:
+    enabled: true
+    max_search_limit: 20
+    search_default_limit: 5
+    threshold_pct: 10
+toolsets:
+  - hermes-cli
+tts:
+  edge:
+    voice: en-US-AndrewNeural
+  elevenlabs:
+    model_id: eleven_multilingual_v2
+    voice_id: ''
+  gemini:
+    audio_tags: false
+    model: gemini-2.5-flash-preview-tts
+    persona_prompt_file: ''
+    voice: Kore
+  mistral:
+    model: voxtral-mini-tts-2603
+    voice_id: ''
+  neutts:
+    device: cpu
+    model: neuphonic/neutts-air-q4-gguf
+    ref_audio: ''
+    ref_text: ''
+  openai:
+    model: gpt-4o-mini-tts
+    voice: alloy
+  piper:
+    voice: en-US-AndrewNeural
+  provider: edge
+  xai:
+    bit_rate: 128000
+    language: en
+    sample_rate: 24000
+    voice_id: ''
+updates:
+  backup_keep: 5
+  non_interactive_local_changes: stash
+  pre_update_backup: true
+voice:
+  auto_tts: false
+  beep_enabled: true
+  max_recording_seconds: 120
+  record_key: ctrl+b
+  silence_duration: 3
+  silence_threshold: 200
+web:
+  backend: exa
+  extract_backend: firecrawl
+  search_backend: exa
+  use_gateway: false
+x_search:
+  model: grok-4.20-reasoning
+  retries: 2
+  timeout_seconds: 180
+moa:
+  active_preset: default
+  presets:
+    default:
+      aggregator:
+        model: oc/deepseek-v4-flash-free
+        provider: 9router
+      max_tokens: 0
+      reference_models: []
+model:
+  base_url: http://9router:20128/v1
+  default: oc/deepseek-v4-flash-free
+  provider: 9router
