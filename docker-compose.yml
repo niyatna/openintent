@@ -122,7 +122,7 @@ services:
       HERMES_PROFILE: default
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./profiles/default:/opt/data
+      - ./data/hermes:/opt/data
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -144,7 +144,7 @@ services:
       HERMES_PROFILE: corporate-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./profiles/corporate-agent:/opt/data/profiles/corporate-agent
+      - ./data/hermes/profiles/corporate-agent:/opt/data/profiles/corporate-agent
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -166,7 +166,7 @@ services:
       HERMES_PROFILE: public-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./profiles/public-agent:/opt/data/profiles/public-agent
+      - ./data/hermes/profiles/public-agent:/opt/data/profiles/public-agent
     depends_on:
       bootstrap:
         condition: service_completed_successfully
