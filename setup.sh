@@ -91,24 +91,24 @@ else
     echo -e "${GREEN}-> .env file already exists. Skipping prompts.${NC}"
 fi
 
-# 2. Dynamic Configuration Profiling
-echo -e "\n${YELLOW}Provisioning profile runtime folders under HERMES_HOME structure...${NC}"
-mkdir -p data/hermes/profiles/operations/skills
-mkdir -p data/hermes/profiles/corporate
-mkdir -p data/hermes/profiles/public
+# 4. Bootstrap runtime profiles folders
+echo -e "\nInitializing output directories..."
+mkdir -p data/hermes/profiles/agentic-company
+mkdir -p data/hermes/profiles/corporate-agent
+mkdir -p data/hermes/profiles/public-agent
 
-# Seeding baseline templates/distributions cleanly
-cp -rf templates/operations/* data/hermes/profiles/operations/ 2>/dev/null || true
-cp -rf templates/corporate/* data/hermes/profiles/corporate/ 2>/dev/null || true
-cp -rf templates/public/* data/hermes/profiles/public/ 2>/dev/null || true
+# Staging profile distributions templates
+cp -rf profiles/agentic-company/* data/hermes/profiles/agentic-company/ 2>/dev/null || true
+cp -rf profiles/corporate-agent/* data/hermes/profiles/corporate-agent/ 2>/dev/null || true
+cp -rf profiles/public-agent/* data/hermes/profiles/public-agent/ 2>/dev/null || true
 
-# Copy python setup scripts to profiles so agents can run them locally
-cp -f scripts/discord_setup.py data/hermes/profiles/operations/discord_setup.py 2>/dev/null || true
+# Copy script endpoints
+cp -f scripts/discord_setup.py data/hermes/profiles/agentic-company/discord_setup.py 2>/dev/null || true
 
-# Seeding environment variables directly to profile paths so agents can read them on startup
-cp -f .env data/hermes/profiles/operations/.env
-cp -f .env data/hermes/profiles/corporate/.env
-cp -f .env data/hermes/profiles/public/.env
+# Bind env variables securely
+cp -f .env data/hermes/profiles/agentic-company/.env
+cp -f .env data/hermes/profiles/corporate-agent/.env
+cp -f .env data/hermes/profiles/public-agent/.env
 
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true

@@ -65,7 +65,7 @@ FAILED_PORTS=0
 check_port "9router" "$PORT_9ROUTER" || FAILED_PORTS=$((FAILED_PORTS + 1))
 check_port "Hindsight Memory" "$PORT_HINDSIGHT" || FAILED_PORTS=$((FAILED_PORTS + 1))
 check_port "Paperclip Dashboard" "$PORT_PAPERCLIP" || FAILED_PORTS=$((FAILED_PORTS + 1))
-check_port "Operations Agent Gateway" "$PORT_OP" || FAILED_PORTS=$((FAILED_PORTS + 1))
+check_port "Agentic Company (Operations) Gateway" "$PORT_OP" || FAILED_PORTS=$((FAILED_PORTS + 1))
 check_port "Corporate Agent Gateway" "$PORT_CORP" || FAILED_PORTS=$((FAILED_PORTS + 1))
 check_port "Public Agent Gateway" "$PORT_PUB" || FAILED_PORTS=$((FAILED_PORTS + 1))
 
@@ -78,9 +78,9 @@ FAILED_HTTP=0
 check_http_response "9router UI/API" "http://localhost:$PORT_9ROUTER" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
 check_http_response "Hindsight REST API" "http://localhost:$PORT_HINDSIGHT/health" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
 check_http_response "Paperclip HQ Command" "http://localhost:$PORT_PAPERCLIP" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
-check_http_response "Operations Gateway" "http://localhost:$PORT_OP/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
-check_http_response "Corporate Gateway" "http://localhost:$PORT_CORP/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
-check_http_response "Public Gateway" "http://localhost:$PORT_PUB/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
+check_http_response "Agentic Company (Operations) Gateway" "http://localhost:$PORT_OP/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
+check_http_response "Corporate Agent Gateway" "http://localhost:$PORT_CORP/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
+check_http_response "Public Agent Gateway" "http://localhost:$PORT_PUB/api/status" "200" || FAILED_HTTP=$((FAILED_HTTP + 1))
 
 if [ "$FAILED_HTTP" -gt 0 ]; then
     echo -e "${RED}⚠️  Level 2 check failed: some services returned wrong HTTP codes.${NC}"

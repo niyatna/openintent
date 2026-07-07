@@ -1,0 +1,72 @@
+profile: corporate-agent
+title: "Corporate Lane"
+description: "High-level strategy, executive coordination, business rules, and legal audits."
+model:
+  default: brain
+  provider: custom
+  base_url: http://9router:20128/v1
+  api_key_env: 9ROUTER_API_KEY
+  context_length: 1048576
+
+auxiliary:
+  vision:
+    provider: auto
+    model: ''
+    base_url: ''
+    api_key: ''
+  web_extract:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+  compression:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+  session_search:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+  skills_hub:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+  approval:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+  mcp:
+    provider: custom
+    model: cheap
+    base_url: http://9router:20128/v1
+    api_key: ''
+
+delegation:
+  model: brain
+  provider: custom
+  base_url: http://9router:20128/v1
+  api_key_env: 9ROUTER_API_KEY
+  max_iterations: 50
+  default_toolsets:
+    - terminal
+    - file
+    - web
+    - memory
+
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
+  persistent_shell: true
+  container_persistent: true
+
+display:
+  compact: false
+  resume_display: full
+  show_reasoning: false
+  show_cost: true
+  skin: default

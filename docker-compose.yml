@@ -112,17 +112,17 @@ services:
 
   agent-operations:
     image: ghcr.io/nousresearch/hermes-agent:latest
-    container_name: openintent-operations
+    container_name: openintent-agentic-company
     profiles:
       - agents
     ports:
       - "8001:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/operations
-      HERMES_PROFILE: operations
+      HERMES_HOME: /opt/data/profiles/agentic-company
+      HERMES_PROFILE: agentic-company
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./templates/operations:/opt/data/profiles/operations
+      - ./profiles/agentic-company:/opt/data/profiles/agentic-company
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -134,17 +134,17 @@ services:
 
   agent-corporate:
     image: ghcr.io/nousresearch/hermes-agent:latest
-    container_name: openintent-corporate
+    container_name: openintent-corporate-agent
     profiles:
       - agents
     ports:
       - "8002:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/corporate
-      HERMES_PROFILE: corporate
+      HERMES_HOME: /opt/data/profiles/corporate-agent
+      HERMES_PROFILE: corporate-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./templates/corporate:/opt/data/profiles/corporate
+      - ./profiles/corporate-agent:/opt/data/profiles/corporate-agent
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -156,17 +156,17 @@ services:
 
   agent-public:
     image: ghcr.io/nousresearch/hermes-agent:latest
-    container_name: openintent-public
+    container_name: openintent-public-agent
     profiles:
       - agents
     ports:
       - "8003:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/public
-      HERMES_PROFILE: public
+      HERMES_HOME: /opt/data/profiles/public-agent
+      HERMES_PROFILE: public-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./templates/public:/opt/data/profiles/public
+      - ./profiles/public-agent:/opt/data/profiles/public-agent
     depends_on:
       bootstrap:
         condition: service_completed_successfully
