@@ -44,3 +44,14 @@ To materialize the "Grow with Company" value, the agent uses the local Obsidian 
 To package Niyatna OS as a portable, distributable starter kit, `USER.md` and `MEMORY.md` must be stripped of Muhamad Galih Saputra's personal settings and converted into generic, plug-and-play templates.
 - **`USER.md`** template: Guides the agent on how to interview the first user who starts the session, log their organization info, and store it.
 - **`MEMORY.md`** template: Sets up the structural placeholders for departments, company goals, and Hindsight memory bank references.
+
+## 5. Bidirectional Discord OS Integration (`paperclip-plugin-discord`)
+To enforce a unified, zero-friction interface directly inside Discord:
+- **Interactive Approvals**: Paperclip tasks that require manual confirmation (e.g., wallet withdrawals, code deployments, publishing changes) post interactive buttons (Approve/Reject) directly into the `#approval-gates` Discord channel via `paperclip-plugin-discord`.
+- **Installation Method**: The plugin is installed dynamically on the Paperclip instance after container initialization via its REST API:
+  ```bash
+  curl -X POST http://localhost:3100/api/plugins/install \
+    -H "Content-Type: application/json" \
+    -d '{"url": "https://github.com/mvanhorn/paperclip-plugin-discord"}'
+  ```
+This preserves the clean container runtime mapping and leverages the shared `DISCORD_BOT_TOKEN`.
