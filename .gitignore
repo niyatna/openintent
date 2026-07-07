@@ -1,0 +1,8 @@
+# Logs
+*.log
+data/
+.env
+.agent.env
+.niyatna-9router-key
+__pycache__/
+*.pyc

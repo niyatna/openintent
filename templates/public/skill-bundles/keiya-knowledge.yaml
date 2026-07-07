@@ -1,0 +1,8 @@
+name: keiya-knowledge
+skills:
+- obsidian
+- gbrain
+- notebooklm-mcp-cli
+description: Keiya knowledge/vault/NotebookLM/GBrain route.
+instruction: Use for notes, vault operations, NotebookLM, source grounding, and reusable
+  knowledge capture. Put long durable notes in Obsidian, not hot memory.

@@ -1,0 +1,16 @@
+# Agent-owned account credential file.
+# chmod 600. Never commit, paste, screenshot, or print secret values.
+# Fill secrets locally only after Galih approves the account contract.
+ACCOUNT_ID=
+OWNER=
+SERVICE=
+EMAIL=
+USERNAME=
+LABEL=
+PASSWORD=
+TOTP_SECRET=
+BACKUP_CODES_FILE=
+COOKIES_FILE=
+RECOVERY_EMAIL=
+PHONE_LAST4=
+NOTES=dedicated agent-owned account; secrets are local-only

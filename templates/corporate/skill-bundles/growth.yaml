@@ -1,0 +1,12 @@
+name: growth
+skills:
+- onboarding-cro
+- copywriting
+- growth-strategist
+- platform-operator-router
+- gen-z
+- seo-audit
+description: 'Category bundle: all 76 skills under `growth` for keiya.'
+instruction: Use this only when the user intentionally wants the whole category/folder
+  context. For normal work, prefer the lean core bundle plus exact routed skills to
+  avoid context noise.

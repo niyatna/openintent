@@ -1,0 +1,181 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: openintent-db
+    environment:
+      POSTGRES_USER: paperclip
+      POSTGRES_PASSWORD: paperclip_secure_password_replace_me
+      POSTGRES_DB: paperclip
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U paperclip -d paperclip"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  headroom:
+    image: ghcr.io/chopratejas/headroom:latest
+    container_name: openintent-headroom
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  9router:
+    image: decolua/9router:latest
+    container_name: openintent-9router
+    ports:
+      - "20128:20128"
+    environment:
+      NODE_ENV: production
+      PORT: "20128"
+      HOSTNAME: "0.0.0.0"
+      DATA_DIR: /app/data
+      HEADROOM_URL: http://headroom:8787
+      JWT_SECRET: jwt_secret_key_random_replace_me
+      INITIAL_PASSWORD: admin_password_replace_me
+      API_KEY_SECRET: niyatna-9router-api-key-secret
+      REQUIRE_API_KEY: "true"
+      ENABLE_REQUEST_LOGS: "true"
+    volumes:
+      - ./data/9router:/app/data
+    depends_on:
+      - headroom
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  bootstrap:
+    image: python:3.11-slim
+    container_name: openintent-bootstrap
+    entrypoint: ["/scripts/init_9router_db.py"]
+    environment:
+      9ROUTER_API_BASE: http://9router:20128
+      9ROUTER_KEY_NAME: niyatna-agent
+      9ROUTER_KEY_FILE: /data/.niyatna-9router-key
+      AGENT_ENV_FILE: /data/.agent.env
+    volumes:
+      - ./scripts/init_9router_db.py:/scripts/init_9router_db.py:ro
+      - ./data/9router:/data
+    depends_on:
+      - 9router
+    networks:
+      - openintent-network
+    restart: "no"
+
+  hindsight-api:
+    image: ghcr.io/vectorize-io/hindsight:latest
+    container_name: openintent-hindsight
+    ports:
+      - "9177:8888"
+    environment:
+      HINDSIGHT_API_HOST: 0.0.0.0
+      HINDSIGHT_API_PORT: "8888"
+      HINDSIGHT_ENABLE_API: "true"
+      HINDSIGHT_ENABLE_CP: "false"
+      HINDSIGHT_API_LOG_LEVEL: info
+      HF_HUB_VERBOSITY: error
+      TRANSFORMERS_VERBOSITY: error
+      TOKENIZERS_PARALLELISM: "false"
+    volumes:
+      - ./data/hindsight:/home/hindsight/.pg0
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  paperclip-hq:
+    image: ghcr.io/paperclipai/paperclip:latest
+    container_name: openintent-paperclip
+    ports:
+      - "3100:3100"
+    environment:
+      DATABASE_URL: postgres://paperclip:paperclip_secure_password_replace_me@db:5432/paperclip
+      PORT: "3100"
+      SERVE_UI: "true"
+      PAPERCLIP_DEPLOYMENT_MODE: authenticated
+      PAPERCLIP_DEPLOYMENT_EXPOSURE: private
+      PAPERCLIP_PUBLIC_URL: http://localhost:3100
+      BETTER_AUTH_SECRET: better_auth_secret_key_random_replace_me
+    volumes:
+      - ./data/paperclip:/paperclip
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  agent-operations:
+    image: ghcr.io/nousresearch/hermes-agent:latest
+    container_name: openintent-operations
+    profiles:
+      - agents
+    ports:
+      - "8001:8000"
+    environment:
+      HERMES_HOME: /opt/data/profiles/operations
+      HERMES_PROFILE: operations
+    env_file: ./data/9router/.agent.env
+    volumes:
+      - ./templates/operations:/opt/data/profiles/operations
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+      hindsight-api:
+        condition: service_started
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  agent-corporate:
+    image: ghcr.io/nousresearch/hermes-agent:latest
+    container_name: openintent-corporate
+    profiles:
+      - agents
+    ports:
+      - "8002:8000"
+    environment:
+      HERMES_HOME: /opt/data/profiles/corporate
+      HERMES_PROFILE: corporate
+    env_file: ./data/9router/.agent.env
+    volumes:
+      - ./templates/corporate:/opt/data/profiles/corporate
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+      hindsight-api:
+        condition: service_started
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+  agent-public:
+    image: ghcr.io/nousresearch/hermes-agent:latest
+    container_name: openintent-public
+    profiles:
+      - agents
+    ports:
+      - "8003:8000"
+    environment:
+      HERMES_HOME: /opt/data/profiles/public
+      HERMES_PROFILE: public
+    env_file: ./data/9router/.agent.env
+    volumes:
+      - ./templates/public:/opt/data/profiles/public
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+      hindsight-api:
+        condition: service_started
+    networks:
+      - openintent-network
+    restart: unless-stopped
+
+networks:
+  openintent-network:
+    name: openintent-network

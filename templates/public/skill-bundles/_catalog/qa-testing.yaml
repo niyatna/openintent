@@ -1,0 +1,71 @@
+name: qa-testing
+mode: catalog-only-not-active-bundle
+profile: keiya
+skill_count: 16
+skills:
+- name: adversarial-ux-test
+  path: qa-testing/adversarial-ux-test
+  description: Roleplay the most difficult, tech-resistant user for your product. Browse the app as that persona, find every
+    UX pain point, then filter complaints through a pragmatism layer to separate real problems from noise. Creates actionable
+    tickets from genuine issues only.
+- name: browserstack
+  path: qa-testing/browserstack
+  description: Use when run tests on BrowserStack. Use when user mentions "browserstack", "cross-browser", "cloud testing",
+    "browser matrix", "test on safari", "test on firefox", or "browser compatibility".
+- name: playwright-pro
+  path: qa-testing/playwright-pro
+  description: Use when analyze test playwright-pro gaps. Use when user says "test playwright-pro", "what's not tested", "playwright-pro gaps",
+    "missing tests", "playwright-pro report", or "what needs testing".
+- name: e2e
+  path: qa-testing/e2e
+  description: Use when end-to-end testing specialist using Playwright. Generates and runs user journey tests.
+- name: e2e-runner
+  path: qa-testing/e2e-runner
+  description: Use when end-to-end testing specialist using Playwright. Use PROACTIVELY for generating, maintaining, and running
+    E2E tests. Manages test journeys, quarantines flaky tests, uploads artifacts (screenshots, videos, traces), and ensures
+    critical user flows work.
+- name: fix
+  path: qa-testing/fix
+  description: Use when fix failing or flaky Playwright tests. Use when user says "fix test", "flaky test", "test failing",
+    "debug test", "test broken", "test passes sometimes", or "intermittent failure".
+- name: generate
+  path: qa-testing/generate
+  description: Use when generate Playwright tests. Use when user says "write tests", "generate tests", "add tests for", "test
+    this component", "e2e test", "create test for", "test this page", or "test this feature".
+- name: playwright-pro
+  path: qa-testing/playwright-pro
+  description: Use when playwright-pro from Cypress or Selenium to Playwright. Use when user mentions "cypress", "selenium", "playwright-pro
+    tests", "convert tests", "switch to playwright", "move from cypress", or "replace selenium".
+- name: playwright-pro
+  path: qa-testing/playwright-pro
+  description: Use when production-grade Playwright testing toolkit. Use when the user mentions Playwright tests, end-to-end
+    testing, browser automation, fixing flaky tests, test migration, CI/CD testing, or test suites. Generate tests, fix flaky
+    failures, playwright-pro from Cypress/Selenium, sync with TestRail, run on BrowserStack. 55 templates, 3 agents, smart reporting.
+- name: playwright-pro
+  path: qa-testing/playwright-pro
+  description: Use when reviewing Playwright tests for quality, reliability, maintainability, and best-practice playwright-pro.
+- name: product-reviews
+  path: qa-testing/product-reviews
+  description: Expert in creating persuasive product testimonials highlighting the benefits and value proposition of [your
+    product/service].
+- name: pw-init
+  path: qa-testing/pw-init
+  description: Use when set up Playwright in a project. Use when user says "set up playwright", "add e2e tests", "configure
+    playwright", "testing setup", "init playwright", or "add test infrastructure".
+- name: qa-automation-engineer
+  path: qa-testing/qa-automation-engineer
+  description: Use when e2E Testing and Browser Automation specialist. Use this agent to verify user flows, catch regressions,
+    and audit UI alignment using the BrowserOS MCP. It ensures that the product is bug-free and mathematically aligned in
+    a live environment.
+- name: report
+  path: qa-testing/report
+  description: Use when generate test report. Use when user says "test report", "results summary", "test status", "show results",
+    "test dashboard", or "how did tests go".
+- name: browserstack
+  path: qa-testing/browserstack
+  description: Use when sync tests with TestRail. Use when user mentions "browserstack", "test management", "test cases", "test
+    run", "sync test cases", "push results to browserstack", or "import from browserstack".
+- name: playwright-pro
+  path: qa-testing/playwright-pro
+  description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend
+    functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.

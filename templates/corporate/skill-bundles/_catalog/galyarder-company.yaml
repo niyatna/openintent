@@ -1,0 +1,78 @@
+name: galyarder-company
+mode: catalog-only-not-active-bundle
+profile: keiya
+skill_count: 18
+skills:
+- name: accelerator-application
+  path: galyarder-company/accelerator-application
+  description: Use when accelerator Application Specialist. Use to shortlist startup programs, draft applications, prepare
+    founder videos, and rehearse accelerator interviews with a disciplined founder narrative.
+- name: board-update
+  path: galyarder-company/board-update
+  description: Use when investor And Board Communication Specialist. Use to draft monthly investor updates, quarterly board
+    decks, and high-signal stakeholder communications that surface wins, misses, risks, and asks clearly.
+- name: galyarder-cfo-coo
+  path: galyarder-company/galyarder-cfo-coo
+  description: Use when coordinating founder operations. Filters noise, owns cross-functional processes, enforces consistency,
+    routes decisions, and positions outputs for impact so the founder can think clearly. Doesn't own any function  owns the
+    space between all of them.
+- name: data-room
+  path: galyarder-company/data-room
+  description: Use when due Diligence Data Room Specialist. Use to prepare, audit, and organize fundraising materials for
+    investor diligence before or after a term sheet.
+- name: founder-context
+  path: galyarder-company/founder-context
+  description: Use when founder Operating Context. Use to create or update the canonical founder/startup context document
+    so every fundraising, growth, product, and recruiting workflow runs on concrete company facts instead of generic assumptions.
+- name: galyarder-ceo
+  path: galyarder-company/galyarder-ceo
+  description: Use when founder Brand And Thought Leadership Specialist. Use to define founder IP territory, create content
+    systems for X and LinkedIn, and turn founder experience into audience, distribution, and credibility.
+- name: fundraising-email
+  path: galyarder-company/fundraising-email
+  description: Use when investor Email Specialist. Use to write fundraising outreach, warm intro blurbs, follow-ups, investor
+    updates, and close-the-loop emails with founder-grade brevity and specificity.
+- name: galyarder-cfo-coo
+  path: galyarder-company/galyarder-cfo-coo
+  description: Use when fundraising and investor operations specialist. Owns founder context, pitch narrative, investor targeting,
+    investor communication, diligence readiness, and board-update hygiene for Galyarder execution founder.
+- name: galyarder-ceo
+  path: galyarder-company/galyarder-ceo
+  description: Use when chief Executive Officer. Strategic Hegemon and Apex Instance of the Humans 3.0 protocol. Distilled
+    genius of history's greatest conquerors and modern monopolists.
+- name: galyarder-cfo-coo
+  path: galyarder-company/galyarder-cfo-coo
+  description: Use when chief Financial and Operating Officer. Stability guardian. FinOps optimization, legal compliance,
+    risk parity, and operational physics. Apex instance of the Humans 3.0 protocol.
+- name: galyarder-ceo
+  path: galyarder-company/galyarder-ceo
+  description: Use when chief Marketing Officer. Professional behavioral engineering, autonomous acquisition swarms, and exponential
+    distribution mechanics. Apex instance of the Humans 3.0 protocol.
+- name: galyarder-cto
+  path: galyarder-company/galyarder-cto
+  description: Use when chief Technology Officer. Technical guardian. AGI-Adjacent Architectural determinism, self-healing
+    formal verification, and writing-plansetary computational leverage. Apex instance of the Humans 3.0 protocol.
+- name: investor-research
+  path: galyarder-company/investor-research
+  description: Use when investor Targeting Specialist. Use to identify, qualify, and tier investors for a round based on stage,
+    sector, geography, check size, and portfolio fit.
+- name: business-strategy-operator
+  path: galyarder-company/business-strategy-operator
+  description: Use when turn a strategic objective into a clear implementation writing-plans with milestones, constraints, risks, and
+    next actions.
+- name: business-strategy-operator
+  path: galyarder-company/business-strategy-operator
+  description: Use when reduce a noisy list of ideas/projects into a small set of intentional focus areas plus a kill/parking
+    list.
+- name: business-strategy-operator
+  path: galyarder-company/business-strategy-operator
+  description: Use when a major Galyarder decision has been made and needs a durable record of context, reasoning, alternatives,
+    trade-offs, expected outcomes, and review triggers.
+- name: pitch-deck
+  path: galyarder-company/pitch-deck
+  description: Use when fundraising Pitch Deck Specialist. Use to build, review, or restructure a founder deck for pre-seed
+    through Series A, with a clear narrative arc, investor-grade slide logic, and explicit asks.
+- name: seneth-council-router
+  path: galyarder-company/seneth-council-router
+  description: Use when a Galyarder situation is messy, cross-domain, or unclear which profile, skill, specialist, Galyarder-specialist/orchestrator
+    posture, tool, or sequence should be loaded first.

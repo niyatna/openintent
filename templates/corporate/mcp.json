@@ -1,0 +1,41 @@
+{
+  "$schema": "https://hermes-agent.nousresearch.com/schemas/mcp.json",
+  "version": 1,
+  "description": "Profile-local MCP manifest for Galyarder. NotebookLM uses the single-home OS binary; runtime config.yaml remains the active source used by Hermes.",
+  "runtime_note": "Do not remove mcp_servers from config.yaml until Hermes runtime explicitly loads profile-local mcp.json.",
+  "mcp_servers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${CONTEXT7_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 120,
+      "connect_timeout": 60
+    },
+    "notebooklm": {
+      "command": "/home/galyarder/.local/bin/notebooklm-mcp",
+      "enabled": true
+    },
+    "paperclip": {
+      "command": "/home/galyarder/.hermes/scripts/paperclip-mcp-stdio.py",
+      "enabled": false,
+      "timeout": 120,
+      "connect_timeout": 30
+    },
+    "linear": {
+      "url": "https://mcp.linear.app/mcp",
+      "enabled": true,
+      "timeout": 120,
+      "connect_timeout": 60,
+      "auth_note": "Official Linear remote MCP. Uses OAuth by default; supports Authorization header/API key if configured later."
+    },
+    "notion": {
+      "url": "https://mcp.notion.com/mcp",
+      "enabled": true,
+      "timeout": 120,
+      "connect_timeout": 60,
+      "auth_note": "Official hosted Notion remote MCP. OAuth user connection required; no headless bearer token for hosted MCP."
+    }
+  }
+}

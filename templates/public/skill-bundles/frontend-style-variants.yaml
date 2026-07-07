@@ -1,0 +1,10 @@
+name: frontend-style-variants
+skills:
+- design-styles
+- design-taste
+- web-widgets
+description: Visual direction bundle for pushing frontend style variants, motion/editorial
+  taste, redesign lanes, and DESIGN.md rules.
+instruction: Use when the task is choosing/pushing a visual direction, generating
+  variants, escaping generic UI, or creating Stitch/DESIGN.md taste rules. Do not
+  use as the default for ordinary UI implementation.

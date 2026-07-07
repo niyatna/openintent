@@ -1,0 +1,41 @@
+name: corporate
+version: 1.0.0
+description: 'Niyatna OS Corporate Profile - strategy, budget gates, founder intent, and investment decisions.'
+hermes_requires: '>=0.13.0'
+author: Galyarder Labs
+license: private
+env_requires:
+- name: 9ROUTER_API_KEY
+  description: Local 9router connection authorization key.
+  required: true
+- name: CONTEXT7_API_KEY
+  description: Context7 MCP authorization token.
+  required: true
+- name: DISCORD_BOT_TOKEN
+  description: Discord gateway bot token for corporate agent.
+  required: true
+- name: DISCORD_ALLOWED_USERS
+  description: Trusted Discord user ID allowlist.
+  required: true
+distribution_owned:
+- SOUL.md
+- mcp.json
+- hooks/
+- scripts/
+- cron/
+- skills/
+- skill-bundles/
+- behavior-tests/
+- hindsight/
+- distribution.yaml
+- memories/USER.md
+- memories/MEMORY.md
+memory_policy:
+  included:
+  - memories/USER.md
+  - memories/MEMORY.md
+  excluded:
+  - raw Hindsight database/state
+  - sessions/
+  - state.db and response_store.db
+  - .env, auth files, tokens, and secrets

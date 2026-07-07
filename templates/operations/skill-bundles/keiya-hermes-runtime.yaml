@@ -1,0 +1,10 @@
+name: keiya-hermes-runtime
+skills:
+- hermes
+- verification-before-completion
+- discord
+- native-mcp
+- mcp-builder
+description: Hermes setup/update/debug/profile-distribution route for Keiya/default.
+instruction: Use for Hermes config, gateway, skills, profiles, memory, MCP, bundles,
+  ntfy, or Bitwarden. Inspect live profile state before mutating.

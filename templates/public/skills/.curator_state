@@ -1,0 +1,9 @@
+{
+  "last_report_path": "/home/galyarder/.hermes/profiles/niyatna/logs/curator/20260705-165544",
+  "last_run_at": "2026-07-05T16:55:44.960862+00:00",
+  "last_run_duration_seconds": 4.409156,
+  "last_run_summary": "auto: 1 marked stale; llm: skipped (consolidation off)",
+  "last_run_summary_shown_at": null,
+  "paused": false,
+  "run_count": 10
+}

@@ -1,0 +1,9 @@
+name: mcp
+skills:
+- mcp-builder
+- native-mcp
+- 9router-gateway
+description: 'Category bundle: all 5 skills under `mcp` for keiya.'
+instruction: Use this only when the user intentionally wants the whole category/folder
+  context. For normal work, prefer the lean core bundle plus exact routed skills to
+  avoid context noise.
