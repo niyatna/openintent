@@ -112,17 +112,17 @@ services:
 
   agent-operations:
     image: ghcr.io/nousresearch/hermes-agent:latest
-    container_name: openintent-agentic-company
+    container_name: openintent-default
     profiles:
       - agents
     ports:
       - "8001:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/agentic-company
-      HERMES_PROFILE: agentic-company
+      HERMES_HOME: /opt/data
+      HERMES_PROFILE: default
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./profiles/agentic-company:/opt/data/profiles/agentic-company
+      - ./profiles/default:/opt/data
     depends_on:
       bootstrap:
         condition: service_completed_successfully

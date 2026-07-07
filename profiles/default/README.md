@@ -1,15 +1,15 @@
-# agentic-company Hermes Profile Distribution
+# default Hermes Profile Distribution
 
 Version: `1.0.0`
 
-Niyatna Hermes profile: agentic-company. Handles company OS operations, files, issue backlogs, and internal system tasks.
+Niyatna Hermes profile: default. Handles company OS operations, files, issue backlogs, and internal system tasks.
 
 ## Install / update
 
 ```bash
-hermes profile install ./profiles/agentic-company --name agentic-company --alias
-hermes profile update agentic-company
-hermes profile info agentic-company
+hermes profile install ./profiles/default --name default --alias
+hermes profile update default
+hermes profile info default
 ```
 
 ## Secrets and memory
@@ -31,4 +31,4 @@ Hermes runtime hot-memory loading uses `HERMES_HOME/memories/{USER.md,MEMORY.md}
 
 ## Source copied from
 
-`./profiles/agentic-company`
+`./profiles/default`

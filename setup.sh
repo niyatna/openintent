@@ -93,20 +93,20 @@ fi
 
 # 4. Bootstrap runtime profiles folders
 echo -e "\nInitializing output directories..."
-mkdir -p data/hermes/profiles/agentic-company
+mkdir -p data/hermes
 mkdir -p data/hermes/profiles/corporate-agent
 mkdir -p data/hermes/profiles/public-agent
 
 # Staging profile distributions templates
-cp -rf profiles/agentic-company/* data/hermes/profiles/agentic-company/ 2>/dev/null || true
+cp -rf profiles/default/* data/hermes/ 2>/dev/null || true
 cp -rf profiles/corporate-agent/* data/hermes/profiles/corporate-agent/ 2>/dev/null || true
 cp -rf profiles/public-agent/* data/hermes/profiles/public-agent/ 2>/dev/null || true
 
 # Copy script endpoints
-cp -f scripts/discord_setup.py data/hermes/profiles/agentic-company/discord_setup.py 2>/dev/null || true
+cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 
 # Bind env variables securely
-cp -f .env data/hermes/profiles/agentic-company/.env
+cp -f .env data/hermes/.env
 cp -f .env data/hermes/profiles/corporate-agent/.env
 cp -f .env data/hermes/profiles/public-agent/.env
 

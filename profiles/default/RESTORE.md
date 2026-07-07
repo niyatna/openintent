@@ -1,6 +1,6 @@
-# agentic-company Profile Restore
+# default Profile Restore
 
-This repo restores agentic-company's **profile code/personality/tooling layer** only.
+This repo restores default's **profile code/personality/tooling layer** only.
 
 It includes:
 - `SOUL.md`
