@@ -5,7 +5,7 @@ import json, os, subprocess, sys
 from pathlib import Path
 from typing import Any
 
-HOME = Path(os.environ.get('HERMES_HOME', '/home/galyarder/.hermes')).expanduser()
+HOME = Path(os.environ.get('HERMES_HOME', '/opt/data/profiles/corporate-agent')).expanduser()
 QUEUE = HOME / 'scripts' / 'agent-os-learning-review-queue.py'
 
 
