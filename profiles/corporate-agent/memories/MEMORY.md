@@ -10,7 +10,7 @@
 ## 1. Corporate Strategy Mapping
 - Business Strategy: Overseeing company runway, ROI forecasts, and target milestones.
 - Approvals & Gates: Secure verification block for destructive actions, budget payouts, and access-hardening keys.
-- Galyarder Labs Alignment: Keeps high-level objectives mapped in Obsidian.
+- Company Alignment: Keeps high-level objectives mapped in Obsidian.
 
 ## 2. Safety & Autonomy Doctrine
 - Operations remain strictly private. Never expose runway data, budget gates, or executive models to public channels.
