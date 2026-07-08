@@ -12,10 +12,22 @@ env_requires:
   description: Context7 MCP authorization token.
   required: true
 - name: DISCORD_BOT_TOKEN
-  description: Discord gateway bot token for corporate agent.
+  description: Discord gateway bot token for corporate-agent.
   required: true
 - name: DISCORD_ALLOWED_USERS
   description: Trusted Discord user ID allowlist.
+  required: true
+- name: DASHBOARD_USERNAME
+  description: Dashboard admin username.
+  required: true
+- name: DASHBOARD_PASSWORD
+  description: Dashboard admin password.
+  required: true
+- name: DASHBOARD_SECRET
+  description: Session encryption token secret key.
+  required: true
+- name: CAMOFOX_URL
+  description: Local camoufox-browser rest API url.
   required: true
 distribution_owned:
 - SOUL.md
