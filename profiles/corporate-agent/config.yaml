@@ -682,7 +682,7 @@ terminal:
   container_disk: 51200
   container_memory: 5120
   container_persistent: true
-  cwd: /opt/data/profiles/corporate-agent/workspace
+  cwd: /opt/data/profiles/corporate-agent/corporate-brain
   docker_image: nikolaik/python-nodejs:python3.11-nodejs20
   docker_mount_cwd_to_workspace: false
   docker_run_as_host_user: false

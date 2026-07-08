@@ -682,7 +682,7 @@ terminal:
   container_disk: 51200
   container_memory: 5120
   container_persistent: true
-  cwd: /opt/data/workspace
+  cwd: /opt/data/company-brain
   daemon_term_grace_seconds: 2
   daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
   docker_extra_args: []

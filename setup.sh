@@ -242,11 +242,11 @@ cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 
 # Bind env variables securely
 cp -f .env data/hermes/.env
-echo "TERMINAL_CWD=/opt/data/workspace" >> data/hermes/.env
+echo "TERMINAL_CWD=/opt/data/company-brain" >> data/hermes/.env
 cp -f .env data/hermes/profiles/corporate-agent/.env
-echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/workspace" >> data/hermes/profiles/corporate-agent/.env
+echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/corporate-brain" >> data/hermes/profiles/corporate-agent/.env
 cp -f .env data/hermes/profiles/public-agent/.env
-echo "TERMINAL_CWD=/opt/data/profiles/public-agent/workspace" >> data/hermes/profiles/public-agent/.env
+echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/profiles/public-agent/.env
 
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true
