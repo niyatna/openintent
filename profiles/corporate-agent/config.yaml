@@ -379,7 +379,7 @@ kanban:
   orchestrator_profile: default
   worker_log_backup_count: 1
   worker_log_rotate_bytes: 2097152
-`known_plugin_toolsets: {}
+known_plugin_toolsets: {}
 logging:
   backup_count: 3
   level: INFO
@@ -438,7 +438,7 @@ mcp_servers:
   paperclip:
     command: paperclip-mcp --transport stdio
     connect_timeout: 30
-    enabled: false
+    enabled: true
     timeout: 120
 platform_toolsets:
   cli:
@@ -642,7 +642,7 @@ slack:
   require_mention: true
 streaming:
   buffer_threshold: 24
-  cursor: " ▉"
+  cursor: "▉"
   edit_interval: 0.8
   enabled: true
   fresh_final_after_seconds: 60

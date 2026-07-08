@@ -379,7 +379,7 @@ kanban:
   orchestrator_profile: default
   worker_log_backup_count: 1
   worker_log_rotate_bytes: 2097152
-`known_plugin_toolsets: {}
+known_plugin_toolsets: {}
 logging:
   backup_count: 3
   level: INFO
