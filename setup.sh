@@ -162,17 +162,29 @@ CORPORATE_BWS_ACCESS_TOKEN=
 PUBLIC_BWS_ACCESS_TOKEN=
 LINEAR_MCP_ACCESS_TOKEN=
 GITHUB_TOKEN=
+GITHUB_APP_ID=
+GITHUB_APP_PRIVATE_KEY_PATH=
+GITHUB_APP_INSTALLATION_ID=
 LINEAR_MCP_AUTH=
 NOTION_MCP_AUTH=
 GROQ_API_KEY=
+STT_GROQ_MODEL=whisper-large-v3-turbo
+STT_OPENAI_MODEL=whisper-1
 OBSIDIAN_VAULT_PATH=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_ALLOWED_USERS=
 TELEGRAM_HOME_CHANNEL=
-NTFY_TOPIC=
-NTFY_TOKEN=
+TELEGRAM_HOME_CHANNEL_NAME=
+TELEGRAM_WEBHOOK_URL=
+TELEGRAM_WEBHOOK_PORT=8443
+TELEGRAM_WEBHOOK_SECRET=
+SLACK_BOT_TOKEN=
+SLACK_APP_TOKEN=
+SLACK_ALLOWED_USERS=
 EMAIL_ADDRESS=
 EMAIL_PASSWORD=
+EMAIL_SMTP_PORT=587
+EMAIL_IMAP_PORT=993
 EMAIL_HOME_ADDRESS=
 EMAIL_HOME_ADDRESS_NAME=
 EMAIL_POLL_INTERVAL=90
@@ -188,6 +200,13 @@ API_SERVER_PORT=8642
 API_SERVER_KEY=
 SUDO_PASSWORD=
 TERMINAL_ENV=docker
+TERMINAL_TIMEOUT=60
+TERMINAL_LIFETIME_SECONDS=300
+HERMES_HUMAN_DELAY_MIN_MS=800
+TERMINAL_SSH_HOST=
+TERMINAL_SSH_USER=
+TERMINAL_SSH_PORT=22
+TERMINAL_SSH_KEY=~/.ssh/id_rsa
 TINKER_API_KEY=
 WANDB_API_KEY=
 
@@ -223,8 +242,11 @@ cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 
 # Bind env variables securely
 cp -f .env data/hermes/.env
+echo "TERMINAL_CWD=/opt/data/workspace" >> data/hermes/.env
 cp -f .env data/hermes/profiles/corporate-agent/.env
+echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/workspace" >> data/hermes/profiles/corporate-agent/.env
 cp -f .env data/hermes/profiles/public-agent/.env
+echo "TERMINAL_CWD=/opt/data/profiles/public-agent/workspace" >> data/hermes/profiles/public-agent/.env
 
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true
