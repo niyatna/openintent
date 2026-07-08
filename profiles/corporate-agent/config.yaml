@@ -438,8 +438,15 @@ mcp_servers:
   paperclip:
     command: paperclip-mcp --transport stdio
     connect_timeout: 30
+    enabled: false
+    timeout: 120
+  officecli:
+    command: officecli
+    args:
+      - mcp
     enabled: true
     timeout: 120
+    connect_timeout: 60
 platform_toolsets:
   cli:
   - browser
@@ -675,10 +682,6 @@ terminal:
   container_disk: 51200
   container_memory: 5120
   container_persistent: true
-  cwd: /opt/data/workspace
-  daemon_term_grace_seconds: 2
-  daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
-  docker_extra_args: []
   cwd: /opt/data/profiles/corporate-agent/workspace
   docker_image: nikolaik/python-nodejs:python3.11-nodejs20
   docker_mount_cwd_to_workspace: false

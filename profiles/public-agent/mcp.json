@@ -26,6 +26,15 @@
       "timeout": 120,
       "connect_timeout": 30
     },
+    "officecli": {
+      "command": "officecli",
+      "args": [
+        "mcp"
+      ],
+      "enabled": true,
+      "timeout": 120,
+      "connect_timeout": 60
+    },
     "linear": {
       "url": "https://mcp.linear.app/mcp",
       "enabled": true,

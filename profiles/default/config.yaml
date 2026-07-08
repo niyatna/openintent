@@ -440,6 +440,13 @@ mcp_servers:
     connect_timeout: 30
     enabled: true
     timeout: 120
+  officecli:
+    command: officecli
+    args:
+      - mcp
+    enabled: true
+    timeout: 120
+    connect_timeout: 60
 platform_toolsets:
   cli:
   - browser
