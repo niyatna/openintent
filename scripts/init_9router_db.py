@@ -84,8 +84,55 @@ def save_key(key):
         f.write(f"HINDSIGHT_LLM_API_KEY={key_val}\n")
     os.chmod(ENV_FILE, 0o600)
     print(f"[init] agent env file written to {ENV_FILE}")
-
     return True
+
+
+def seed_9router_db():
+    """Dynamically seed 9router's SQLite database with OpenRouter key if present."""
+    db_path = "/data/db/data.sqlite"
+    or_key = os.environ.get("OPENROUTER_API_KEY")
+    if not or_key or not os.path.exists(db_path):
+        print(f"[init] openrouter key missing or database not found at {db_path}, skipping seed")
+        return
+
+    import sqlite3
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Scan tables list
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = [row[0].lower() for row in cursor.fetchall()]
+        print(f"[init] detected 9router tables: {tables}")
+        
+        # 9router standard structures for keys/providers
+        if "keys" in tables:
+            # check if openrouter key needs update/insert
+            cursor.execute("SELECT id FROM keys WHERE provider='openrouter'")
+            res = cursor.fetchone()
+            if res:
+                cursor.execute("UPDATE keys SET credential=? WHERE provider='openrouter'", (or_key,))
+                print("[init] updated openrouter credential in 'keys' table")
+            else:
+                cursor.execute("INSERT OR REPLACE INTO keys (provider, credential) VALUES ('openrouter', ?)", (or_key,))
+                print("[init] inserted openrouter credential in 'keys' table")
+        elif "providers" in tables:
+            # check if openrouter key matches providers table structure
+            cursor.execute("SELECT id FROM providers WHERE name='openrouter'")
+            res = cursor.fetchone()
+            if res:
+                cursor.execute("UPDATE providers SET key=? WHERE name='openrouter'", (or_key,))
+                print("[init] updated openrouter key in 'providers' table")
+            else:
+                cursor.execute("INSERT OR REPLACE INTO providers (name, key) VALUES ('openrouter', ?)", (or_key,))
+                print("[init] inserted openrouter key in 'providers' table")
+        else:
+            print("[init] no matching providers/keys table found in 9router database schema")
+            
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"[init] WARNING: could not seed SQLite db: {e}")
 
 
 def main():
@@ -106,6 +153,8 @@ def main():
     if not save_key(key):
         return 1
 
+    # Inject OpenRouter key to sqlite DB
+    seed_9router_db()
     print(f"[init] 9ROUTER_API_KEY={key}")
     return 0
 
