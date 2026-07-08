@@ -42,6 +42,7 @@ services:
       API_KEY_SECRET: niyatna-9router-api-key-secret
       REQUIRE_API_KEY: "true"
       ENABLE_REQUEST_LOGS: "true"
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
     volumes:
       - ./data/9router:/app/data
     depends_on:
