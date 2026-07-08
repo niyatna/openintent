@@ -114,7 +114,7 @@ services:
   agent-operations:
     image: ghcr.io/nousresearch/hermes-agent:latest
     container_name: openintent-default
-    entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph && (curl -fsSL https://d.officecli.ai/install.sh | bash) && pip install --no-cache-dir notebooklm-mcp-cli git+https://github.com/wizarck/paperclip-mcp.git && exec hermes"]
+    entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph && (curl -fsSL https://d.officecli.ai/install.sh | bash) && export PATH=\"$$HOME/.local/bin:$$PATH\" && pip install --no-cache-dir notebooklm-mcp-cli git+https://github.com/wizarck/paperclip-mcp.git && exec hermes"]
     profiles:
       - agents
     ports:
