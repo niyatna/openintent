@@ -71,7 +71,9 @@ if [ ! -f .env ]; then
     DASHBOARD_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
 
     cat <<ENVEOF > .env
-# OpenIntent Shared Environment Variables
+# =============================================================================
+# OpenIntent Shared Core Environment Variables
+# =============================================================================
 OPENROUTER_API_KEY=${OPENROUTER_KEY}
 DISCORD_BOT_TOKEN=${DISCORD_TOKEN}
 BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
@@ -82,13 +84,120 @@ INITIAL_PASSWORD=${INITIAL_PASSWORD}
 DASHBOARD_USERNAME=admin
 DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
 DASHBOARD_SECRET=${DASHBOARD_SECRET}
+
+# =============================================================================
 # Internal Compose Network Endpoints
-# 9ROUTER_API_KEY is generated at runtime by the bootstrap container
-# using 9router's own POST /api/keys endpoint
+# =============================================================================
 HINDSIGHT_API_URL=http://hindsight-api:8888
 9ROUTER_API_BASE=http://9router:20128/v1
 9ROUTER_PORT=20128
 HINDSIGHT_PORT=9177
+CAMOFOX_URL=http://camoufox-browser:9377
+
+# =============================================================================
+# Exa & Firecrawl Search Settings (User can fill optional keys)
+# =============================================================================
+EXA_API_KEY=
+FIRECRAWL_API_KEY=
+9ROUTER_MCP_AUTH_TOKEN=
+CONTEXT7_API_KEY=
+
+# =============================================================================
+# Hindsight Vector Engine Settings
+# =============================================================================
+HINDSIGHT_TIMEOUT=120
+HINDSIGHT_IDLE_TIMEOUT=300
+HINDSIGHT_API_WORKER_ENABLED=false
+HINDSIGHT_API_WORKER_MAX_SLOTS=2
+HINDSIGHT_API_WORKER_CONSOLIDATION_MAX_SLOTS=1
+HINDSIGHT_API_WORKER_RETAIN_MAX_SLOTS=1
+HINDSIGHT_API_WORKER_FILE_CONVERT_RETAIN_MAX_SLOTS=0
+HINDSIGHT_API_WORKER_REFRESH_MENTAL_MODEL_MAX_SLOTS=0
+HINDSIGHT_API_WORKER_POLL_INTERVAL_MS=2000
+HINDSIGHT_API_LLM_MAX_CONCURRENT=2
+HINDSIGHT_API_RETAIN_LLM_MAX_CONCURRENT=1
+HINDSIGHT_API_REFLECT_LLM_MAX_CONCURRENT=1
+HINDSIGHT_API_CONSOLIDATION_LLM_MAX_CONCURRENT=1
+HINDSIGHT_API_CONSOLIDATION_MAX_MEMORIES_PER_ROUND=20
+HINDSIGHT_API_CONSOLIDATION_LLM_BATCH_SIZE=2
+HINDSIGHT_API_CONSOLIDATION_SOURCE_FACTS_MAX_TOKENS=2048
+HINDSIGHT_API_CONSOLIDATION_SOURCE_FACTS_MAX_TOKENS_PER_OBSERVATION=128
+HINDSIGHT_API_DB_POOL_MIN_SIZE=1
+HINDSIGHT_API_DB_POOL_MAX_SIZE=10
+HINDSIGHT_API_RETAIN_MAX_CONCURRENT=1
+HINDSIGHT_API_RETAIN_CHUNK_BATCH_SIZE=20
+HINDSIGHT_API_RECALL_MAX_CONCURRENT=2
+HINDSIGHT_API_RERANKER_LOCAL_MAX_CONCURRENT=1
+
+# =============================================================================
+# Discord Interaction Boundaries & Controls
+# =============================================================================
+DISCORD_ALLOWED_USERS=
+DISCORD_ALLOWED_CHANNELS=*
+DISCORD_FREE_RESPONSE_CHANNELS=
+DISCORD_IGNORED_CHANNELS=
+DISCORD_THREAD_REQUIRE_MENTION=true
+DISCORD_NO_THREAD_CHANNELS=*
+DISCORD_REQUIRE_MENTION=true
+DISCORD_AUTO_THREAD=false
+DISCORD_IGNORE_NO_MENTION=true
+DISCORD_ALLOW_BOTS=mentions
+DISCORD_ALLOW_MENTION_REPLIED_USER=false
+DISCORD_REPEAT_MENTIONS_ON_SPLIT=false
+HERMES_DISCORD_BOT_TEXT_BATCH_DELAY_SECONDS=2.5
+DISCORD_HOME_CHANNEL=
+DISCORD_HOME_CHANNEL_THREAD_ID=
+
+# =============================================================================
+# OpenAI Compatible Image Settings
+# =============================================================================
+OPENAI_COMPATIBLE_IMAGE_BASE_URL=http://9router:20128/v1
+OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
+
+# =============================================================================
+# Secrets Manager, Linear, Github, Telegram, Email, and WhatsApp Integrations
+# =============================================================================
+DEFAULT_BWS_ACCESS_TOKEN=
+CORPORATE_BWS_ACCESS_TOKEN=
+PUBLIC_BWS_ACCESS_TOKEN=
+LINEAR_MCP_ACCESS_TOKEN=
+GITHUB_TOKEN=
+LINEAR_MCP_AUTH=
+NOTION_MCP_AUTH=
+GROQ_API_KEY=
+OBSIDIAN_VAULT_PATH=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_ALLOWED_USERS=
+TELEGRAM_HOME_CHANNEL=
+NTFY_TOPIC=
+NTFY_TOKEN=
+EMAIL_ADDRESS=
+EMAIL_PASSWORD=
+EMAIL_HOME_ADDRESS=
+EMAIL_HOME_ADDRESS_NAME=
+EMAIL_POLL_INTERVAL=90
+EMAIL_IMAP_HOST=imap.gmail.com
+EMAIL_SMTP_HOST=smtp.gmail.com
+EMAIL_ALLOWED_USERS=
+WHATSAPP_MODE=self-chat
+WHATSAPP_ENABLED=true
+WHATSAPP_ALLOWED_USERS=
+API_SERVER_ENABLED=true
+API_SERVER_HOST=127.0.0.1
+API_SERVER_PORT=8642
+API_SERVER_KEY=
+SUDO_PASSWORD=
+TERMINAL_ENV=docker
+OPENROUTER_API_KEY=
+TINKER_API_KEY=
+WANDB_API_KEY=
+
+# Thread controls
+OMP_NUM_THREADS=1
+OPENBLAS_NUM_THREADS=1
+MKL_NUM_THREADS=1
+NUMEXPR_NUM_THREADS=1
+TOKENIZERS_PARALLELISM=false
 ENVEOF
     
     echo -e "${GREEN}-> .env file created successfully!${NC}"
