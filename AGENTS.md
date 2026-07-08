@@ -4,6 +4,42 @@ This file outlines the background, objectives, architectural decisions, and rule
 
 ---
 
+## 0. Repository Layout (what lives where)
+
+This is a **configuration & template repository, not a compiled codebase** — there is no build, typecheck, lint, or test step. Edits are YAML manifests, shell scripts, and Python stdlib provisioners. Treat `docker-compose.yml`, the three profile trees, and `scripts/` as the sources of truth.
+
+Top-level sources (tracked):
+- `docker-compose.yml` — orchestration manifest. Services: `db` (postgres:17), `headroom`, `9router`, `bootstrap`, `hindsight-api`, `paperclip-hq`, three agent lanes (`agent-operations`, `agent-corporate`, `agent-public`), and `camoufox-browser`. **The agent lanes are gated behind the `agents` compose profile** — without `--profile agents` only core infra starts.
+- `profiles/` — three **near-identical Hermes Profile Distributions** (see §0.1):
+  - `profiles/default/` = Operations lane (maps to `agent-operations`, container `openintent-default`, port `8001`).
+  - `profiles/corporate-agent/` = Corporate lane (`agent-corporate`, `openintent-corporate-agent`, port `8002`).
+  - `profiles/public-agent/` = Public lane (`agent-public`, `openintent-public-agent`, port `8003`).
+  Each profile contains: `config.yaml`, `distribution.yaml`, `SOUL.md`, `mcp.json`, `.env.EXAMPLE`, plus subdirs `scripts/`, `skills/`, `skill-bundles/`, `hooks/`, `cron/`, `memories/`, `behavior-tests/`, `hindsight/`.
+- `scripts/` — runtime provisioners (all zero-dependency): `verify.sh` (cascading health checks), `discord_setup.py` (stdlib Discord channel provisioning), `init_9router_db.py` (runs inside the `bootstrap` container; creates the 9router API key via HTTP).
+- `setup.sh` — interactive provisioner: prompts for keys, auto-generates cryptographic secrets, writes `.env`, and stages the three profiles into `data/hermes/`.
+- `install.sh` — large self-extracting one-command installer for the **remote** target VPS.
+- `docs/niyatna-growth-blueprint.md` — long-term architecture/roadmap doc.
+- `AGENTS.md`, `README.md`, `.gitignore`.
+
+Runtime state (gitignored — created by `setup.sh`, **never commit**): `.env`, `data/` (`data/postgres`, `data/9router`, `data/hindsight`, `data/paperclip`, `data/hermes`, `data/camoufox`), `*.log`, `__pycache__/`, `*.pyc`, `.agent.env`, `.niyatna-9router-key`.
+
+### 0.1 The three-profile rule (most important edit gotcha)
+The three profile trees are **deliberately near-identical**. `diff profiles/default/config.yaml profiles/{corporate-agent,public-agent}/config.yaml` differs only in:
+- `agent.system_prompt` (per-lane identity),
+- `platforms.discord.enabled` (default `true`; corporate/public `false`),
+- `streaming.cursor`, and
+- `terminal.cwd` (`/opt/data/workspace` for default; `/opt/data/profiles/<lane>/workspace` for the others).
+
+When changing a **shared** config key, replicate the edit across all three profiles unless the intent is lane-specific. Always re-diff the three `config.yaml` files after editing to confirm only the intended per-lane fields diverge.
+
+### 0.2 Config & distribution conventions
+- `config.yaml` top key `_config_version` is a **schema version** — bump deliberately, never delete blindly. Secrets are injected via `${VAR}` env-substitution (e.g. `${9ROUTER_API_KEY}`, `${DASHBOARD_PASSWORD}`); never hardcode real values.
+- `distribution.yaml` declares `env_requires` (env vars each lane needs at runtime), `distribution_owned` (paths the distribution owns), and `memory_policy` (what memory is included/excluded from the distribution).
+- `SOUL.md` defines agent posture/identity; `behavior-tests/` is a docs-first QA suite (see its `README.md` for the promotion rule: one-off→fix, repeated→SOUL/skill, stable fact→memory, procedure→skill, long protocol→docs).
+- The canonical model/route target across all lanes is `oc/deepseek-v4-flash-free` via the internal `http://9router:20128/v1` endpoint.
+
+---
+
 ## 1. Project Background ("Apa & Kenapa")
 
 ### What is OpenIntent Kit?
@@ -52,5 +88,7 @@ When editing or updating this codebase, you must adhere to the following princip
   - `Operations Agent` -> `8001`
   - `Corporate Agent` -> `8002`
   - `Public Agent` -> `8003`
-- **Zero Secrets Commits**: Never write real API keys or tokens into code templates. Always use environmental parameters checked by the bootstrap provisioner.
-- **Verify All Changes**: Always run `scripts/verify.sh` after modifications to prove structure normality.
+- **Zero Secrets Commits**: Never write real API keys or tokens into code templates. All secrets flow through `${VAR}` env-substitution in YAML and are generated/prompted by `setup.sh`. The `_replace_me` / `_random_replace_me` strings in `docker-compose.yml` (JWT, DB password, dashboard secret, initial password) are intentional placeholders — keep them templated, do not "fix" them with real values. Never commit `.env`, `data/`, `.agent.env`, or `.niyatna-9router-key`.
+- **Replicate shared edits across all three profiles**: see §0.1. After editing any `config.yaml`, re-diff the three to confirm only the intended per-lane fields (`system_prompt`, `discord.enabled`, `cursor`, `terminal.cwd`) diverge. Keep `_config_version` and `distribution.yaml.hermes_requires` aligned unless deliberately versioning a single lane.
+- **Compose profile gating**: the three agent lanes require `--profile agents` to start. When editing `docker-compose.yml`, preserve the `profiles: [agents]` marker on `agent-operations/corporate/public` and the `bootstrap`/`hindsight-api` `depends_on` conditions (agents depend on `bootstrap` completing successfully).
+- **Verify on the target host only**: `scripts/verify.sh` is a cascading **runtime** check (TCP ports, HTTP endpoints, Hindsight DB write, `docker compose ps`) — it does not lint structure and will report every port CLOSED on a clean dev machine because no services run here. Do not run it locally to "prove structure normality"; instead validate structure by re-diffing profiles, `git ls-files`, and `python3 -c "import yaml,sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]"` on edited YAML files.
