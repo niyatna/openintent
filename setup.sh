@@ -258,6 +258,23 @@ echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true
 
+# Auto-inject Claude Code CLI redirection parameters to host shell configuration dynamically
+SHELL_CONFIG=""
+if [ -f "$HOME/.bashrc" ]; then
+    SHELL_CONFIG="$HOME/.bashrc"
+elif [ -f "$HOME/.zshrc" ]; then
+    SHELL_CONFIG="$HOME/.zshrc"
+fi
+
+if [ -n "$SHELL_CONFIG" ]; then
+    if ! grep -q "ANTHROPIC_BASE_URL" "$SHELL_CONFIG"; then
+        echo -e "\n# Claude Code redirect configuration for OpenIntent" >> "$SHELL_CONFIG"
+        echo 'export ANTHROPIC_BASE_URL="http://localhost:20128/v1"' >> "$SHELL_CONFIG"
+        echo 'export ANTHROPIC_AUTH_TOKEN="niyatna-agent-token"' >> "$SHELL_CONFIG"
+        echo 'export ANTHROPIC_MODEL="oc/deepseek-v4-flash-free"' >> "$SHELL_CONFIG"
+        echo -e "${GREEN}-> Added Claude Code proxy redirects to $SHELL_CONFIG!${NC}"
+    fi
+fi
 # Making script endpoints executable
 chmod +x scripts/verify.sh
 chmod +x scripts/discord_setup.py
