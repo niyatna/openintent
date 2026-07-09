@@ -72,6 +72,13 @@ if [ ! -f .env ]; then
 
     cat <<ENVEOF > .env
 # =============================================================================
+# Claude Code (CLI) Redirect Custom Variables
+# =============================================================================
+ANTHROPIC_BASE_URL=http://localhost:20128/v1
+ANTHROPIC_AUTH_TOKEN=niyatna-agent-token
+ANTHROPIC_MODEL=oc/deepseek-v4-flash-free
+
+# =============================================================================
 # OpenIntent Shared Core Environment Variables
 # =============================================================================
 OPENROUTER_API_KEY=${OPENROUTER_KEY}
