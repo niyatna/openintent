@@ -1,6 +1,6 @@
 name: product-management
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 11
 skills:
 - name: brainstorming

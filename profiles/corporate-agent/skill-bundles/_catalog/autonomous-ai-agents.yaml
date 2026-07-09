@@ -1,6 +1,6 @@
 name: autonomous-ai-agents
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 28
 skills:
 - name: agent-accounts
@@ -45,8 +45,8 @@ skills:
 - name: hermes
   path: autonomous-ai-agents/hermes
   description: Use when creating, auditing, versioning, installing, or updating Hermes Agent profile distributions, including
-    profile-local MCP manifests, distribution.yaml ownership boundaries, and multi-profile packaging for agents like Keiya/default
-    and Galyarder.
+    profile-local MCP manifests, distribution.yaml ownership boundaries, and multi-profile packaging for agents like Agent/default
+    and Corporate Agent.
 - name: hermes
   path: autonomous-ai-agents/hermes
   description: Use when Hermes Agent loses native tools, memory backends fail, gateway/toolset config behaves unexpectedly,
@@ -69,11 +69,11 @@ skills:
   description: Delegate coding to OpenCode CLI (features, PR review).
 - name: paperstable-diffusion-image-generation-agentic-company
   path: autonomous-ai-agents/paperstable-diffusion-image-generation-agentic-company
-  description: Use when operating Galih's local Paperstable-diffusion-image-generation AI setup, validating paperstable-diffusion-image-generationai.service, opening the local UI,
-    onboarding Galyarder Labs as an agentic company, or designing Paperstable-diffusion-image-generation agents/tasks/delegation protocols.
+  description: Use when operating User's local Paperstable-diffusion-image-generation AI setup, validating paperstable-diffusion-image-generationai.service, opening the local UI,
+    onboarding Company Operations as an agentic company, or designing Paperstable-diffusion-image-generation agents/tasks/delegation protocols.
 - name: paseo
   path: autonomous-ai-agents/paseo/paseo
-  description: 'Use when managing Paseo AI coding agents from Hermes/Keiya/Galyarder: create or send agent tasks, inspect
+  description: 'Use when managing Paseo AI coding agents from Hermes/Agent: create or send agent tasks, inspect
     status/logs, manage worktrees, loops, schedules, permissions, terminals, or daemon health.'
 - name: paseo
   path: autonomous-ai-agents/paseo/paseo

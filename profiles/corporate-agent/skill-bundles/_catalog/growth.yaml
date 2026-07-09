@@ -1,6 +1,6 @@
 name: growth
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 76
 skills:
 - name: Community Manager
@@ -109,7 +109,7 @@ skills:
 - name: growth-strategist
   path: growth/growth-strategist
   description: Use when engineering-as-Marketing Specialist. Use this agent to build viral referral loops, free utility tools
-    for lead generation, and programmatic SEO pages at scale. It focuses on the "Inbound" part of Galyarder execution pipeline.
+    for lead generation, and programmatic SEO pages at scale. It focuses on the "Inbound" part of Company pipeline.
 - name: growth-strategist
   path: growth/growth-strategist
   description: Use when chief Marketing Officer (CMO) specialist for SEO, CRO, Marketing Psychology, and Copywriting. Applies
@@ -122,7 +122,7 @@ skills:
     flows, media preview verification, deletion, interactions, or Instagram UI troubleshooting.
 - name: platform-operator-router
   path: growth/platform-operator-router
-  description: Use when operating Galyarder/Keiya-owned Instagram and Threads accounts through browser login/session cookies,
+  description: Use when operating Company-owned Instagram and Threads accounts through browser login/session cookies,
     including credential lookup, cookie capture, session checks, read-only profile verification, and confirmation-gated posting.
 - name: japanese-translator
   path: growth/japanese-translator
@@ -210,11 +210,11 @@ skills:
   path: growth/growth-strategist
   description: Use when lTV & Engagement Specialist. Use this agent to design email sequences, improve the first 5 minutes
     of the product (onboarding), and apply behavioral psychology to increase retention. It focuses on the "Active Users" part
-    of Galyarder execution pipeline.
+    of Company pipeline.
 - name: growth-strategist
   path: growth/growth-strategist
   description: Use when monetization and pricing strategy specialist. Use this agent to design revenue models, set price points
-    based on value perception, and create viral referral loops. It focuses on the "Cuan" (Revenue) aspect of Galyarder execution
+    based on value perception, and create viral referral loops. It focuses on the "Cuan" (Revenue) aspect of Corporate Agent execution
     pipeline.
 - name: ruipingshi
   path: growth/ruipingshi
@@ -249,7 +249,7 @@ skills:
 - name: copywriting
   path: growth/copywriting
   description: Use when social media and distribution specialist. Use this agent to create hype, draft Twitter/LinkedIn threads,
-    and manage the social media distribution of new features. It focuses on the "Distribution" aspect of Galyarder execution
+    and manage the social media distribution of new features. It focuses on the "Distribution" aspect of Corporate Agent execution
     pipeline.
 - name: socratic-teacher
   path: growth/socratic-teacher

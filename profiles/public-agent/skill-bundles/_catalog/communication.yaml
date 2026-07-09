@@ -1,6 +1,6 @@
 name: communication
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: public-agent
 skill_count: 11
 skills:
 - name: agentmail

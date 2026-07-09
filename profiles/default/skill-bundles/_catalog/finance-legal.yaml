@@ -1,6 +1,6 @@
 name: finance-legal
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 22
 skills:
 - name: financial-analyst
@@ -11,7 +11,7 @@ skills:
   path: finance-legal/accounting
   description: Use when the user needs to set up bookkeeping, track revenue and expenses, prepare for taxes, choose accounting
     software, understand SaaS revenue recognition, or manage the financial operations of their bootstrapped business. Covers
-    bookkeeping setup, tax preparation, accounting tools, and financial hygiene for Galyarder execution.
+    bookkeeping setup, tax preparation, accounting tools, and financial hygiene for Corporate Agent execution.
 - name: financial-analyst
   path: finance-legal/financial-analyst
   description: Build comparable company analysis in Excel — operating metrics, valuation multiples, statistical benchmarking
@@ -46,9 +46,9 @@ skills:
     analysis, company valuation, financial projections, or spreadsheet analysis.
 - name: galyarder-financial-services-pack
   path: finance-legal/galyarder-financial-services-pack
-  description: 'Use when Keiya/default assistant finance work needs practical financial-services workflows: financial modeling,
+  description: 'Use when Default Agent finance work needs practical financial-services workflows: financial modeling,
     comps, DCF, 3-statement/LBO models, investment banking drafts, equity research notes, private equity memos, reconciliation,
-    KYC screening, wealth/client review, or finance artifacts for human review. For Galyarder Ledger/HQ product-native finance
+    KYC screening, wealth/client review, or finance artifacts for human review. For Corporate Agent Ledger/HQ product-native finance
     workflows use galyarder-financial-services-workflows.'
 - name: legal-tos-privacy
   path: finance-legal/legal-tos-privacy
@@ -76,7 +76,7 @@ skills:
 - name: legal-counsel
   path: finance-legal/legal-counsel
   description: Use when legal & Compliance Specialist. Use this agent to generate TOS/Privacy policies, audit GDPR/CCPA compliance,
-    review open-source licenses, and ensure AI governance (ISO 42001). It protects Galyarder execution from legal liabilities.
+    review open-source licenses, and ensure AI governance (ISO 42001). It protects Corporate Agent execution from legal liabilities.
 - name: legal-tos-privacy
   path: finance-legal/legal-tos-privacy
   description: Use when create bulletproof Terms of Service and Privacy Policy documents for SaaS applications. Infers company

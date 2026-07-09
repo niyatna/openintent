@@ -1,6 +1,6 @@
 name: devops
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: public-agent
 skill_count: 19
 skills:
 - name: deploy
@@ -20,7 +20,7 @@ skills:
 - name: finops-manager
   path: devops/finops-manager
   description: Use when finance & Cloud Cost Specialist. Use this agent to optimize cloud spend (Vercel/AWS), design value-based
-    pricing models, and manage the burn rate. It ensures Galyarder execution remains profitable and financially sustainable.
+    pricing models, and manage the burn rate. It ensures Corporate Agent execution remains profitable and financially sustainable.
 - name: gstack-local
   path: devops/gstack-local
   description: Use when maintaining or using the local Garry Tan gstack install, including gstack browser automation, generated

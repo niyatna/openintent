@@ -1,6 +1,6 @@
 name: note-taking
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 8
 skills:
 - name: obsidian

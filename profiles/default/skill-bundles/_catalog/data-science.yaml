@@ -1,6 +1,6 @@
 name: data-science
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 1
 skills:
 - name: jupyter-live-kernel

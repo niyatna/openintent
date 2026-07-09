@@ -1,6 +1,6 @@
 name: mlops
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 39
 skills:
 - name: audiocraft-audio-generation

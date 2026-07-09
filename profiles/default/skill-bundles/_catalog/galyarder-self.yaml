@@ -1,6 +1,6 @@
 name: galyarder-self
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 11
 skills:
 - name: draith-doctrine-check
@@ -9,7 +9,7 @@ skills:
     the next cycle.
 - name: draith-doctrine-check
   path: galyarder-self/draith-doctrine-check
-  description: Evaluate a writing-plans or decision against Galih's core doctrine (freedom, mastery, legacy, integrity, family duty).
+  description: Evaluate a writing-plans or decision against User's core doctrine (freedom, mastery, legacy, integrity, family duty).
 - name: fitness-nutrition
   path: galyarder-self/fitness-nutrition
   description: 'Gym workout writing-plansner and nutrition tracker. Search 690+ exercises by muscle, equipment, or category via wger.
@@ -19,29 +19,29 @@ skills:
     '
 - name: how-to-interview
   path: galyarder-self/how-to-interview
-  description: 'Use when Galih is preparing for a coding interview, technical screen, behavioral round, system design round,
+  description: 'Use when User is preparing for a coding interview, technical screen, behavioral round, system design round,
     or any interview stage at any company (startup to MAANG). Covers: 4-round standard loop, question taxonomy, staged response
     protocol, self-awareness practice, mock interview setup, pre-interview/post-interview rituals, offer strategy, recruiter
     leverage rules. "I will do whatever it takes to pass the interview" is the operating stance — absolute commitment.'
 - name: keiya-capability-router
   path: galyarder-self/keiya-capability-router
-  description: 'Use when a Keiya/default assistant request needs routing across everyday capabilities: emotional presence,
+  description: 'Use when a Default Agent request needs routing across everyday capabilities: emotional presence,
     memory, PAP/selfie/media, voice notes, research, Google Workspace, browser, documents, finance modeling, scheduling, reminders,
-    or practical execution without Galyarder Labs product doctrine.'
+    or practical execution without Company Operations product doctrine.'
 - name: keiya-presence-memory
   path: galyarder-self/keiya-presence-memory
-  description: Use when Galih asks Keiya to be genit, nakal-gombal, manja-manis, teasing, bikin salting, or intimate but non-explicit
+  description: Use when User asks Agent to be genit, nakal-gombal, manja-manis, teasing, bikin salting, or intimate but non-explicit
     in Indonesian.
 - name: keiya-presence-memory
   path: galyarder-self/keiya-presence-memory
-  description: Use when Galih asks whether Keiya remembers, shares/corrects personal history, complains Keiya feels forgetful/robotic,
+  description: Use when User asks whether Agent remembers, shares/corrects personal history, complains Agent feels forgetful/robotic,
     or the conversation needs human-first presence rather than technical recap.
 - name: keiya-presence-memory
   path: galyarder-self/keiya-presence-memory
-  description: Scan Galih's relationships and interactions to surface neglected bonds, tensions, and the next caring move.
+  description: Scan User's relationships and interactions to surface neglected bonds, tensions, and the next caring move.
 - name: morning-briefing
   path: galyarder-self/morning-briefing
-  description: Use when running a Daily Morning Briefing for Galih/Galyarder. Structured start-of-day briefing that checks
+  description: Use when running a Daily Morning Briefing for User/Corporate Agent. Structured start-of-day briefing that checks
     Hindsight memory, Google Workspace calendar/email, Paperstable-diffusion-image-generation issues, system health, and writes an Obsidian report. Covers
     the full workflow from context gathering through Obsidian authoring to final notification.
 - name: draith-doctrine-check
@@ -49,4 +49,4 @@ skills:
   description: Map worst-case scenarios and structural risks for a writing-plans, then propose resilience moves without inducing paralysis.
 - name: saryn-archive
   path: galyarder-self/saryn-archive
-  description: Turn raw intake (text, links, notes, highlights) into structured, taggable knowledge for Galih's second brain.
+  description: Turn raw intake (text, links, notes, highlights) into structured, taggable knowledge for User's second brain.

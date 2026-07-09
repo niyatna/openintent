@@ -1,6 +1,6 @@
 name: security
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 26
 skills:
 - name: 1password

@@ -2,7 +2,7 @@ name: default
 version: 1.0.0
 description: 'Niyatna OS Operations Profile - manages local files, hindsight memory, and task/issue backlog.'
 hermes_requires: '>=0.13.0'
-author: Galyarder Labs
+author: Company Operations
 license: private
 env_requires:
 - name: 9ROUTER_API_KEY

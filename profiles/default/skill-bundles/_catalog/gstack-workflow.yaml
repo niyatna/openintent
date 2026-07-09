@@ -1,6 +1,6 @@
 name: gstack-workflow
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 45
 skills:
 - name: autowriting-plans

@@ -1,6 +1,6 @@
 name: software-development
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: public-agent
 skill_count: 66
 skills:
 - name: Vibecoder
@@ -184,7 +184,7 @@ skills:
 - name: architect
   path: software-development/architect
   description: Use when making software architecture decisions for system design, scalability, and technical decision-making.
-    Produces ADRs, Vertical Slice writing-planss, and enforces deep module design for Galyarder execution pipeline. Contains the full
+    Produces ADRs, Vertical Slice writing-planss, and enforces deep module design for Company pipeline. Contains the full
     knowledge of Architecture Patterns, Systems Design, and Planning.
 - name: systematic-debugging
   path: software-development/systematic-debugging

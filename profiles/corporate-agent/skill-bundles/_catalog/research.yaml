@@ -1,6 +1,6 @@
 name: research
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 23
 skills:
 - name: academic-paper-overview

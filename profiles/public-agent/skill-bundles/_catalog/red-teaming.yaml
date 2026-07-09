@@ -1,6 +1,6 @@
 name: red-teaming
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: public-agent
 skill_count: 1
 skills:
 - name: godmode

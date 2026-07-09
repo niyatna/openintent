@@ -2,7 +2,7 @@ name: public-agent
 version: 1.0.0
 description: 'Niyatna OS Public Profile - client relations/support, competitor and market flows.'
 hermes_requires: '>=0.13.0'
-author: Galyarder Labs
+author: Company Operations
 license: private
 env_requires:
 - name: 9ROUTER_API_KEY

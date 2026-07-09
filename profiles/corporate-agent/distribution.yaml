@@ -2,7 +2,7 @@ name: corporate-agent
 version: 1.0.0
 description: 'Niyatna OS Corporate Profile - strategy, budget gates, founder intent, and investment decisions.'
 hermes_requires: '>=0.13.0'
-author: Galyarder Labs
+author: Company Operations
 license: private
 env_requires:
 - name: 9ROUTER_API_KEY

@@ -6,6 +6,6 @@ skills:
 - notion
 - linear
 - notebooklm-mcp-cli
-description: Keiya docs/spreadsheets/Notion/Linear productivity route.
+description: Agent docs/spreadsheets/Notion/Linear productivity route.
 instruction: Use for documents, sheets, decks, PDFs, Notion, Linear, and NotebookLM
   work. Verify files/API side effects before claiming done.

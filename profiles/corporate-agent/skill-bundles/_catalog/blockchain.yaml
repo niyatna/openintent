@@ -1,6 +1,6 @@
 name: blockchain
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 3
 skills:
 - name: base

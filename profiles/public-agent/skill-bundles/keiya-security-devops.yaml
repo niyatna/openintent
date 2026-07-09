@@ -1,4 +1,4 @@
-description: Keiya security/devops support route.
+description: Agent security/devops support route.
 instruction: Use for local security hygiene, GitHub auth, Docker/Linux maintenance,
   deployments, and cost/sre checks. Confirm before destructive or production changes.
 name: keiya-security-devops

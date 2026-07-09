@@ -1,6 +1,6 @@
 name: mcp
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 5
 skills:
 - name: mcp-builder
@@ -22,6 +22,6 @@ skills:
   description: 'MCP client: connect servers, register tools (stdio/HTTP).'
 - name: omniroute-gateway
   path: mcp/omniroute-gateway
-  description: Use when operating OmniRoute/Galyarder Route through its MCP gateway for account/provider connection management,
+  description: Use when operating OmniRoute/Corporate Agent Route through its MCP gateway for account/provider connection management,
     model/catalog/health checks, routing smoke tests, quotas, and tool-scope diagnostics. This is not the generic OpenAI-compatible
     routing design skill.

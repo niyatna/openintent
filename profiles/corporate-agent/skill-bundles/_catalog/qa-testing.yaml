@@ -1,6 +1,6 @@
 name: qa-testing
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: corporate-agent
 skill_count: 16
 skills:
 - name: adversarial-ux-test

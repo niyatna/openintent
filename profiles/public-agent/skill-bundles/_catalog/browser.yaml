@@ -1,6 +1,6 @@
 name: browser
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: public-agent
 skill_count: 6
 skills:
 - name: browser-routing
@@ -11,15 +11,15 @@ skills:
   path: browser/camofox-browser
   description: Use when working with Hermes Camofox/Camoufox browser automation, headless/headful Camofox windows, desktop
     launcher/icons, normal human Camoufox browsing, hidden browser audio, Camofox service health, YouTube/media playback,
-    or the Galyarder profile's Camoufox browser runtime.
+    or the Corporate Agent profile's Camoufox browser runtime.
 - name: cloakbrowser-browser
   path: browser/cloakbrowser-browser
-  description: Use when installing, verifying, launching, or operating CloakBrowser on Galih's workstation, especially dedicated
-    Keiya/Galyarder persistent browser profiles, Google login/session capture, cookies, HAR/CDP work, or browser-profile-manager-style
+  description: Use when installing, verifying, launching, or operating CloakBrowser on User's workstation, especially dedicated
+    Agent persistent browser profiles, Google login/session capture, cookies, HAR/CDP work, or browser-profile-manager-style
     workflows.
 - name: computer-use-linux
   path: browser/computer-use-linux
-  description: Use when Galyarder or Keiya needs Linux desktop observation or control through the OS-home computer-use-linux
+  description: Use when Agent needs Linux desktop observation or control through the OS-home computer-use-linux
     MCP server, including AT-SPI app trees, GNOME/Wayland window targeting, ydotool input, and Hermes MCP wiring.
 - name: curl-md
   path: curl-md
@@ -27,5 +27,5 @@ skills:
     page content, or you need to read web page or webfetch.
 - name: har-capture
   path: browser/har-capture
-  description: Capture network traffic (XHR, Fetch, WebSocket) from websites. Defaults to CloakBrowser/Chrome CDP for Galyarder/Keiya;
+  description: Capture network traffic (XHR, Fetch, WebSocket) from websites. Defaults to CloakBrowser/Chrome CDP for Corporate Agent/Agent;
     Playwright Chromium is explicit fallback via --standalone. Saves HAR 1.2 and extracts API endpoints.

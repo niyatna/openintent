@@ -1,6 +1,6 @@
-description: Keiya blockchain/Web3 read-only route.
+description: Agent blockchain/Web3 read-only route.
 instruction: Use for read-only wallet/token/onchain/market checks. Never transact,
-  trade, or move funds without explicit Galih approval.
+  trade, or move funds without explicit User approval.
 name: keiya-blockchain-web3
 skills:
 - evm

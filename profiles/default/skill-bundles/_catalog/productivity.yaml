@@ -1,6 +1,6 @@
 name: productivity
 mode: catalog-only-not-active-bundle
-profile: keiya
+profile: default
 skill_count: 34
 skills:
 - name: airtable
@@ -40,12 +40,12 @@ skills:
   description: Excel Formula Master
 - name: google-workspace
   path: productivity/google-workspace
-  description: Use when accessing Galih's own already-authenticated Google Workspace account through native gws only, avoiding
-    Keiya/Galyarder isolated configs, and when repairing Galih GWS by reauthing through Brave CDP only after token/auth failure.
+  description: Use when accessing User's own already-authenticated Google Workspace account through native gws only, avoiding
+    Agent isolated configs, and when repairing User GWS by reauthing through Brave CDP only after token/auth failure.
 - name: google-workspace
   path: productivity/google-workspace
-  description: Use when accessing Galyarder's already-authenticated Google Workspace account via isolated gws config, avoiding
-    Galih/default/Keiya keyring bleed, or doing fast Gmail/Drive/Calendar/Docs/Sheets/People routing for galyarderlabs@gmail.com.
+  description: Use when accessing Company's already-authenticated Google Workspace account via isolated gws config, avoiding
+    User/default/Agent keyring bleed, or doing fast Gmail/Drive/Calendar/Docs/Sheets/People routing for admin@company.com.
 - name: google-workspace
   path: productivity/google-workspace
   description: Use when operating dedicated agent-owned Google/Gmail/Calendar/Drive/Docs/Sheets accounts with fast auth/session
@@ -65,8 +65,8 @@ skills:
   description: Publish static sites to {slug}.here-now and store private files in cloud Drives for agent-to-agent handoff.
 - name: google-workspace
   path: productivity/google-workspace
-  description: Use when accessing Keiya's already-authenticated Google Workspace account via isolated encrypted gws config,
-    avoiding Galih/default/Galyarder keyring bleed, or doing fast Gmail/Drive/Calendar/People/Sheets/Docs routing for keiyazeyniputri@gmail.com.
+  description: Use when accessing Agent's already-authenticated Google Workspace account via isolated encrypted gws config,
+    avoiding User/default/Corporate Agent keyring bleed, or doing fast Gmail/Drive/Calendar/People/Sheets/Docs routing for support@company.com.
 - name: linear
   path: productivity/linear
   description: Use when working with Linear issues, projects, teams, comments, labels, cycles, initiatives, documents, diffs,

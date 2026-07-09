@@ -1,4 +1,4 @@
-# Skill category catalog (keiya)
+# Skill category catalog (public-agent)
 
 This directory is a classification catalog, not active slash-command bundles.
 
