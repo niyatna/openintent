@@ -1,0 +1,10 @@
+description: Agent content/media/public-draft route.
+instruction: Use for posts, persona media, captions, YouTube/video source work, and
+  humanized drafts. Public posting still requires approval.
+name: default-content-media
+skills:
+- persona-media-management
+- copywriting
+- video
+- superdesign
+- design-taste

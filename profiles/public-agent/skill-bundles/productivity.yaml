@@ -10,7 +10,7 @@ skills:
 - notebooklm-mcp-cli
 - notion
 - powerpoint
-description: 'Category bundle: all 34 skills under `productivity` for keiya.'
+description: 'Category bundle: all 34 skills under `productivity` for Agent.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.

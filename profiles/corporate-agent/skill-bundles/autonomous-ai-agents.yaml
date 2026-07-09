@@ -12,7 +12,7 @@ skills:
 - paperstable-diffusion-image-generation-agentic-company
 - paseo
 - pi-cli
-description: 'Category bundle: all 28 skills under `autonomous-ai-agents` for keiya.'
+description: 'Category bundle: all 28 skills under `autonomous-ai-agents` for corporate-agent.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.

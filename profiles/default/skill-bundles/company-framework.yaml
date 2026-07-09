@@ -1,0 +1,12 @@
+name: company-framework
+skills:
+- company-execution-doctrine
+- company-financial-services-workflows
+- company-framework-router
+- tool-grounded-responses
+- using-company-framework
+description: 'Category bundle: Corporate Agent framework skills plus the framework-and-presence
+  grounding umbrella for Agent.'
+instruction: Use this only when the user intentionally wants the whole category/folder
+  context. For normal work, prefer the lean core bundle plus exact routed skills to
+  avoid context noise.

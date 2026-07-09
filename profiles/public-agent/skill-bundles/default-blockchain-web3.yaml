@@ -1,0 +1,10 @@
+description: Agent blockchain/Web3 read-only route.
+instruction: Use for read-only wallet/token/onchain/market checks. Never transact,
+  trade, or move funds without explicit User approval.
+name: default-blockchain-web3
+skills:
+- evm
+- solana
+- signal-radar
+- stocks
+- verification-before-completion

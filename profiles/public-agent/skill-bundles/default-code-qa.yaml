@@ -1,0 +1,14 @@
+name: default-code-qa
+skills:
+- systematic-debugging
+- github-pr-workflow
+- codegraph-codebase-analysis
+- adversarial-ux-test
+- verification-before-completion
+- paseo
+- antigravity-cli
+- pi-cli
+- writing-writing-planss
+description: Agent lightweight code/QA/docs route.
+instruction: Use for code exwriting-plansation, debugging support, docs/wiki generation,
+  and UX friction tests. For serious implementation route to Corporate Agent/coding agents.

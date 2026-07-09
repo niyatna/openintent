@@ -1,4 +1,4 @@
-description: 'Category bundle: all 11 skills under `product-management` for keiya.'
+description: 'Category bundle: all 11 skills under `product-management` for Agent.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
@@ -6,5 +6,5 @@ name: product-management
 skills:
 - brainstorming
 - deploy
-- galyarder-execution-doctrine
+- company-execution-doctrine
 - product-manager

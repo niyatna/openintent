@@ -44,12 +44,12 @@ skills:
     for strategic decision-making. Use when analyzing financial statements, building valuation models, assessing budget variances,
     or constructing financial projections and forecasts. Also applicable when users mention financial modeling, cash flow
     analysis, company valuation, financial projections, or spreadsheet analysis.
-- name: galyarder-financial-services-pack
-  path: finance-legal/galyarder-financial-services-pack
+- name: company-financial-services-pack
+  path: finance-legal/company-financial-services-pack
   description: 'Use when Default Agent finance work needs practical financial-services workflows: financial modeling,
     comps, DCF, 3-statement/LBO models, investment banking drafts, equity research notes, private equity memos, reconciliation,
     KYC screening, wealth/client review, or finance artifacts for human review. For Corporate Agent Ledger/HQ product-native finance
-    workflows use galyarder-financial-services-workflows.'
+    workflows use company-financial-services-workflows.'
 - name: legal-tos-privacy
   path: finance-legal/legal-tos-privacy
   description: Use when audits web applications to ensure declared privacy policies match actual technical data collection

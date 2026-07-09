@@ -1,0 +1,9 @@
+description: Agent research/intel route.
+instruction: Use for source-backed research, papers, market/tech reconnaissance, domain
+  intel, and web/video extraction. Cite/check sources and avoid vibe summaries.
+name: default-research-intel
+skills:
+- growth-strategist
+- gbrain
+- api-discovery
+- scrapling

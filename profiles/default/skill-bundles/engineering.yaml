@@ -11,6 +11,6 @@ skills:
 - using-gstack
 - verification-before-completion
 description: 'Alias category bundle: engineering/software-development (66 skills)
-  for keiya.'
+  for Agent.'
 instruction: Alias for software-development. Use only when full engineering category
   context is intentionally needed; otherwise route to exact engineering skill(s).

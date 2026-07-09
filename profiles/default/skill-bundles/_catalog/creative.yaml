@@ -78,7 +78,7 @@ skills:
 - thesis-overview
 - media-art
 - web-widgets
-description: 'Category bundle: all 78 skills under `creative` for keiya.'
+description: 'Category bundle: all 78 skills under `creative` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills or
   lean design route bundles to avoid context noise.

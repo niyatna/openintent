@@ -3,7 +3,7 @@ skills:
 - mcp-builder
 - native-mcp
 - omniroute-gateway
-description: 'Category bundle: all 5 skills under `mcp` for keiya.'
+description: 'Category bundle: all 5 skills under `mcp` for Agent.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.

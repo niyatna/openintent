@@ -1,4 +1,4 @@
-description: 'Category bundle: all 22 skills under `finance-legal` for keiya.'
+description: 'Category bundle: all 22 skills under `finance-legal` for public-agent.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
@@ -7,6 +7,6 @@ skills:
 - financial-analyst
 - accounting
 - legal-counsel
-- galyarder-financial-services-workflows
+- company-financial-services-workflows
 - legal-tos-privacy
 - stocks
