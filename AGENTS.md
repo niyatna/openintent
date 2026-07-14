@@ -92,3 +92,37 @@ When editing or updating this codebase, you must adhere to the following princip
 - **Replicate shared edits across all three profiles**: see §0.1. After editing any `config.yaml`, re-diff the three to confirm only the intended per-lane fields (`system_prompt`, `discord.enabled`, `cursor`, `terminal.cwd`) diverge. Keep `_config_version` and `distribution.yaml.hermes_requires` aligned unless deliberately versioning a single lane.
 - **Compose profile gating**: the three agent lanes require `--profile agents` to start. When editing `docker-compose.yml`, preserve the `profiles: [agents]` marker on `agent-operations/corporate/public` and the `bootstrap`/`hindsight-api` `depends_on` conditions (agents depend on `bootstrap` completing successfully).
 - **Verify on the target host only**: `scripts/verify.sh` is a cascading **runtime** check (TCP ports, HTTP endpoints, Hindsight DB write, `docker compose ps`) — it does not lint structure and will report every port CLOSED on a clean dev machine because no services run here. Do not run it locally to "prove structure normality"; instead validate structure by re-diffing profiles, `git ls-files`, and `python3 -c "import yaml,sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]"` on edited YAML files.
+
+---
+
+## 4. Network & Security Architecture Patterns
+
+Depending on the environment requirements, the Niyatna multi-agent stack utilizes two distinct network access and hardening patterns:
+
+### 4.1 Staging / Developer Overlay (Our Active Reference Host)
+For isolated development sandbox testing (e.g. testing setups where only 1-2 key stakeholders access the environment), we utilize a **Cloudflare Zero Trust Mesh Network** overlay. This pattern enforces Zero public open ports.
+
+- **Organization Domain**: `galyarderlabs`
+- **VPS Staging Server (`prod-niyatna`)**: Registered headless via `cloudflare-warp`. Assigned **Private Mesh IP**: `100.96.0.1` (`CloudflareWARP` virtual interface).
+- **Client Laptop (`GalyarderOS`)**: Registered via WARP client with authenticated user email (`muhamadgalihsaputraa@gmail.com`). Assigned **Private Mesh IP**: `100.96.0.2`.
+- **Hardened Port Binding Rules**: All services exposed in `docker-compose.yml` (e.g. Paperclip HQ on `3100`, 9router on `20128`, Hindsight on `9177`) must strictly bind to the VPS Mesh IP `100.96.0.1`:
+  ```yaml
+  ports:
+    - "100.96.0.1:3100:3100"
+    - "100.96.0.1:20128:20128"
+    - "100.96.0.1:9177:8888"
+  ```
+- **Troubleshooting Step**: If ping or SSH over mesh is failing, ensure the `100.64.0.0/10` CGNAT range is removed from the Split Tunnel **Exclude List** in the Zero Trust dashboard (Devices > Device settings > Split Tunnels) on the client profile.
+
+### 4.2 Production / Multi-User Client Deployments
+For production environments accessed by entire teams/companies, requiring every user to install and enroll in a client WARP mesh is impractical. We utilize **Clientless Ingress Routing**:
+
+1. **Localhost Binding**: In the client-vps `docker-compose.yml`, services are bound only to localhost:
+   ```yaml
+   ports:
+     - "127.0.0.1:3100:3100"   # Paperclip HQ
+     - "127.0.0.1:20128:20128" # 9router
+   ```
+2. **Cloudflare Tunnel (`cloudflared` daemon)**: A standard outbound-only daemon runs on the host VPS (no client-side software required for users). It connects the localhost ports directly to the company subdomains (e.g., `hq.clientcompany.com`).
+3. **Application Control (Edge Auth)**: Access is secured at the Cloudflare Edge using **Cloudflare Access (Zero Trust)**. When employees open the subdomain, they sign in via standard browser SSO (Google Workspace, Microsoft Entra, or email OTP). No client app, keys, or VPN configuration is required on the employee's machine.
+4. **App Auth Backup**: Internal dashboard actions rely on Paperclip's built-in session authentication and 9router's `API_KEY_SECRET` token gates.
