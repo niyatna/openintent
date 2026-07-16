@@ -2,10 +2,8 @@
 
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat-square&logo=docker&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54)
-![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=flat-square&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361dafb)
-![PostgreSQL](https://img.shields.io/badge/postgresql-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white)
-![Bash](https://img.shields.io/badge/shell_script-%23121011.svg?style=flat-square&logo=gnu-bash&logoColor=white)
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=flat-square&logo=gnu-bash&logoColor=white)
+![YAML](https://img.shields.io/badge/yaml-%23ffffff.svg?style=flat-square&logo=yaml&logoColor=151515)
 
 OpenIntent Kit is an open-source bootstrap orchestrator designed to instantiate a fully functioning "Agentic Company" structure for businesses. Instead of serving as isolated chatbots, the multi-agent stack operates as a collaborative, digital corporate workforce, executing task backlogs, analyzing markets, managing runways, and conducting repository audits under direct human oversight.
 
