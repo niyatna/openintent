@@ -1,7 +1,7 @@
 # Niyatna OS - "Growth with Company" Data Doctrine Blueprint
 
 ## 1. Core Vision & Philosophy
-Traditional AI assistants (like Keiya/default) focus on personal productivity and "growing with the user." Niyatna OS pivots this paradigm toward **"Growing with the Company."**
+Traditional AI assistants (like <assistant_name_holder>/default) focus on personal productivity and "growing with the user." Niyatna OS pivots this paradigm toward **"Growing with the Company."**
 
 Instead of serving as isolated chatbots, Niyatna agents act as the **cognitive data nervous system** of an organization. The ultimate value of Niyatna OS lies in its ability to consume, digest, map, and organize every operational byte:
 - **Finance & Admin**: Invoices, ledger updates, runways, purchase approvals.
@@ -41,7 +41,7 @@ To materialize the "Grow with Company" value, the agent uses the local Obsidian 
 ---
 
 ## 4. Starter Blueprint Templates (`USER.md` & `MEMORY.md`)
-To package Niyatna OS as a portable, distributable starter kit, `USER.md` and `MEMORY.md` must be stripped of Muhamad Galih Saputra's personal settings and converted into generic, plug-and-play templates.
+To package Niyatna OS as a portable, distributable starter kit, `USER.md` and `MEMORY.md` must be stripped of <real_name_holder>'s personal settings and converted into generic, plug-and-play templates.
 - **`USER.md`** template: Guides the agent on how to interview the first user who starts the session, log their organization info, and store it.
 - **`MEMORY.md`** template: Sets up the structural placeholders for departments, company goals, and Hindsight memory bank references.
 

@@ -9,10 +9,10 @@ This document establishes the official developer rules, conventions, and accepta
 To prepare the multi-agent stack as a clean, industry-grade corporate starter kit for remote VPS deployments, all personal, customized, or intimate names, aliases, and contacts are strictly prohibited from the repository code, configurations, memory baseline files, and skill templates.
 
 ### Banned Entities:
-- **Banned Personal Names**: `Muhamad Galih Saputra`, `Galih`, `Galih's`, `galih`.
-- **Banned Intimate Personas**: `Keiya`, `Keiya Putri Zeyni`, `Keiya's`, `keiya`, `galyarder` (when used as personal developer alias).
-- **Banned Private Emails**: `keiyazeyniputri@gmail.com`, `galyarderlabs@gmail.com`, `galyarder@gmail.com`.
-- **Banned Creator Logos/Orgs**: `Galyarder Labs`, `Galyarder`.
+- **Banned Personal Names**: `<real_name_holder>`, `<first_name_holder>`.
+- **Banned Intimate Personas**: `<assistant_name_holder>`, `<assistant_old_alias_holder>`, `<developer_old_alias_holder>`.
+- **Banned Private Emails**: `<email_holder_1>`, `<email_holder_2>`, `<email_holder_3>`.
+- **Banned Creator Logos/Orgs**: `<old_org_name_holder>`, `<old_org_logo_holder>`.
 
 ### Allowed Replacements:
 - **User Reference**: `User`, `Owner`, `Founder`, `Investor` (depending on the profile).
@@ -28,9 +28,9 @@ To prepare the multi-agent stack as a clean, industry-grade corporate starter ki
 The target VPS environment runs everything inside isolated Docker containers using volume mount bindings. Hardcoded absolute paths specific to the developer's local machine environment will fail immediately when container services start.
 
 ### Banned Paths:
-- **Developer Local Home**: `/home/galyarder/`
-- **Developer Local configuration**: `/home/galyarder/.hermes/`
-- **Specific Workspace paths**: `/home/galyarder/projects/openintent/workspace`
+- **Developer Local Home**: `/home/<username_holder>/`
+- **Developer Local configuration**: `/home/<username_holder>/.hermes/`
+- **Specific Workspace paths**: `/home/<username_holder>/projects/openintent/workspace`
 
 ### Allowed Paths:
 - **System relative directories**: `./profiles/default`, `./profiles/corporate-agent`, `./profiles/public-agent`.
