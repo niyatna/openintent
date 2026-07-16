@@ -1,7 +1,5 @@
 name: default-hermes-runtime
 skills:
-- hermes
-- verification-before-completion
 - discord
 - native-mcp
 - mcp-builder

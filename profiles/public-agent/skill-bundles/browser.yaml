@@ -1,12 +1,11 @@
 name: browser
-skills:
-- browser-routing
-- cloakbrowser-browser
-- computer-use-linux
-- curl-md
-- har-capture
-description: 'Browser/page-fetch bundle for Agent: browser routing, browser runtimes,
-  HAR capture, and curl.md URL-to-markdown fetch.'
+description: 'Category bundle: all 5 skills under `browser` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- browser-routing
+- camofox-browser
+- cua-driver-rs
+- curl-md
+- har-capture

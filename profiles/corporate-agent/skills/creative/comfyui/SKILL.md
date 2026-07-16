@@ -2,7 +2,7 @@
 name: comfyui
 description: "Generate images, video, and audio with ComfyUI — install, launch, manage nodes/models, run workflows with parameter injection. Uses the official comfy-cli for lifecycle and direct REST/WebSocket API for execution."
 version: 5.1.0
-author: [kshitijk4poor, alt-glitch, purzbeats]
+author: Company
 license: MIT
 platforms: [macos, linux, windows]
 compatibility: "Requires ComfyUI (local, Comfy Desktop, or Comfy Cloud) and comfy-cli (auto-installed via pipx/uvx by the setup script)."
@@ -44,7 +44,7 @@ for workflow execution.
   editor format to API format: Reroute bypass, dotted dynamic-input keys
   (`values.a`, `resize_type.width`), Cloud quirks (302 redirect, 1 concurrent
   free-tier job, 1080p VRAM ceiling), Discord-compatible ffmpeg stitch.
-  Authored by [@purzbeats](https://github.com/purzbeats). Load this whenever
+  Load this whenever
   you're starting from an official template.
 
 **Scripts (`scripts/`):**

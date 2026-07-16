@@ -1,50 +1,13 @@
 name: product-management
 mode: catalog-only-not-active-bundle
-profile: public-agent
-skill_count: 11
+profile: default
+skill_count: 2
 skills:
 - name: brainstorming
   path: product-management/brainstorming
-  description: Use when you MUST use this before any creative work - creating features, building components, adding functionality,
-    or modifying behavior. Explores user intent, requirements and design before implementation.
-- name: experiment
-  path: product-management/experiment
-  description: 'Use when eXPERIMENT MODE: Timeboxed, throwaway code for rapid validation. Bypasses TDD requirements. Code
-    must be quarantined and cannot be merged to main.'
-- name: deploy
-  path: product-management/deploy
-  description: 'Use when iNCIDENT MODE: Bypass standard PRD/Planning phase for emergency hotfixes. Requires immediate execution,
-    a post-mortem ticket, and a patch release note.'
-- name: writing-plansner
-  path: product-management/writing-plansner
-  description: Use when expert writing-plansning specialist for complex features and refactoring. Use PROACTIVELY when users request
-    feature implementation, architectural changes, or complex refactoring. Automatically activated for writing-plansning tasks.
+  description: Use when generating creative features, outlining product alternatives,
+    or building throwaway proof-of-concept (POC) prototypes.
 - name: product-manager
   path: product-management/product-manager
-  description: Use when break a PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when
-    user wants to convert a PRD to issues, create implementation tickets, or break down a PRD into work items.
-- name: prd-to-writing-plans
-  path: product-management/prd-to-writing-plans
-  description: Use when turn a PRD into a multi-phase implementation writing-plans using tracer-bullet vertical slices, saved as a
-    local Markdown file in ./writing-planss/. Use when user wants to break down a PRD, create an implementation writing-plans, writing-plans phases from
-    a PRD, or mentions "tracer bullets".
-- name: product-manager
-  path: product-management/product-manager
-  description: Use when product Management specialist. Focuses on ROI, feature prioritization, tracked issue management, and
-    ensuring engineering efforts directly impact user acquisition or revenue. Use PROACTIVELY before any code is written to
-    convert PRDs into actionable tracked epics and issues.
-- name: brainstorming
-  path: product-management/brainstorming
-  description: Use when ultra-fast proof-of-concept and MVP specialist. Use this agent when you need to validate an idea quickly  working
-    prototype before the meeting's over. Pragmatic, speed-focused, validation-oriented. Ships in days, not weeks.
-- name: suno-music-creator
-  path: product-management/suno-music-creator
-  description: Song creation and translation based on SunoAI technology
-- name: product-manager
-  path: product-management/product-manager
-  description: Use when product ideas, PRDs, or work requests need to become actionable tracked work without requiring an
-    external issue tracker.
-- name: product-manager
-  path: product-management/product-manager
-  description: Use when create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub
-    issue. Use when user wants to write a PRD, create a product requirements document, or writing-plans a new feature.
+  description: Use when defining product roadmaps, writing requirements documents
+    (PRDs), tracking local task tickets, or decomposing features into work items.

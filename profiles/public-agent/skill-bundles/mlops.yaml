@@ -1,13 +1,19 @@
 name: mlops
-skills:
-- peft-fine-tuning
-- qdrant-vector-search
-- stable-diffusion-image-generation
-- outlines
-- evaluating-llms-harness
-- huggingface-hub
-- serving-llms-vllm
-description: 'Category bundle: all 39 skills under `mlops` for Agent.'
+description: 'Category bundle: all 13 skills under `mlops` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- audiocraft-audio-generation
+- evaluating-llms-harness
+- evaluating-llms-harness
+- huggingface-hub
+- llama-cpp
+- outlines
+- peft-fine-tuning
+- qdrant-vector-search
+- segment-anything-model
+- serving-llms-vllm
+- serving-llms-vllm
+- stable-diffusion-image-generation
+- weights-and-biases

@@ -133,8 +133,9 @@ def provision_guild(token, guild_id):
 def main():
     token = os.getenv("DISCORD_BOT_TOKEN")
     if not token:
-        # Try reading from root environment variables file
-        env_path = "/home/galyarder/projects/openintent/.env"
+        # Try reading from root environment variables file relative to script location
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        env_path = os.path.abspath(os.path.join(script_dir, "..", ".env"))
         if os.path.exists(env_path):
             with open(env_path, "r") as f:
                 for line in f:

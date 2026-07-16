@@ -1,10 +1,13 @@
-description: 'Category bundle: all 24 skills under `research` for Agent.'
+name: research
+description: 'Category bundle: all 7 skills under `research` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
-name: research
 skills:
-- gbrain
 - api-discovery
+- arxiv
+- blogwatcher
+- llm-wiki
+- research-paper-writing
 - scrapling
 - signal-radar

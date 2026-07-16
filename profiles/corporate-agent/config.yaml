@@ -544,7 +544,7 @@ platforms:
   api_server:
     enabled: true
   discord:
-    enabled: true
+    enabled: false
     extra:
       allow_bots: mentions
       allowed_channels: '*'

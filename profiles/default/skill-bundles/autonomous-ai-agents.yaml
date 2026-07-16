@@ -1,18 +1,17 @@
 name: autonomous-ai-agents
-skills:
-- agent-accounts
-- antigravity-cli
-- claude-code
-- codex
-- discord
-- hermes
-- council
-- kanban-codex
-- opencode
-- paperstable-diffusion-image-generation-agentic-company
-- paseo
-- pi-cli
-description: 'Category bundle: all 28 skills under `autonomous-ai-agents` for default.'
+description: 'Category bundle: all 11 skills under `autonomous-ai-agents` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- agent-accounts
+- claude-code
+- codex
+- council
+- discord
+- discord-agent2agent-relay
+- hermes-agent
+- kanban-codex
+- opencode
+- paperclip-agentic-company
+- paseo

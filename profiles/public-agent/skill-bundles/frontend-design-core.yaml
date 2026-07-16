@@ -1,9 +1,8 @@
 name: design-taste-core
 skills:
 - design-taste
-- verification-before-completion
 description: 'Lean frontend/product UI design bundle: production-grade UI direction,
   anti-slop taste, polish, and verification.'
-instruction: Use as the default UI/frontend design mode after default-core when
-  the user asks to build, polish, critique, or redesign a product interface. Prefer
-  exact skills when the target is narrow.
+instruction: Use as the default UI/frontend design mode after default-core when the
+  user asks to build, polish, critique, or redesign a product interface. Prefer exact
+  skills when the target is narrow.

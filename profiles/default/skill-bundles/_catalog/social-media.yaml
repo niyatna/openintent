@@ -1,0 +1,13 @@
+name: social-media
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 2
+skills:
+- name: platform-operator-router
+  path: social-media/platform-operator-router
+  description: Use when executing automated postings to X, Threads, or Instagram,
+    using the platform-operator-router API utility, managing community engagement,
+    or planning email automation.
+- name: xurl
+  path: social-media/xurl
+  description: 'X/Twitter via xurl CLI: post, search, DM, media, v2 API.'

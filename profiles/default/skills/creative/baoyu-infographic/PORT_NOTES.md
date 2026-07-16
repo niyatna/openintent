@@ -1,6 +1,6 @@
 # Port Notes — baoyu-infographic
 
-Ported from [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) v1.56.1.
+Ported from [company/baoyu-skills](https://github.com/company/baoyu-skills) v1.56.1.
 
 ## Changes from upstream
 
@@ -33,7 +33,7 @@ Only `SKILL.md` was modified. All 45 reference files are verbatim copies.
 To pull upstream updates:
 ```bash
 # Compare versions
-curl -sL https://raw.githubusercontent.com/JimLiu/baoyu-skills/main/skills/baoyu-infographic/SKILL.md | head -5
+curl -sL https://raw.githubusercontent.com/company/baoyu-skills/main/skills/baoyu-infographic/SKILL.md | head -5
 # Look for version: line
 
 # Diff reference files

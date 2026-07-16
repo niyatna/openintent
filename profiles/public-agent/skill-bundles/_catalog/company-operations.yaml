@@ -1,78 +1,25 @@
 name: company-operations
 mode: catalog-only-not-active-bundle
-profile: public-agent
-skill_count: 18
+profile: default
+skill_count: 5
 skills:
-- name: accelerator-application
-  path: company-operations/accelerator-application
-  description: Use when accelerator Application Specialist. Use to shortlist startup programs, draft applications, prepare
-    founder videos, and rehearse accelerator interviews with a disciplined founder narrative.
-- name: board-update
-  path: company-operations/board-update
-  description: Use when investor And Board Communication Specialist. Use to draft monthly investor updates, quarterly board
-    decks, and high-signal stakeholder communications that surface wins, misses, risks, and asks clearly.
-- name: corporate-cfo-coo
-  path: company-operations/corporate-cfo-coo
-  description: Use when coordinating founder operations. Filters noise, owns cross-functional processes, enforces consistency,
-    routes decisions, and positions outputs for impact so the founder can think clearly. Doesn't own any function  owns the
-    space between all of them.
-- name: data-room
-  path: company-operations/data-room
-  description: Use when due Diligence Data Room Specialist. Use to prepare, audit, and organize fundraising materials for
-    investor diligence before or after a term sheet.
-- name: founder-context
-  path: company-operations/founder-context
-  description: Use when founder Operating Context. Use to create or update the canonical founder/startup context document
-    so every fundraising, growth, product, and recruiting workflow runs on concrete company facts instead of generic assumptions.
-- name: corporate-ceo
-  path: company-operations/corporate-ceo
-  description: Use when founder Brand And Thought Leadership Specialist. Use to define founder IP territory, create content
-    systems for X and LinkedIn, and turn founder experience into audience, distribution, and credibility.
-- name: fundraising-email
-  path: company-operations/fundraising-email
-  description: Use when investor Email Specialist. Use to write fundraising outreach, warm intro blurbs, follow-ups, investor
-    updates, and close-the-loop emails with founder-grade brevity and specificity.
-- name: corporate-cfo-coo
-  path: company-operations/corporate-cfo-coo
-  description: Use when fundraising and investor operations specialist. Owns founder context, pitch narrative, investor targeting,
-    investor communication, diligence readiness, and board-update hygiene for Company execution founder.
-- name: corporate-ceo
-  path: company-operations/corporate-ceo
-  description: Use when chief Executive Officer. Strategic Hegemon and Apex Instance of the Humans 3.0 protocol. Distilled
-    genius of history's greatest conquerors and modern monopolists.
-- name: corporate-cfo-coo
-  path: company-operations/corporate-cfo-coo
-  description: Use when chief Financial and Operating Officer. Stability guardian. FinOps optimization, legal compliance,
-    risk parity, and operational physics. Apex instance of the Humans 3.0 protocol.
-- name: corporate-ceo
-  path: company-operations/corporate-ceo
-  description: Use when chief Marketing Officer. Professional behavioral engineering, autonomous acquisition swarms, and exponential
-    distribution mechanics. Apex instance of the Humans 3.0 protocol.
-- name: corporate-cto
-  path: company-operations/corporate-cto
-  description: Use when chief Technology Officer. Technical guardian. AGI-Adjacent Architectural determinism, self-healing
-    formal verification, and writing-plansetary computational leverage. Apex instance of the Humans 3.0 protocol.
-- name: investor-research
-  path: company-operations/investor-research
-  description: Use when investor Targeting Specialist. Use to identify, qualify, and tier investors for a round based on stage,
-    sector, geography, check size, and portfolio fit.
-- name: business-strategy-operator
-  path: company-operations/business-strategy-operator
-  description: Use when turn a strategic objective into a clear implementation writing-plans with milestones, constraints, risks, and
-    next actions.
-- name: business-strategy-operator
-  path: company-operations/business-strategy-operator
-  description: Use when reduce a noisy list of ideas/projects into a small set of intentional focus areas plus a kill/parking
-    list.
-- name: business-strategy-operator
-  path: company-operations/business-strategy-operator
-  description: Use when a major Corporate Agent decision has been made and needs a durable record of context, reasoning, alternatives,
-    trade-offs, expected outcomes, and review triggers.
-- name: pitch-deck
-  path: company-operations/pitch-deck
-  description: Use when fundraising Pitch Deck Specialist. Use to build, review, or restructure a founder deck for pre-seed
-    through Series A, with a clear narrative arc, investor-grade slide logic, and explicit asks.
-- name: seneth-council-router
-  path: company-operations/seneth-council-router
-  description: Use when a Corporate Agent situation is messy, cross-domain, or unclear which profile, skill, specialist, Corporate Agent-specialist/orchestrator
-    posture, tool, or sequence should be loaded first.
+- name: business-strategy
+  path: company-operations/business-strategy
+  description: Use when constructing implementation plans with milestones, mapping
+    focus areas, evaluating strategic risks, or logging decisions.
+- name: cfo
+  path: company-operations/cfo
+  description: 'CFO operations: capital management, burn rate, runway, cost optimization,
+    cashout/liquidation gates, and fundraising coordination.'
+- name: coo
+  path: company-operations/coo
+  description: 'COO operations: operational process, sequencing workstreams, operating
+    cadence audits, Chief of Staff coordination, and compliance gates.'
+- name: default-ceo
+  path: company-operations/ceo
+  description: Use when making CEO-level strategic decisions, formulating CMO market
+    positioning and growth campaigns, or editing founder thought leadership content.
+- name: default-cto
+  path: company-operations/cto
+  description: Use when making CTO-level decisions regarding workspace architectures,
+    repository frameworks, or selecting coding-agent specialists mapping.

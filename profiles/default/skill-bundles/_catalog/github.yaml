@@ -1,0 +1,23 @@
+name: github
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 6
+skills:
+- name: codebase-inspection
+  path: github/codebase-inspection
+  description: 'Inspect codebases w/ pygount: LOC, languages, ratios.'
+- name: github-auth
+  path: github/github-auth
+  description: 'GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.'
+- name: github-code-review
+  path: github/github-code-review
+  description: 'Review PRs: diffs, inline comments via gh or REST.'
+- name: github-issues
+  path: github/github-issues
+  description: Create, triage, label, assign GitHub issues via gh or REST.
+- name: github-pr-workflow
+  path: github/github-pr-workflow
+  description: 'GitHub PR lifecycle: branch, commit, open, CI, merge.'
+- name: github-repo-management
+  path: github/github-repo-management
+  description: Clone/create/fork repos; manage remotes, releases.

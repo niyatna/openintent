@@ -1,18 +1,12 @@
 name: code-execution
 skills:
-- corporate-cto
 - architect
-- elite-developer
-- company-execution-doctrine
 - codegraph-codebase-analysis
-- verification-before-completion
 - paseo
-- antigravity-cli
 - codex
 - claude-code
 - opencode
-- pi-cli
-- writing-writing-planss
+- plan
 description: 'Production engineering route: architecture, code, docs/wiki, agents,
   tests, verification.'
 instruction: Use for repo implementation/debugging/refactors. Prefer coding agents/Kanban

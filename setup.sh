@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-DIR="/home/galyarder/projects/openintent"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR"
 
 # ANSI color codes

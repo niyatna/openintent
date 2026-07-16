@@ -1,31 +1,30 @@
 name: browser
 mode: catalog-only-not-active-bundle
-profile: public-agent
-skill_count: 6
+profile: default
+skill_count: 5
 skills:
 - name: browser-routing
   path: browser/browser-routing
-  description: Use when choosing configuring or troubleshooting which browser stack should handle a task across Brave CDP
-    Hermes native browser Camofox gstack Playwright BrowserOS or cloud browsers.
+  description: Configure and troubleshoot which browser stack handles web automation.
+    Camofox (stealth browser) is the primary route; default Chromium is the native
+    fallback.
 - name: camofox-browser
   path: browser/camofox-browser
-  description: Use when working with Hermes Camofox/Camoufox browser automation, headless/headful Camofox windows, desktop
-    launcher/icons, normal human Camoufox browsing, hidden browser audio, Camofox service health, YouTube/media playback,
-    or the Corporate Agent profile's Camoufox browser runtime.
-- name: cloakbrowser-browser
-  path: browser/cloakbrowser-browser
-  description: Use when installing, verifying, launching, or operating CloakBrowser on User's workstation, especially dedicated
-    Agent persistent browser profiles, Google login/session capture, cookies, HAR/CDP work, or browser-profile-manager-style
-    workflows.
-- name: computer-use-linux
-  path: browser/computer-use-linux
-  description: Use when Agent needs Linux desktop observation or control through the OS-home computer-use-linux
-    MCP server, including AT-SPI app trees, GNOME/Wayland window targeting, ydotool input, and Hermes MCP wiring.
+  description: Install, verify, configure, and operate the Camofox stealth browser
+    (persistent profiles, cookies, headless/headed sessions).
+- name: cua-driver-rs
+  path: browser/cua-driver-rs
+  description: "Drive a native GUI app (macOS, Windows, Linux) via the cua-driver\
+    \ CLI (default) or MCP server \u2014 snapshot its accessibility tree, click/type/scroll\
+    \ by element_index or pixel coords, verify via re-snapshot, all without bringing\
+    \ the target to the foreground. Use when the user asks you to operate, drive,\
+    \ automate, or perform a GUI task in a real application on the host."
 - name: curl-md
-  path: curl-md
-  description: Fetch web pages and docs as optimized markdown with curl.md. Use when the user shares a URL, asks about
-    page content, or you need to read web page or webfetch.
+  path: browser/curl-md
+  description: Fetch web pages and docs as optimized markdown with curl.md. Use when
+    the user shares a URL, asks about page content, or you need to read web page or
+    webfetch.
 - name: har-capture
   path: browser/har-capture
-  description: Capture network traffic (XHR, Fetch, WebSocket) from websites. Defaults to CloakBrowser/Chrome CDP for Corporate Agent/Agent;
-    Playwright Chromium is explicit fallback via --standalone. Saves HAR 1.2 and extracts API endpoints.
+  description: Capture network traffic (XHR, Fetch, WebSocket) from websites using
+    the Camofox browser agent. Saves in HAR 1.2 format.

@@ -1,15 +1,29 @@
-description: 'Category bundle: all 78 skills under `creative` for corporate-agent.'
-instruction: Use this only when the user intentionally wants the whole category/folder
-  context. For normal work, prefer the lean core bundle plus exact routed skills or
-  lean design route bundles to avoid context noise.
 name: creative
+description: 'Category bundle: all 23 skills under `creative` for default.'
+instruction: Use this only when the user intentionally wants the whole category/folder
+  context. For normal work, prefer the lean core bundle plus exact routed skills to
+  avoid context noise.
 skills:
-- media-art
-- diagram-design
+- architecture-diagram
+- ascii-art
+- ascii-video
+- baoyu-infographic
+- claude-design
+- comfyui
 - content-generator
-- superdesign
-- web-widgets
-- design-taste
+- design-md
 - design-styles
+- design-taste
+- diagram-design
+- excalidraw
+- humanizer
+- manim-video
+- media-art
+- p5js
+- popular-web-designs
+- pretext
 - product-design-thinking
-- internal-comms
+- sketch
+- superdesign
+- touchdesigner-mcp
+- web-widgets

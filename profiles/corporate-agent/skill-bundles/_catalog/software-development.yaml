@@ -1,254 +1,52 @@
 name: software-development
 mode: catalog-only-not-active-bundle
-profile: corporate-agent
-skill_count: 66
+profile: default
+skill_count: 14
 skills:
-- name: Vibecoder
-  path: software-development/vibecoder
-  description: An unhinged, Gen-Z styled coding assistant that focuses on vibes over strict boilerplate.
-- name: api-discovery
-  path: software-development/api-discovery
-  description: 'Discover and document APIs from websites: source code analysis, HAR capture, WebSocket monitoring, and reverse-engineering
-    SPA endpoints.'
-- name: api-docs-writer
-  path: software-development/api-docs-writer
-  description: Accurately describe how to use APIs, provide example code, precautions, and return value type definitions.
 - name: architect
   path: software-development/architect
-  description: Use when making software architecture decisions for system design, scalability, and technical decision-making.
-    Use PROACTIVELY when writing-plansning new features, refactoring large systems, or making architectural decisions.
-- name: systematic-debugging
-  path: software-development/systematic-debugging
-  description: Use when build and TypeScript error resolution specialist. Use PROACTIVELY when build fails or type errors
-    occur. Fixes build/type errors only with minimal diffs, no architectural edits. Focuses on getting the build green quickly.
-- name: build-fix
-  path: software-development/build-fix
-  description: Use when investigating and fixing build errors, TypeScript errors, or test failures with minimal diffs.
-- name: clean
-  path: software-development/clean
-  description: Use when cleaning dead code, unused exports, duplicates, and dependencies. Removes unused code, duplicates,
-    and refactors for maintainability.
-- name: github-pr-workflow
-  path: software-development/github-pr-workflow
-  description: Use when reviewing code for quality, security, and maintainability. Proactively reviews code for quality, security,
-    and maintainability. Use immediately after writing or modifying code. MUST BE USED for all code changes.
+  description: Use when planning system architecture, evaluating technical tradeoffs,
+    compiling OpenAPI REST diagrams, or setting architect system designs.
 - name: codegraph-codebase-analysis
   path: software-development/codegraph-codebase-analysis
-  description: Generate wiki docs + Mermaid diagrams for any codebase.
-- name: codegraph-codebase-analysis
-  path: software-development/codegraph-codebase-analysis
-  description: 'Inspect codebases w/ pygount: LOC, languages, ratios.'
-- name: commit-assistant
-  path: software-development/commit-assistant
-  description: Expert at generating precise Git commit messages
-- name: debugging-hermes-tui-commands
-  path: software-development/debugging-hermes-tui-commands
-  description: 'Use when debug Hermes TUI slash commands: Python, gateway, Ink UI.'
+  description: Use when analyzing, reviewing, onboarding to, or answering questions
+    about local repositories, building codebase wikis, or indexing LOC.
 - name: docs
   path: software-development/docs
-  description: Use when documentation and codemap specialist. Generates codemaps, updates READMEs, and syncs documentation
-    with the source code.
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Use when principal Full-Stack Engineer. Deterministic implementation engine. Master of TDD, formal verification,
-    and architectural minimalism.
-- name: executing-writing-planss
-  path: software-development/executing-writing-planss
-  description: Use when you have a written implementation writing-plans to execute in a separate session with review checkpoints
-- name: fastapi-development
-  path: software-development/fastapi-development
-  description: Skilled in Python modular development, proficient in FastAPI, PostgreSQL, Tortoise-ORM and other technology
-    stacks, able to provide clear code structure and detailed annotations for large projects.
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides
-    completion of development work by presenting structured options for merge, PR, or cleanup
-- name: github-auth
-  path: software-development/github-auth
-  description: 'GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.'
-- name: github-code-review
-  path: software-development/github-code-review
-  description: 'Review PRs: diffs, inline comments via gh or REST.'
-- name: github-doc-asst
-  path: software-development/github-doc-asst
-  description: Focusing on writing and optimizing open-source project documentation
-- name: github-issues
-  path: software-development/github-issues
-  description: Create, triage, label, assign GitHub issues via gh or REST.
-- name: github-pr-workflow
-  path: software-development/github-pr-workflow
-  description: 'GitHub PR lifecycle: branch, commit, open, CI, merge.'
-- name: github-repo-management
-  path: software-development/github-repo-management
-  description: Clone/create/fork repos; manage remotes, releases.
-- name: codegraph-codebase-analysis
-  path: software-development/codegraph-codebase-analysis
-  description: any input (code, docs, papers, images) → knowledge graph → clustered communities → HTML + JSON + audit report.
-    Use when user asks any question about a codebase, project content, architecture, or file relationships — especially if
-    codegraph-codebase-analysis-out/ exists. Provides persistent graph with god nodes, community detection, and BFS/DFS query tools.
-- name: hermes-skill-authoring
-  path: software-development/hermes-skill-authoring
-  description: 'Use when author in-repo SKILL.md: frontmatter, validator, structure.'
-- name: hermes-s6-container-supervision
-  path: software-development/hermes-s6-container-supervision
-  description: Modify, debug, or extend the s6-overlay supervision tree inside the Hermes Agent Docker image — adding new
-    services, debugging profile gateways, understanding the Architecture B main-program pattern.
-- name: it-system-architect
-  path: software-development/it-system-architect
-  description: Senior IT architect skilled in requirements analysis, system design, technology selection, and cross-platform
-    system optimization. Over 5 years of experience, proficient in Windows, macOS, and Linux operating systems, with capabilities
-    in troubleshooting and security protection.
-- name: js-code-quality
-  path: software-development/js-code-quality
-  description: Dedicated to clean and elegant code refactoring
-- name: linux-kernel
-  path: software-development/linux-kernel
-  description: 'Role Description: I am an expert proficient in the Linux kernel, with in-depth understanding and analytical
-    capabilities of the latest kernel source code (as of June 2024). I can provide users with detailed and accurate information
-    about the Linux kernel.'
-- name: linux-shell-assistant
-  path: software-development/linux-shell-assistant
-  description: An AI assistant to help you write high-quality Shell scripts
-- name: name-assistant
-  path: software-development/name-assistant
-  description: Assist developers in creating standardized English names for files, functions, projects, and more
+  description: Use when executing writing manuals, readmes, and codemaps.
+- name: dogfood
+  path: software-development/dogfood
+  description: 'Exploratory QA of web apps: find bugs, evidence, reports.'
+- name: hermes-agent-skill-authoring
+  path: software-development/hermes-agent-skill-authoring
+  description: 'Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality
+    principles.'
 - name: node-inspect-debugger
   path: software-development/node-inspect-debugger
-  description: Use when debug Node.js via --inspect + Chrome DevTools Protocol CLI.
-- name: node-js-devoloper
-  path: software-development/node-js-devoloper
-  description: Specializes in code review, performance optimization, asynchronous programming, error handling, code refactoring,
-    dependency management, security enhancements, test playwright-pro, and documentation writing for Node.js.
-- name: architect
-  path: software-development/architect
-  description: 'OpenAPI Generator integration. Manage data, records, and automate workflows. Use when the user wants to interact
-    with OpenAPI Generator data.
-
-    '
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Embed alibaba/elite-developer into your own web application — a pure-JavaScript in-page GUI agent that ships as
-    a single <script> tag or npm package and lets end-users of your site drive the UI with natural language ("click login,
-    fill username as John"). No Python, no headless browser, no extension required. Use this skill when the user is a web
-    developer who wants to add an AI copilot to their SaaS / admin panel / B2B tool, make a legacy web app accessible via
-    natural language, or evaluate elite-developer against a local (Ollama) or cloud (Qwen / OpenAI / OpenRouter) LLM. NOT for server-side
-    browser automation — point those users to Hermes' built-in browser tool instead.
-- name: writing-plans
-  path: software-development/writing-plans
-  description: 'Use when writing-plans mode: write markdown writing-plans to .hermes/writing-planss/, no exec.'
-- name: popular-science-writer
-  path: software-development/popular-science-writer
-  description: A popular science writing assistant that explains scientific concepts in everyday language, telling stories,
-    using examples and metaphors to spark interest and emphasize importance.
-- name: py-master-id
-  path: software-development/py-master-id
-  description: Expert in Python development, writing efficient and concise code, emphasizing security and maintainability
+  description: Debug Node.js via --inspect + Chrome DevTools Protocol CLI.
+- name: plan
+  path: software-development/plan
+  description: 'Plan mode: write an actionable markdown plan to .hermes/plans/, no
+    execution. Bite-sized tasks, exact paths, complete code.'
 - name: python-debugpy
   path: software-development/python-debugpy
-  description: 'Use when debug Python: pdb REPL + debugpy remote (DAP).'
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear
-    or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Use when cleaning dead code, unused exports, duplicates, and dependencies. Use PROACTIVELY for removing unused
-    code, duplicates, and refactoring. Runs analysis tools (knip, depcheck, ts-prune) to identify dead code and safely removes
-    it.
-- name: writing-plans
-  path: software-development/writing-plans
-  description: 'Use when pre-commit review: security scan, quality gates, auto-fix.'
-- name: github-pr-workflow
-  path: software-development/github-pr-workflow
-  description: 'Debug REST/GraphQL APIs: status codes, auth, schemas, repro.'
+  description: 'Debug Python: pdb REPL + debugpy remote (DAP).'
+- name: requesting-code-review
+  path: software-development/requesting-code-review
+  description: 'Pre-commit review: security scan, quality gates, auto-fix.'
+- name: simplify-code
+  path: software-development/simplify-code
+  description: Parallel 3-agent cleanup of recent code changes.
 - name: skill-creator
   path: software-development/skill-creator
-  description: Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to
-    create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance
-    with variance analysis, or optimize a skill's description for better triggering accuracy.
-- name: software-architecture-strategist
-  path: software-development/software-architecture-strategist
-  description: 'Software Development Architect: Designs scalable and secure software systems, guides development teams, and
-    translates business requirements into technical solutions.'
-- name: writing-plans
-  path: software-development/writing-plans
-  description: Use when throwaway experiments to validate an idea before build.
-- name: stackoverflow-code-helper
-  path: software-development/stackoverflow-code-helper
-  description: Proficient in multiple programming languages including Golang, Python, Java, and Vue.js. Skilled at answering
-    programming questions with clear, logical language and providing solutions. Possesses strong communication skills, code
-    review capabilities, and quick learning abilities.
-- name: writing-writing-planss
-  path: software-development/writing-writing-planss
-  description: Use when execute writing-planss via delegate_task subagents (2-stage review).
-- name: architect
-  path: software-development/architect
-  description: Use when making software architecture decisions for system design, scalability, and technical decision-making.
-    Produces ADRs, Vertical Slice writing-planss, and enforces deep module design for Company pipeline. Contains the full
-    knowledge of Architecture Patterns, Systems Design, and Planning.
+  description: Use when creating new skills folders, formatting skills YAML frontmatters,
+    or editing executable skills references bodies.
+- name: spike
+  path: software-development/spike
+  description: Throwaway experiments to validate an idea before build.
 - name: systematic-debugging
   path: software-development/systematic-debugging
-  description: 'Use when 4-phase root cause debugging: understand bugs before fixing.'
-- name: tdd
-  path: software-development/tdd
-  description: Use when enforce test-driven development workflow. Scaffold interfaces, generate tests FIRST, then implement
-    minimal code to pass. Ensure 80%+ playwright-pro.
-- name: tdd-guide
-  path: software-development/tdd-guide
-  description: Use when test-Driven Development specialist enforcing write-tests-first methodology. Use PROACTIVELY when writing
-    new features, fixing bugs, or refactoring code. Ensures 80%+ test playwright-pro.
-- name: systematic-debugging
-  path: software-development/systematic-debugging
-  description: 'Use when tDD: enforce RED-GREEN-REFACTOR, tests before code.'
-- name: triage
-  path: software-development/triage
-  description: Use when triage a bug or issue. Explore the codebase to find root cause, then create a fix writing-plans.
-- name: typescript-developer
-  path: software-development/typescript-developer
-  description: Expert in TypeScript, Node.js, Vue.js 3, Nuxt.js 3, Express.js, React.js, and modern UI libraries.
-- name: codegraph-codebase-analysis
-  path: software-development/codegraph-codebase-analysis
-  description: Use when extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities
-    and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary,
-    harden terminology, create a ubiquitous language, or mentions "domain model" or "DDD".
-- name: using-gstack
-  path: software-development/using-gstack
-  description: Use when the user asks to use, run, update, troubleshoot, or route work through Garry Tan's gstack software-factory
-    skills, including /office-hours, /autowriting-plans, /review, /qa, /ship, /browse, /cso, /investigate, release, writing-plansning, browser
-    QA, and Claude Code delegation workflows.
-- name: variable-name-conversion
-  path: software-development/variable-name-conversion
-  description: During software development, naming variables is a common yet time-consuming task. This assistant can automatically
-    convert Chinese variable names into English variable names that conform to camelCase, PascalCase, snake_case, kebab-case,
-    and constant naming conventions based on specific rules. This not only improves code readability but also solves the frustration
-    of variable naming.
-- name: variable-naming
-  path: software-development/variable-naming
-  description: Specializes in generating variable names and function names
-- name: elite-developer
-  path: software-development/elite-developer
-  description: Use when react and Next.js performance optimization guidelines from Vercel Engineering. This skill should be
-    used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks
-    involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
-- name: vercel-react-expert
-  path: software-development/vercel-react-expert
-  description: Use when react and Next.js performance optimization specialist. Use this agent to review, refactor, and optimize
-    React components and Next.js pages for maximum speed and Vercel-specific deployment standards. It enforces the 'elite-developer'
-    skill.
-- name: verification-before-completion
-  path: software-development/verification-before-completion
-  description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running
-    verification commands and confirming output before making any success claims; evidence before assertions always
-- name: web-expert
-  path: software-development/web-expert
-  description: Expert in web development with a focus on tool selection, incremental changes, code review, security, and operational
-    considerations.
-- name: web-github-analyze
-  path: software-development/web-github-analyze
-  description: Expert in GitHub project analysis and report writing
-- name: writing-writing-planss
-  path: software-development/writing-writing-planss
-  description: 'Use when write implementation writing-planss: bite-sized tasks, paths, code.'
-- name: skill-creator
-  path: software-development/skill-creator
-  description: Use when creating new skills, editing existing skills, or verifying skills work before deployment
+  description: '4-phase root cause debugging: understand bugs before fixing.'
+- name: test-driven-development
+  path: software-development/test-driven-development
+  description: 'TDD: enforce RED-GREEN-REFACTOR, tests before code.'

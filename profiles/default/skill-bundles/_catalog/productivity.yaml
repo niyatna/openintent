@@ -1,148 +1,43 @@
 name: productivity
 mode: catalog-only-not-active-bundle
 profile: default
-skill_count: 34
+skill_count: 11
 skills:
 - name: airtable
   path: productivity/airtable
   description: Airtable REST API via curl. Records CRUD, filters, upserts.
-- name: boxing-master
-  path: productivity/boxing-master
-  description: Expert in boxing training outlines and personalized writing-plans development
-- name: business-email
-  path: productivity/business-email
-  description: Business email writing expert, proficient in bilingual business emails in Chinese and English, cross-cultural
-    communication, GitHub open source community interaction
-- name: canvas
-  path: productivity/canvas
-  description: Canvas LMS integration — fetch enrolled courses and assignments using API token authentication.
-- name: doc-coauthoring
-  path: productivity/doc-coauthoring
-  description: Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation,
-    proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer
-    context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs,
-    creating proposals, drafting specs, or similar documentation tasks.
-- name: xlsx
-  path: productivity/xlsx
-  description: 'Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.xlsx files).
-    Triggers include: any mention of ''Word doc'', ''word document'', ''.xlsx'', or requests to produce professional documents
-    with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing
-    content from .xlsx files, inserting or replacing images in documents, performing find-and-replace in Word files, working
-    with tracked changes or comments, or converting content into a polished Word document. If the user asks for a ''report'',
-    ''memo'', ''letter'', ''template'', or similar deliverable as a Word or .xlsx file, use this skill. Do NOT use for PDFs,
-    spreadsheets, Google Docs, or general coding tasks unrelated to document generation.'
-- name: xlsx
-  path: productivity/xlsx
-  description: Build auditable Excel workbooks headless with openpyxl — blue/black/green cell conventions, formulas over hardcodes,
-    named ranges, balance checks, sensitivity tables. Use for financial models, audit outputs, reconciliations.
-- name: excel-formula-master
-  path: productivity/excel-formula-master
-  description: Excel Formula Master
-- name: google-workspace
-  path: productivity/google-workspace
-  description: Use when accessing User's own already-authenticated Google Workspace account through native gws only, avoiding
-    Agent isolated configs, and when repairing User GWS by reauthing through Brave CDP only after token/auth failure.
-- name: google-workspace
-  path: productivity/google-workspace
-  description: Use when accessing Company's already-authenticated Google Workspace account via isolated gws config, avoiding
-    User/default/Agent keyring bleed, or doing fast Gmail/Drive/Calendar/Docs/Sheets/People routing for admin@company.com.
-- name: google-workspace
-  path: productivity/google-workspace
-  description: Use when operating dedicated agent-owned Google/Gmail/Calendar/Drive/Docs/Sheets accounts with fast auth/session
-    checks, CloakBrowser persistent-profile login/OAuth bootstrap, account.txt credentials, cookies, TOTP/backup codes, gws
-    execution, or Google UI/API troubleshooting after auth; Camofox is legacy/fallback.
 - name: google-workspace
   path: productivity/google-workspace
   description: Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.
-- name: google-workspace
-  path: productivity/google-workspace
-  description: Troubleshoot Google Workspace CLI/auth contradictions, especially direct gws auth vs Hermes legacy token wrappers.
-- name: healthy-recipe-recommender
-  path: productivity/healthy-recipe-recommender
-  description: Precisely customized nutritious meals, scientifically balanced, healthy eating, your personal nutritionist.
-- name: here-now
-  path: productivity/here-now
-  description: Publish static sites to {slug}.here-now and store private files in cloud Drives for agent-to-agent handoff.
-- name: google-workspace
-  path: productivity/google-workspace
-  description: Use when accessing Agent's already-authenticated Google Workspace account via isolated encrypted gws config,
-    avoiding User/default/Corporate Agent keyring bleed, or doing fast Gmail/Drive/Calendar/People/Sheets/Docs routing for support@company.com.
 - name: linear
   path: productivity/linear
-  description: Use when working with Linear issues, projects, teams, comments, labels, cycles, initiatives, documents, diffs,
-    customer needs, or status updates. Prefer Hermes native Linear MCP tools first; use direct GraphQL only as fallback when
-    MCP is unavailable.
+  description: Use when operating the Linear issue tracking CLI.
 - name: maps
   path: productivity/maps
   description: Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.
-- name: memento-flashcards
-  path: productivity/memento-flashcards
-  description: Spaced-repetition flashcard system. Create cards from facts or text, chat with flashcards using free-text answers
-    graded by the agent, generate quizzes from YouTube transcripts, review due cards with adaptive scheduling, and export/import
-    decks as CSV.
-- name: pdf
-  path: productivity/pdf
-  description: Edit PDF text/typos/titles via pdf CLI (NL prompts).
 - name: notebooklm-mcp-cli
   path: productivity/notebooklm-mcp-cli
-  description: 'Use when interacting with Google NotebookLM programmatically via the nlm CLI or NotebookLM MCP tools: notebook/source
-    management, queries, research, generated artifacts, sharing, sync, diagnostics, or auth troubleshooting.'
+  description: Use when operating the Google NotebookLM workspace programmatic files.
 - name: notion
   path: productivity/notion
-  description: Use when working with Notion pages, databases/data sources, views, comments, users, teams, search, or workspace
-    content. Prefer Hermes native Notion MCP tools first; use direct Notion API only as fallback when MCP is unavailable.
+  description: 'Notion API + ntn CLI: pages, databases, markdown, Workers.'
+- name: officecli
+  path: productivity/officecli
+  description: Create, analyze, proofread, and modify Office documents (.docx, .xlsx,
+    .pptx) using the officecli CLI tool. Use when the user wants to create, inspect,
+    check formatting, find issues, add charts, or modify Office documents.
 - name: pdf
   path: productivity/pdf
-  description: Extract text from PDFs/scans (pymupdf, marker-pdf).
-- name: openhue
-  path: productivity/openhue
-  description: Control Philips Hue lights, scenes, rooms via OpenHue CLI.
-- name: pdf
-  path: productivity/pdf
-  description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables
-    from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating
-    new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable.
-    If the user mentions a .pdf file or asks to produce one, use this skill.
+  description: Use when extracting text and tables from PDF documents, compiling scans
+    OCR files, or correcting PDF typos via pdf tags.
 - name: powerpoint
   path: productivity/powerpoint
   description: Create, read, edit .pptx decks, slides, notes, templates.
-- name: pptx
-  path: productivity/pptx
-  description: 'Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating
-    slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted
-    content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations;
-    combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the
-    user mentions "deck," "slides," "presentation," or references a .pptx filename, regardless of what they writing-plans to do with
-    the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.'
-- name: powerpoint
-  path: productivity/powerpoint
-  description: Build PowerPoint decks headless with python-pptx. Pairs with xlsx for model-backed decks where every
-    number traces to a workbook cell. Use for pitch decks, IC memos, earnings notes.
-- name: q-a-helper
-  path: productivity/q-a-helper
-  description: Please provide your document content, and I will segment and clean it according to your requirements, responding
-    in a standardized format.
-- name: resume-analyzer
-  path: productivity/resume-analyzer
-  description: 分析简历内容并提供深度审计报告，包括评分、优缺点分析和改进建议。当用户需要分析简历、获取简历优化建议或进行简历评估时调用。
-- name: soccer
-  path: productivity/soccer
-  description: Specialises in soccer discussions with real-time updates, player insights, and historical knowledge.
 - name: teams-meeting-pipeline
   path: productivity/teams-meeting-pipeline
-  description: Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay
-    jobs, manage Microsoft Graph subscriptions.
-- name: telephony
-  path: productivity/telephony
-  description: Give Hermes phone capabilities without core tool changes. Provision and persist a Twilio number, send and receive
-    SMS/MMS, make direct calls, and place AI-driven outbound calls through Bland.ai or Vapi.
+  description: "Operate the Teams meeting summary pipeline via Hermes CLI \u2014 summarize\
+    \ meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions."
 - name: xlsx
   path: productivity/xlsx
-  description: 'Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user
-    wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas,
-    formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert
-    between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually
-    (like "the xlsx in my downloads") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring
-    messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must
-    be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python
-    script, database pipeline, or Google Sheets API integration, even if tabular data is involved.'
+  description: Use when constructing or editing Excel spreadsheet sheets, formulating
+    headless openpyxl compilers, or manipulating Word xlsx files.

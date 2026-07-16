@@ -1,0 +1,14 @@
+name: legal
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 2
+skills:
+- name: legal-counsel
+  path: legal/legal-counsel
+  description: Use when writing client engagement proposals, reviewing contractual
+    obligations, analyzing open-source repo licensing, or advising on intellectual
+    IP strategy.
+- name: legal-tos-privacy
+  path: legal/legal-tos-privacy
+  description: Use when drafting legal pages (ToS, Privacy Policy), auditing cookie
+    consent or user data flows, or designing ISO 42001 model risk governance.

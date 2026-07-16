@@ -1,117 +1,47 @@
 name: autonomous-ai-agents
 mode: catalog-only-not-active-bundle
-profile: corporate-agent
-skill_count: 28
+profile: default
+skill_count: 11
 skills:
 - name: agent-accounts
   path: autonomous-ai-agents/agent-accounts
-  description: Use when setting up, auditing, or extending dedicated agent-owned accounts for default/corporate-agent/public-agent, including Google,
-    GitHub, X, wallet, profile backups, access-hardening, and standard autonomy boundaries.
-- name: agent-accounts
-  path: autonomous-ai-agents/agent-accounts
-  description: Use when signing into dedicated agent-owned Google, GitHub, X/Twitter, Notion/Linear OAuth, or similar accounts
-    via CloakBrowser persistent profiles, account.txt files, cookies, or TOTP without exposing secrets; Camofox/Camoufox is
-    legacy/fallback.
-- name: antigravity-cli
-  path: autonomous-ai-agents/antigravity-cli
-  description: Use when delegating coding, repo inspection, refactoring, bugfixing, documentation, second-opinion review,
-    or file-aware analysis to the Antigravity CLI (`agy`) from Hermes.
+  description: Use when auditing, setting up, or authenticating automated agent logins
+    via CloakBrowser profiles, session cookies, or TOTP keys.
 - name: claude-code
   path: autonomous-ai-agents/claude-code
   description: Delegate coding to Claude Code CLI (features, PRs).
 - name: codex
   path: autonomous-ai-agents/codex
   description: Delegate coding to OpenAI Codex CLI (features, PRs).
-- name: discord
-  path: autonomous-ai-agents/discord
-  description: Use when coordinating multiple Hermes agents through Discord. Provides a controlled agent2agent relay protocol
-    using explicit bot mentions, long-message handoff rules, and loop prevention.
-- name: hermes
-  path: autonomous-ai-agents/hermes
-  description: Configure, extend, or contribute to Hermes Agent.
-- name: hermes-camofox-browser
-  path: autonomous-ai-agents/hermes-camofox-browser
-  description: Use when using or troubleshooting Hermes browser tools through local Camofox/Camoufox, especially CAMOFOX_URL,
-    managed browser profiles, desktop launcher/icons, normal human Camoufox browsing, VNC live view, anti-detection browsing,
-    or provider routing.
 - name: council
   path: autonomous-ai-agents/council
-  description: Use when validating high-stakes Hermes Agent architecture, multi-agent workflows, writing-planss, PRs, or technical
-    decisions that benefit from independent judges before implementation or shipping.
+  description: Use when formulating multi-agent system prompts, running routing consensus
+    algorithms, or orchestrating agent-to-agent decision handoffs.
 - name: discord
   path: autonomous-ai-agents/discord
-  description: Use when configuring or troubleshooting Hermes Agent on Discord with multiple bots/agents, bot-to-bot mentions,
-    allowed users/roles, channel mention rules, or bot-message routing loops.
-- name: hermes
-  path: autonomous-ai-agents/hermes
-  description: Use when creating, auditing, versioning, installing, or updating Hermes Agent profile distributions, including
-    profile-local MCP manifests, distribution.yaml ownership boundaries, and multi-profile packaging for agents like Agent/default
-    and Corporate Agent.
-- name: hermes
-  path: autonomous-ai-agents/hermes
-  description: Use when Hermes Agent loses native tools, memory backends fail, gateway/toolset config behaves unexpectedly,
-    or status output contradicts actual runtime behavior.
-- name: hermes
-  path: autonomous-ai-agents/hermes
-  description: Use when auditing, browsing, comparing, installing, categorizing, or updating Hermes Agent skills from the
-    Skills Hub or local skill library.
-- name: honcho
-  path: autonomous-ai-agents/honcho
-  description: Configure and use Honcho memory with Hermes -- cross-session user modeling, multi-profile peer isolation, observation
-    config, dialectic reasoning, session summaries, and context budget enforcement. Use when setting up Honcho, troubleshooting
-    memory, managing profiles with Honcho peers, or tuning observation, recall, and dialectic settings.
+  description: Use when configuring or troubleshooting Hermes Discord gateway routing,
+    bot relay protocols, raw mentions, or allowed-user permissions.
+- name: discord-agent2agent-relay
+  path: autonomous-ai-agents/discord-agent2agent-relay
+  description: Use when coordinating multiple Hermes agents through Discord. Provides
+    a controlled agent2agent relay protocol using explicit bot mentions, long-message
+    handoff rules, and loop prevention.
+- name: hermes-agent
+  path: autonomous-ai-agents/hermes-agent
+  description: Configure, extend, or contribute to Hermes Agent.
 - name: kanban-codex
   path: autonomous-ai-agents/kanban-codex
-  description: Use when a Hermes Kanban worker wants to run Codex CLI as an isolated implementation lane while Hermes keeps
-    ownership of task lifecycle, reconciliation, testing, and handoff.
+  description: Use when loading isolated Codex execution lanes or running code implementation
+    workflows inside a Kanban task pipeline.
 - name: opencode
   path: autonomous-ai-agents/opencode
   description: Delegate coding to OpenCode CLI (features, PR review).
-- name: paperstable-diffusion-image-generation-agentic-company
-  path: autonomous-ai-agents/paperstable-diffusion-image-generation-agentic-company
-  description: Use when operating User's local Paperstable-diffusion-image-generation AI setup, validating paperstable-diffusion-image-generationai.service, opening the local UI,
-    onboarding Company Operations as an agentic company, or designing Paperstable-diffusion-image-generation agents/tasks/delegation protocols.
+- name: paperclip-agentic-company
+  path: autonomous-ai-agents/paperclip-agentic-company
+  description: Use when operating Owner's Dockerized Paperclip AI setup, validating
+    openintent-paperclip container state, opening the UI, onboarding Company as an
+    agentic company, or designing Paperclip agents/tasks/delegation protocols.
 - name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: 'Use when managing Paseo AI coding agents from Hermes/Agent: create or send agent tasks, inspect
-    status/logs, manage worktrees, loops, schedules, permissions, terminals, or daemon health.'
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Spin up a single agent as an advisor — second opinion on the current task. Use when the user says "advisor",
-    "second opinion", "what does X think", or wants an outside take without delegating the work itself.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Form a committee of two high-reasoning agents to step back, do root cause analysis, and produce a writing-plans. Use
-    when stuck, looping, tunnel-visioning, or facing a hard writing-plansning problem.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Heavy-ceremony orchestration for big work — research, writing-plansning, adversarial review, phased implementation,
-    audit, delivery. Use when the user says "epic", "long task", "build this end to end", or wants a feature that runs all
-    night.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Hand off the current task to another agent with full context. Use when the user says "handoff", "hand off",
-    "hand this to", or wants to pass work to another agent.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Run an agent loop until an exit condition is met. Use when the user says "loop", "babysit", "keep trying until",
-    "check every X", "watch", or wants iterative autonomous execution.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Deprecated. Renamed to paseo. Loading this skill redirects to paseo and tells the user.
-- name: pi-cli
-  path: autonomous-ai-agents/pi-cli
-  description: Use when delegating coding, repo inspection, refactoring, bugfixing, lightweight code review, or quick automation
-    to the Pi CLI instead of heavier coding agents.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Cut a beta release of Paseo. Use when the user says "release beta", "cut a beta", "ship a beta", "beta release",
-    or "/paseo". Betas are silent release candidates — no changelog, no website move.
-- name: paseo
-  path: autonomous-ai-agents/paseo/paseo
-  description: Cut a stable release of Paseo (fresh patch or promote from beta). Use when the user says "release stable",
-    "ship stable", "promote", "release:patch", "release:promote", or "/paseo".
-- name: reply-agent
-  path: autonomous-ai-agents/reply-agent
-  description: My goal is to provide professional responses with high emotional intelligence to help solve various issues
-    related to foreign trade.
+  path: autonomous-ai-agents/paseo
+  description: Use when orchestrating Paseo daemon loops, managing developer worktrees,
+    running code committees, or cut-over stable/beta releases.

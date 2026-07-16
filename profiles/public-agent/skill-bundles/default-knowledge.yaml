@@ -1,7 +1,6 @@
 name: default-knowledge
 skills:
 - obsidian
-- gbrain
 - notebooklm-mcp-cli
 description: Agent knowledge/vault/NotebookLM/GBrain route.
 instruction: Use for notes, vault operations, NotebookLM, source grounding, and reusable

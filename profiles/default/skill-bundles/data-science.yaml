@@ -1,7 +1,7 @@
 name: data-science
-skills:
-- jupyter-live-kernel
 description: 'Category bundle: all 1 skills under `data-science` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- jupyter-live-kernel

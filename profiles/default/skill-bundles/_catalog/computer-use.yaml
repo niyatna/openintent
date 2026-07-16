@@ -1,0 +1,12 @@
+name: computer-use
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 1
+skills:
+- name: computer-use
+  path: computer-use
+  description: "Drive the user's desktop in the background \u2014 clicking, typing,\n\
+    scrolling, dragging \u2014 without stealing the cursor, keyboard focus,\nor switching\
+    \ virtual desktops / Spaces. Cross-platform: macOS,\nWindows, Linux. Works with\
+    \ any tool-capable model. Load this skill\nwhenever the `computer_use` tool is\
+    \ available.\n"

@@ -1,41 +1,8 @@
 name: media
 mode: catalog-only-not-active-bundle
-profile: corporate-agent
-skill_count: 11
+profile: default
+skill_count: 1
 skills:
-- name: gif-search
-  path: media/gif-search
-  description: Use when search/download GIFs from Tenor via curl + jq.
-- name: heartmula
-  path: media/heartmula
-  description: 'Use when heartMuLa: Suno-like song generation from lyrics + tags.'
-- name: persona-media-management
-  path: media/persona-media-management
-  description: Use when handling identity-specific media requests (selfies, paps) while maintaining persona.
-- name: video
-  path: media/video
-  description: Use when remotion specialist for programmatic video generation using React. Use PROACTIVELY when the user wants
-    to create, debug, or optimize Remotion video projects. Specializes in frame-perfect animations, physics-based motion,
-    and FFmpeg rendering optimization.
-- name: gif-search
-  path: media/gif-search
-  description: Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools,
-    and animation concepts. Use when users request animated GIFs for Slack like "make me a GIF of X doing Y for Slack."
-- name: songsee
-  path: media/songsee
-  description: Use when audio spectrograms/features (mel, qdrant-vector-search, MFCC) via CLI.
-- name: spotify
-  path: media/spotify
-  description: 'Use when spotify: play, search, queue, manage playlists and devices.'
-- name: suno-lyrics-assistant
-  path: media/suno-lyrics-assistant
-  description: Generates SUNO song creation parameters based on user requirements
-- name: video
-  path: media/video
-  description: Use when programmatic video generation specialist using React and Remotion.
-- name: video
-  path: media/video
-  description: AI视频生成与编辑，使用火山引擎 Doubao Seedance 模型。支持文生视频、图生视频、有声视频。当用户要求生成视频、制作视频、文生视频、图生视频时使用此 skill。
 - name: youtube-content
   path: media/youtube-content
-  description: Use when youTube transcripts to summaries, threads, blogs.
+  description: YouTube transcripts to summaries, threads, blogs.

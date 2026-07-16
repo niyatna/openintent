@@ -79,7 +79,7 @@ Upon completing the bootstrap deployment, the target infrastructure should prese
 ## 3. Rules of Engagement for Coding Agents
 
 When editing or updating this codebase, you must adhere to the following principles:
-- **Absolute Paths**: Utilize absolute paths or paths resolved relative to the target project directory (`/home/galyarder/projects/openintent/`) for all host validations.
+- **Absolute Paths**: Utilize absolute paths or paths resolved relative to the target project directory (e.g., `/opt/data/` or target workspace paths) for all host validations.
  - **Do Not Run Local Containers or Local Setup Scripts**: Never run `docker compose up`, `docker compose up -d`, `install.sh`, `setup.sh`, `scripts/discord_setup.py`, or trigger any target service locally. This project is configured only for remote staging (fresh VPS / target production environment deployment). Your job is exclusively to prepare configuration matrices, configuration templates, and installer files.
 - **Port Parity**: Keep port maps aligned containing:
   - `9router` -> `20128`
@@ -90,6 +90,7 @@ When editing or updating this codebase, you must adhere to the following princip
   - `Public Agent` -> `8003`
 - **Zero Secrets Commits**: Never write real API keys or tokens into code templates. All secrets flow through `${VAR}` env-substitution in YAML and are generated/prompted by `setup.sh`. The `_replace_me` / `_random_replace_me` strings in `docker-compose.yml` (JWT, DB password, dashboard secret, initial password) are intentional placeholders — keep them templated, do not "fix" them with real values. Never commit `.env`, `data/`, `.agent.env`, or `.niyatna-9router-key`.
 - **Replicate shared edits across all three profiles**: see §0.1. After editing any `config.yaml`, re-diff the three to confirm only the intended per-lane fields (`system_prompt`, `discord.enabled`, `cursor`, `terminal.cwd`) diverge. Keep `_config_version` and `distribution.yaml.hermes_requires` aligned unless deliberately versioning a single lane.
+- **Draft/Temporary Skills Gating**: Do not commit, stage, or replicate changes to files under `profiles/default/skills/` (new, modified, or deleted skills) if they are designated as non-final, temporary examples, or active draft iterations. These should remain uncommitted and only reside in the default profile for testing until explicitly finalized and approved.
 - **Compose profile gating**: the three agent lanes require `--profile agents` to start. When editing `docker-compose.yml`, preserve the `profiles: [agents]` marker on `agent-operations/corporate/public` and the `bootstrap`/`hindsight-api` `depends_on` conditions (agents depend on `bootstrap` completing successfully).
 - **Verify on the target host only**: `scripts/verify.sh` is a cascading **runtime** check (TCP ports, HTTP endpoints, Hindsight DB write, `docker compose ps`) — it does not lint structure and will report every port CLOSED on a clean dev machine because no services run here. Do not run it locally to "prove structure normality"; instead validate structure by re-diffing profiles, `git ls-files`, and `python3 -c "import yaml,sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]"` on edited YAML files.
 
@@ -102,16 +103,18 @@ Depending on the environment requirements, the Niyatna multi-agent stack utilize
 ### 4.1 Staging / Developer Overlay (Our Active Reference Host)
 For isolated development sandbox testing (e.g. testing setups where only 1-2 key stakeholders access the environment), we utilize a **Cloudflare Zero Trust Mesh Network** overlay. This pattern enforces Zero public open ports.
 
-- **Organization Domain**: `galyarderlabs`
-- **VPS Staging Server (`prod-niyatna`)**: Registered headless via `cloudflare-warp`. Assigned **Private Mesh IP**: `100.96.0.1` (`CloudflareWARP` virtual interface).
-- **Client Laptop (`GalyarderOS`)**: Registered via WARP client with authenticated user email (`muhamadgalihsaputraa@gmail.com`). Assigned **Private Mesh IP**: `100.96.0.2`.
-- **Hardened Port Binding Rules**: All services exposed in `docker-compose.yml` (e.g. Paperclip HQ on `3100`, 9router on `20128`, Hindsight on `9177`) must strictly bind to the VPS Mesh IP `100.96.0.1`:
+- **Organization Domain**: `company-mesh-domain`
+- **VPS Staging Server (`prod-niyatna`)**: Registered headless via `cloudflare-warp`. Assigned **Private Mesh IP**: `<vps-mesh-ip>` (`CloudflareWARP` virtual interface).
+- **Client Laptop (`DeveloperOS`)**: Registered via WARP client with authenticated user email (`developer@company.com`). Assigned **Private Mesh IP**: `<client-mesh-ip>`.
+
+- **Hardened Port Binding Rules**: All services exposed in `docker-compose.yml` (e.g. Paperclip HQ on `3100`, 9router on `20128`, Hindsight on `9177`) must strictly bind to the VPS Mesh IP `<vps-mesh-ip>`:
   ```yaml
   ports:
-    - "100.96.0.1:3100:3100"
-    - "100.96.0.1:20128:20128"
-    - "100.96.0.1:9177:8888"
+    - "<vps-mesh-ip>:3100:3100"
+    - "<vps-mesh-ip>:20128:20128"
+    - "<vps-mesh-ip>:9177:8888"
   ```
+
 - **Troubleshooting Step**: If ping or SSH over mesh is failing, ensure the `100.64.0.0/10` CGNAT range is removed from the Split Tunnel **Exclude List** in the Zero Trust dashboard (Devices > Device settings > Split Tunnels) on the client profile.
 
 ### 4.2 Production / Multi-User Client Deployments

@@ -1,0 +1,8 @@
+name: dogfood
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 1
+skills:
+- name: dogfood
+  path: dogfood
+  description: 'Exploratory QA of web apps: find bugs, evidence, reports.'

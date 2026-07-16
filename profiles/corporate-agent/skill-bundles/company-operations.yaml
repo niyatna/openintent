@@ -1,11 +1,11 @@
 name: company-operations
-skills:
-- business-strategy-operator
-- corporate-cfo-coo
-- corporate-ceo
-- corporate-cto
-- seneth-council-router
-description: 'Category bundle: all 18 skills under `company-operations` for Agent.'
+description: 'Category bundle: all 5 skills under `company-operations` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- business-strategy
+- cfo
+- coo
+- default-ceo
+- default-cto

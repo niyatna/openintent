@@ -1,10 +1,7 @@
 name: media
-skills:
-- gif-search
-- persona-media-management
-- video
-- youtube-content
-description: 'Category bundle: all 11 skills under `media` for Agent.'
+description: 'Category bundle: all 1 skills under `media` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- youtube-content

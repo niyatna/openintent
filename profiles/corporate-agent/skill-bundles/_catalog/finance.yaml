@@ -1,0 +1,22 @@
+name: finance
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 4
+skills:
+- name: accounting
+  path: finance/accounting
+  description: Use when tracking revenue and business expenses, setting up bookkeeping,
+    planning SaaS pricing models, or advising on pricing moves.
+- name: default-financial-services-workflows
+  path: finance/financial-services-workflows
+  description: Use when executing financial-services pipelines, compiling invest-model
+    cashflows, reviewing credit paybacks, or reconciling Ledger/HQ financial audit
+    logs.
+- name: financial-analyst
+  path: finance/financial-analyst
+  description: Use when constructing financial forecasts, building Excel valuation
+    models (DCF, LBO, 3-Statement, Comps, Merger), or analyzing budget statements.
+- name: stocks
+  path: finance/stocks
+  description: Use when querying real-time market stock quotes, extracting Yahoo Finance
+    historical prices, or comparing cryptocurrency assets.

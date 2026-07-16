@@ -1,9 +1,8 @@
 name: security
-skills:
-- bitwarden
-- perseus
-- security-guardian
-description: 'Category bundle: all 26 skills under `security` for Agent.'
+description: 'Category bundle: all 2 skills under `security` for default.'
 instruction: Use this only when the user intentionally wants the whole category/folder
   context. For normal work, prefer the lean core bundle plus exact routed skills to
   avoid context noise.
+skills:
+- bitwarden
+- security-guardian

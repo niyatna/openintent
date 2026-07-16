@@ -1,84 +1,92 @@
 name: creative
+mode: catalog-only-not-active-bundle
+profile: default
+skill_count: 23
 skills:
-- 9-somboon
-- ai-prompts-assistant
-- media-art
-- diagram-design
-- art-toy-designer
-- media-art
-- media-art
-- content-generator
-- content-generator
-- diagram-design
-- book-summary-expert-philo
-- superdesign
-- diagram-design
-- web-widgets
-- comfyui
-- diagram-design
-- web-widgets
-- design-taste
-- dream-painter
-- design-taste
-- diagram-design
-- design-taste
-- content-generator
-- ghostwriter-pro-ai
-- design-styles
-- graphic-creativity
-- design-taste
-- human-writer-simulator
-- content-generator
-- content-generator
-- idea-architect
-- content-generator
-- image-prompter
-- superdesign
-- superdesign
-- superdesign
-- design-taste
-- design-styles
-- json-prompt-generator
-- content-generator
-- kpi-hero
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- product-design-thinking
-- ligigang-creative-card
-- logo-creativity
-- media-art
-- meaningful-name
-- meeting
-- content-generator
-- design-styles
-- mj-prompt-engineer
-- media-art
-- photography-critic
-- media-art
-- web-widgets
-- web-widgets
-- project-name-master
-- prompt-architect
-- prompt-composition
-- prompt-master-ai
-- question-extraction-assistant
-- design-taste
-- web-widgets
-- content-generator
-- design-styles
-- superdesign
-- svg-logo
-- content-generator
-- thesis-overview
-- media-art
-- web-widgets
-description: 'Category bundle: all 78 skills under `creative` for default.'
-instruction: Use this only when the user intentionally wants the whole category/folder
-  context. For normal work, prefer the lean core bundle plus exact routed skills or
-  lean design route bundles to avoid context noise.
+- name: architecture-diagram
+  path: creative/architecture-diagram
+  description: Dark-themed SVG architecture/cloud/infra diagrams as HTML.
+- name: ascii-art
+  path: creative/ascii-art
+  description: 'ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.'
+- name: ascii-video
+  path: creative/ascii-video
+  description: 'ASCII video: convert video/audio to colored ASCII MP4/GIF.'
+- name: baoyu-infographic
+  path: creative/baoyu-infographic
+  description: "Infographics: 21 layouts x 21 styles (\u4FE1\u606F\u56FE, \u53EF\u89C6\
+    \u5316)."
+- name: claude-design
+  path: creative/claude-design
+  description: Design one-off HTML artifacts (landing, deck, prototype).
+- name: comfyui
+  path: creative/comfyui
+  description: "Generate images, video, and audio with ComfyUI \u2014 install, launch,\
+    \ manage nodes/models, run workflows with parameter injection. Uses the official\
+    \ comfy-cli for lifecycle and direct REST/WebSocket API for execution."
+- name: content-generator
+  path: creative/content-generator
+  description: Use when generating image memes, formatting knowledge comics, composing
+    Suno lyrics, structuring hyperframe captions, or humanizing copywriting ideas.
+- name: design-md
+  path: creative/design-md
+  description: Author/validate/export Google's DESIGN.md token spec files.
+- name: design-styles
+  path: creative/design-styles
+  description: Use when establishing visual themes, configuring Brutalist/Minimalist
+    palettes, setting design tokens, or defining GSAP movement presets.
+- name: design-taste
+  path: creative/design-taste
+  description: Use when applying Senior UI/UX standards, coding micro-animations,
+    adjusting visual density, polishing layout spacing, or conducting design polish
+    reviews.
+- name: diagram-design
+  path: creative/diagram-design
+  description: Use when drawing SVG system architectures, rendering Excalidraw flowcharts,
+    generating themed charts, or styling PDF poster designs.
+- name: excalidraw
+  path: creative/excalidraw
+  description: Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).
+- name: humanizer
+  path: creative/humanizer
+  description: 'Humanize text: strip AI-isms and add real voice.'
+- name: manim-video
+  path: creative/manim-video
+  description: 'Manim CE animations: 3Blue1Brown math/algo videos.'
+- name: media-art
+  path: creative/media-art
+  description: Use when generating generative p5.js art, rendering Manim math videos,
+    or controlling real-time graphics via TouchDesigner MCP.
+- name: p5js
+  path: creative/p5js
+  description: 'p5.js sketches: gen art, shaders, interactive, 3D.'
+- name: popular-web-designs
+  path: creative/popular-web-designs
+  description: 54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.
+- name: pretext
+  path: creative/pretext
+  description: "Use when building creative browser demos with @chenglou/pretext \u2014\
+    \ DOM-free text layout for ASCII art, typographic flow around obstacles, text-as-geometry\
+    \ games, kinetic typography, and text-powered generative art. Produces single-file\
+    \ HTML demos by default."
+- name: product-design-thinking
+  path: creative/product-design-thinking
+  description: Use when framing user needs, mapping interaction flow, designing domain
+    concepts, or conducting diagnostic audits across Jesse Garrett's Layers of Product
+    Design.
+- name: sketch
+  path: creative/sketch
+  description: 'Throwaway HTML mockups: 2-3 design variants to compare.'
+- name: superdesign
+  path: creative/superdesign
+  description: Use when calling the Superdesign MCP daemon, converting design images
+    to frontend code, or generating app mockups and brandkit visual boards.
+- name: touchdesigner-mcp
+  path: creative/touchdesigner-mcp
+  description: "Control a running TouchDesigner instance via twozero MCP \u2014 create\
+    \ operators, set parameters, wire connections, execute Python, build real-time\
+    \ visuals. 36 native tools."
+- name: web-widgets
+  path: creative/web-widgets
+  description: Use when sandboxing mockups, building React/Tailwind component widgets,
+    or configuring typographic pretext layouts.

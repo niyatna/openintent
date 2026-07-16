@@ -4,7 +4,7 @@ skills:
 - agent-accounts
 - google-workspace
 - platform-operator-router
-- cloakbrowser-browser
+- camofox-browser
 description: Agent account/browser/Google access route.
 instruction: Use for already-authorized Google/browser/account work. Respect external
   action and credential boundaries; verify owner-state not just cookies.

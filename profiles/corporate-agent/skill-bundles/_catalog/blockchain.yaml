@@ -1,16 +1,13 @@
 name: blockchain
 mode: catalog-only-not-active-bundle
-profile: corporate-agent
-skill_count: 3
+profile: default
+skill_count: 2
 skills:
-- name: base
-  path: blockchain/base
-  description: Query Base (Ethereum L2) blockchain data with USD pricing — wallet balances, token info, transaction details,
-    gas analysis, contract inspection, whale detection, and live network stats. Uses Base RPC + CoinGecko. No API key required.
 - name: evm
   path: blockchain/evm
   description: 'Read-only EVM client: wallets, tokens, gas across 8 chains.'
 - name: solana
   path: blockchain/solana
-  description: Query Solana blockchain data with USD pricing — wallet balances, token portfolios with values, transaction
-    details, NFTs, whale detection, and live network stats. Uses Solana RPC + CoinGecko. No API key required.
+  description: "Query Solana blockchain data with USD pricing \u2014 wallet balances,\
+    \ token portfolios with values, transaction details, NFTs, whale detection, and\
+    \ live network stats. Uses Solana RPC + CoinGecko. No API key required."

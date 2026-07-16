@@ -5,11 +5,8 @@ skills:
 - github-pr-workflow
 - codegraph-codebase-analysis
 - docs
-- elite-developer
 - skill-creator
-- writing-writing-planss
-- using-gstack
-- verification-before-completion
+- plan
 description: 'Alias category bundle: engineering/software-development (66 skills)
   for Agent.'
 instruction: Alias for software-development. Use only when full engineering category

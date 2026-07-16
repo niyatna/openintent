@@ -1,86 +1,21 @@
 name: devops
 mode: catalog-only-not-active-bundle
-profile: corporate-agent
-skill_count: 19
+profile: default
+skill_count: 4
 skills:
 - name: deploy
   path: devops/deploy
-  description: Use when infrastructure and CI/CD specialist. Automates deployments to Vercel, Docker, or AWS.
-- name: devops-engineer
-  path: devops/devops-engineer
-  description: Use when infrastructure, Deployment, and CI/CD specialist. Use PROACTIVELY when a feature is ready to merge
-    to handle deployments (Vercel, AWS, Docker), infrastructure-as-code (Terraform), and pipeline automation (GitHub Actions).
+  description: Use when configuring deployment pipelines, compiling releases, managing
+    Docker staging, checking environment variables, or executing launch checklists.
 - name: docker-management
   path: devops/docker-management
-  description: Manage Docker containers, images, volumes, networks, and Compose stacks — lifecycle ops, debugging, cleanup,
-    and Dockerfile optimization.
-- name: finops
-  path: devops/finops
-  description: Use when audit cloud costs, optimize API token usage, and evaluate pricing models.
-- name: finops-manager
-  path: devops/finops-manager
-  description: Use when finance & Cloud Cost Specialist. Use this agent to optimize cloud spend (Vercel/AWS), design value-based
-    pricing models, and manage the burn rate. It ensures Corporate Agent execution remains profitable and financially sustainable.
-- name: gstack-local
-  path: devops/gstack-local
-  description: Use when maintaining or using the local Garry Tan gstack install, including gstack browser automation, generated
-    gstack skills, Claude Code specialist workflows, QA/review/ship flows, or reinstall/update verification.
-- name: inference-sh-cli
-  path: devops/cli
-  description: 'Run 150+ AI apps via inference.sh CLI (infsh) — image generation, video creation, LLMs, search, 3D, social
-    automation. Uses the terminal tool. Triggers: inference.sh, infsh, ai apps, flux, veo, image generation, video generation,
-    seedream, seedance, tavily'
+  description: Use when managing Docker containers, compiling Dockerfile environments,
+    auditing Compose stacks, or debugging container network/volume lifecycles.
 - name: kanban-workflow
   path: devops/kanban-workflow
-  description: Use when decomposition playbook + specialist-roster conventions + anti-temptation rules for an orchestrator
-    profile routing work through Kanban. The "don't do the work yourself" rule and the basic lifecycle are auto-injected into
-    every kanban worker's system prompt; this skill is the deeper playbook when you're specifically playing the orchestrator
-    role.
-- name: kanban-workflow
-  path: devops/kanban-workflow
-  description: Use when pitfalls, examples, and edge cases for Hermes Kanban workers. The lifecycle itself is auto-injected
-    into every worker's system prompt as KANBAN_GUIDANCE (from agent/prompt_builder.py); this skill is what you load when
-    you want deeper detail on specific scenarios.
-- name: linux-disk-maintenance
-  path: devops/linux-disk-maintenance
-  description: Use when auditing or cleaning Linux laptop/server disk usage, caches, temp dirs, package-manager caches, language
-    tool caches, Docker storage, build artifacts, or app/profile data. Start read-only unless the user explicitly authorizes
-    deletion.
-- name: onekr-docker-2-compose
-  path: devops/onekr-docker-2-compose
-  description: Expert in converting Docker run commands into Docker Compose configurations
-- name: release
-  path: devops/release
-  description: Use when orchestrate the launch process, bump versions, and generate changelogs.
-- name: deploy
-  path: devops/deploy
-  description: Use when release Orchestration & Versioning Specialist. Use this agent to manage SemVer, generate changelogs,
-    coordinate with the video for release videos, and prepare the "hype" for social distribution. It ensures every
-    deployment is a "moment".
-- name: saas-finops-optimization
-  path: devops/saas-finops-optimization
-  description: Use when optimize cloud and AI costs for modern SaaS stacks (Vercel, Supabase, Neon, Stripe, and AI APIs).
-    Covers token efficiency, serverless database scaling, edge function optimization, and burn rate monitoring. Use when writing-plansning
-    infrastructure, investigating high bills, or auditing API usage.
-- name: sre
-  path: devops/sre
-  description: Use when site Reliability Engineer. Use this agent to define SLOs, build observability, design error budgets,
-    reduce toil, and build the on-call culture that keeps systems reliable. Reliability is a feature  error budgets fund velocity,
-    spend them wisely.
-- name: content-generator
-  path: devops/content-generator
-  description: 'generate video content into video title suggestions with this skill. Works with MP4, MOV, AVI, WebM files
-    up to 500MB. YouTubers use it for generating catchy titles for YouTube and social media videos — processing takes under
-    20 seconds on cloud GPUs and you get 1080p MP4 files.
-
-    '
+  description: Use when managing Kanban boards, routing tasks to specialist agents,
+    decomposing objectives, or coordinating task lifecycles within a pipeline.
 - name: watchers
   path: devops/watchers
-  description: Poll RSS, JSON APIs, and GitHub with watermark dedup.
-- name: watchers
-  path: devops/watchers
-  description: 'Use when webhook subscriptions: event-driven agent runs.'
-- name: workstation-cache-maintenance
-  path: devops/workstation-cache-maintenance
-  description: Use when auditing or cleaning local workstation disk usage, package/toolchain caches, temp files, browser/app
-    profile caches, Docker reclaimable images, or project build artifacts with read-only-first and whitelist cleanup discipline.
+  description: Use when setting up watermark-deduplicated API polling, subscribing
+    to webhook notifications, or scheduling event-driven agent runs.

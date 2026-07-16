@@ -1,164 +1,53 @@
 name: mlops
 mode: catalog-only-not-active-bundle
-profile: public-agent
-skill_count: 39
+profile: default
+skill_count: 13
 skills:
 - name: audiocraft-audio-generation
-  path: mlops/models/audiocraft-audio-generation
+  path: mlops/models/audiocraft
   description: 'AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.'
-- name: peft-fine-tuning
-  path: mlops/training/peft-fine-tuning
-  description: 'Axolotl: YAML LLM fine-tuning (LoRA, DPO, GRPO).'
-- name: qdrant-vector-search
-  path: mlops/qdrant-vector-search
-  description: Open-source embedding database for AI applications. Store embeddings and metadata, perform vector and full-text
-    search, filter by metadata. Simple 4-function API. Scales from notebooks to production clusters. Use for semantic search,
-    RAG applications, or document retrieval. Best for local development and open-source projects.
-- name: stable-diffusion-image-generation
-  path: mlops/stable-diffusion-image-generation
-  description: OpenAI's model connecting vision and language. Enables zero-shot image classification, image-text matching,
-    and cross-modal retrieval. Trained on 400M image-text pairs. Use for image search, content moderation, or vision-language
-    tasks without fine-tuning. Best for general-purpose image understanding.
-- name: distributed-llm-pretraining-torchtitan
-  path: mlops/torchtitan
-  description: Provides PyTorch-native distributed LLM pretraining using torchtitan with 4D parallelism (FSDP2, TP, PP, CP).
-    Use when pretraining Llama 3.1, DeepSeek V3, or custom models at scale from 8 to 512+ GPUs with Float8, torch.compile,
-    and distributed checkpointing.
-- name: outlines
-  path: mlops/research/outlines
-  description: 'DSPy: declarative LM programs, auto-optimize prompts, RAG.'
-- name: evaluating-llms-harness
-  path: mlops/evaluation/evaluating-llms-harness
-  description: 'lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).'
-- name: qdrant-vector-search
-  path: mlops/qdrant-vector-search
-  description: Facebook's library for efficient similarity search and clustering of dense vectors. Supports billions of vectors,
-    GPU acceleration, and various index types (Flat, IVF, HNSW). Use for fast k-NN search, large-scale vector retrieval, or
-    when you need pure similarity search without metadata. Best for high-performance applications.
-- name: peft-fine-tuning
-  path: mlops/training/peft-fine-tuning
-  description: 'TRL: SFT, DPO, PPO, GRPO, reward modeling for LLM RLHF.'
-- name: outlines
-  path: mlops/outlines
-  description: Control LLM output with regex and grammars, guarantee valid JSON/XML/code generation, enforce structured formats,
-    and build multi-step workflows with Guidance - Microsoft Research's constrained generation framework
 - name: evaluating-llms-harness
   path: mlops/evaluating-llms-harness
-  description: Build, test, and debug Hermes Agent RL environments for Atropos training. Covers the HermesAgentBaseEnv interface,
-    reward functions, agent loop integration, evaluation with tools, wandb logging, and the three CLI modes (serve/process/evaluate).
-    Use when creating, reviewing, or fixing RL environments in the hermes repo.
-- name: peft-fine-tuning
-  path: mlops/accelerate
-  description: Simplest distributed training API. 4 lines to add distributed support to any PyTorch script. Unified API for
-    DeepSpeed/FSDP/Megatron/DDP. Automatic device placement, mixed precision (FP16/BF16/FP8). Interactive config, single launch
-    command. HuggingFace ecosystem standard.
+  description: Use when benchmarking LLMs benchmarks metrics (lm-eval-harness) or
+    coding RL training environments (Atropos).
+- name: evaluating-llms-harness
+  path: mlops/evaluation/lm-evaluation-harness
+  description: 'lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).'
 - name: huggingface-hub
   path: mlops/huggingface-hub
   description: 'HuggingFace hf CLI: search/download/upload models, datasets.'
-- name: huggingface-tokenizers
-  path: mlops/huggingface-tokenizers
-  description: Fast tokenizers optimized for research and production. Rust-based implementation tokenizes 1GB in <20 seconds.
-    Supports BPE, WordPiece, and Unigram algorithms. Train custom vocabularies, track alignments, handle padding/truncation.
-    Integrates seamlessly with transformers. Use when you need high-performance tokenization or custom tokenizer training.
+- name: llama-cpp
+  path: mlops/inference/llama-cpp
+  description: llama.cpp local GGUF inference + HF Hub model discovery.
 - name: outlines
   path: mlops/outlines
-  description: Extract structured data from LLM responses with Pydantic validation, retry failed extractions automatically,
-    parse complex JSON with type safety, and stream partial results with Instructor - battle-tested structured output library
-- name: serving-llms-vllm
-  path: mlops/lambda-labs
-  description: Reserved and on-demand GPU cloud instances for ML training and inference. Use when you need dedicated GPU instances
-    with simple SSH access, persistent filesystems, or high-performance multi-node clusters for large-scale training.
-- name: serving-llms-vllm
-  path: mlops/inference/serving-llms-vllm
-  description: llama.cpp local GGUF inference + HF Hub model discovery.
-- name: stable-diffusion-image-generation
-  path: mlops/stable-diffusion-image-generation
-  description: Large Language and Vision Assistant. Enables visual instruction tuning and image-based conversations. Combines
-    CLIP vision encoder with Vicuna/LLaMA language models. Supports multi-turn image chat, visual question answering, and
-    instruction following. Use for vision-language chatbots or image understanding tasks. Best for conversational image analysis.
-- name: machine-learning-pro
-  path: mlops/machine-learning-pro
-  description: AI Assistant specializing in machine learning and deep learning.
-- name: serving-llms-vllm
-  path: mlops/modal
-  description: Serverless GPU cloud platform for running ML workloads. Use when you need on-demand GPU access without infrastructure
-    management, deploying ML models as APIs, or running batch jobs with automatic scaling.
+  description: Use when forcing schemas/regex structured output (Outlines, Instructor,
+    Guidance) or compiling declarative pipelines in DSPy.
 - name: peft-fine-tuning
   path: mlops/peft-fine-tuning
-  description: GPU-accelerated data curation for LLM training. Supports text/image/video/audio. Features fuzzy deduplication
-    (16× faster), quality filtering (30+ heuristics), semantic deduplication, PII redaction, NSFW detection. Scales across
-    GPUs with RAPIDS. Use for preparing high-quality training datasets, cleaning web data, or deduplicating large corpora.
-- name: obliteratus
-  path: mlops/inference/obliteratus
-  description: 'OBLITERATUS: abliterate LLM refusals (diff-in-means).'
+  description: Use when fine-tuning LLMs using LoRA/QLoRA adapters (PEFT, Unsloth,
+    Axolotl, TRL), preparing datasets (Nemo curator), or setting SimPO/Slime alignment
+    runs.
 - name: qdrant-vector-search
   path: mlops/qdrant-vector-search
-  description: Use when configuring tools to use local or proxied OpenAI-compatible embedding endpoints, replacing direct
-    OpenAI defaults, or resolving embedding auth, base URL, model, or dimension mismatches.
-- name: serving-llms-vllm
-  path: mlops/serving-llms-vllm
-  description: Use when designing, configuring, auditing, or troubleshooting local OpenAI-compatible AI routers/proxies, BYOA
-    provider managers, model aliases, key pools, health checks, quota/cost routing, or safe account/session inventory for
-    systems like OmniRoute.
-- name: serving-llms-vllm
-  path: mlops/flash-attention
-  description: Optimizes transformer attention with Flash Attention for 2-4x speedup and 10-20x memory reduction. Use when
-    training/running transformers with long sequences (>512 tokens), encountering GPU memory issues with attention, or need
-    faster inference. Supports PyTorch native SDPA, flash-attn library, H100 FP8, and sliding window attention.
-- name: outlines
-  path: mlops/inference/outlines
-  description: 'Outlines: structured JSON/regex/Pydantic LLM generation.'
-- name: peft-fine-tuning
-  path: mlops/peft
-  description: Parameter-efficient fine-tuning for LLMs using LoRA, QLoRA, and 25+ methods. Use when fine-tuning large models
-    (7B-70B) with limited GPU memory, when you need to train <1% of parameters with minimal accuracy loss, or for multi-adapter
-    serving. HuggingFace's official library integrated with transformers ecosystem.
-- name: qdrant-vector-search
-  path: mlops/qdrant-vector-search
-  description: Managed vector database for production AI applications. Fully managed, auto-scaling, with hybrid search (dense
-    + sparse), metadata filtering, and namespaces. Low latency (<100ms p95). Use for production RAG, recommendation systems,
-    or semantic search at scale. Best for serverless, managed infrastructure.
-- name: pytorch-fsdp
-  path: mlops/pytorch-fsdp
-  description: Expert outlines for Fully Sharded Data Parallel training with PyTorch FSDP - parameter sharding, mixed precision,
-    CPU offloading, FSDP2
-- name: qdrant-vector-search
-  path: mlops/qdrant
-  description: High-performance vector similarity search engine for RAG and semantic search. Use when building production
-    RAG systems requiring fast nearest neighbor search, hybrid search with filtering, or scalable vector storage with Rust-powered
-    performance.
-- name: stable-diffusion-image-generation
-  path: mlops/models/stable-diffusion-image-generation
+  description: Use when deploying vector search databases (Qdrant, Pinecone, Chroma),
+    querying nearest-neighbor FAISS indexes, or setting up custom embeddings API configurations.
+- name: segment-anything-model
+  path: mlops/models/segment-anything
   description: 'SAM: zero-shot image segmentation via points, boxes, masks.'
 - name: serving-llms-vllm
-  path: mlops/inference/serving-llms-vllm
-  description: 'vLLM: high-throughput LLM serving, OpenAI API, quantization.'
-- name: peft-fine-tuning
-  path: mlops/slime
-  description: Provides outlines for LLM post-training with RL using slime, a Megatron+SGLang framework. Use when training
-    GLM models, implementing custom data generation workflows, or needing tight Megatron-LM integration for RL scaling.
-- name: sparse-autoencoder-training
-  path: mlops/saelens
-  description: Provides outlines for training and analyzing Sparse Autoencoders (SAEs) using SAELens to decompose neural network
-    activations into interpretable features. Use when discovering interpretable features, analyzing superposition, or studying
-    monosemantic representations in language models.
-- name: stable-diffusion-image-generation
-  path: mlops/stable-diffusion
-  description: State-of-the-art text-to-image generation with Stable Diffusion models via HuggingFace Diffusers. Use when
-    generating images from text prompts, performing image-to-image translation, inpainting, or building custom diffusion pipelines.
-- name: serving-llms-vllm
   path: mlops/serving-llms-vllm
-  description: Optimizes LLM inference with NVIDIA TensorRT for maximum throughput and lowest latency. Use for production
-    deployment on NVIDIA GPUs (A100/H100), when you need 10-100x faster inference than PyTorch, or for serving models with
-    quantization (FP8/INT4), in-flight batching, and multi-GPU scaling.
-- name: peft-fine-tuning
-  path: mlops/training/peft-fine-tuning
-  description: 'Unsloth: 2-5x faster LoRA/QLoRA fine-tuning, less VRAM.'
-- name: huggingface-hub
-  path: mlops/evaluation/huggingface-hub
-  description: 'W&B: log ML experiments, sweeps, model registry, dashboards.'
+  description: Use when running LLMs inference deployments under high-throughput engines
+    (vLLM, TensorRT-LLM, llama.cpp), mapping APIs proxies routing, or renting cloud
+    GPU infrastructure.
+- name: serving-llms-vllm
+  path: mlops/inference/vllm
+  description: 'vLLM: high-throughput LLM serving, OpenAI API, quantization.'
 - name: stable-diffusion-image-generation
   path: mlops/stable-diffusion-image-generation
-  description: OpenAI's general-purpose speech recognition model. Supports 99 languages, transcription, translation to English,
-    and language identification. Six model sizes from tiny (39M params) to large (1550M params). Use for speech-to-text, podcast
-    transcription, or multilingual audio processing. Best for robust, multilingual ASR.
+  description: Use when generating pictures via Stable Diffusion diffusers text-to-image
+    pipelines, running Whisper transcriptions, or calling vision-language layers (CLIP,
+    LLaVA, SAM).
+- name: weights-and-biases
+  path: mlops/evaluation/weights-and-biases
+  description: 'W&B: log ML experiments, sweeps, model registry, dashboards.'
