@@ -40,7 +40,7 @@ When changing a **shared** config key, replicate the edit across all three profi
 
 ---
 
-## 1. Project Background ("Apa & Kenapa")
+## 1. Project Background
 
 ### What is OpenIntent Kit?
 OpenIntent Kit is an automated Multi-Agent System (MAS) orchestrator designed to instantiate a fully functioning **"Agentic Company"** structure for businesses. It bootstraps a unified gateway (9router), a command dashboard (Paperclip HQ), a memory daemon (Hindsight), and specialized agent workforce lanes (Hermes containers) mapped to Discord.
@@ -61,7 +61,7 @@ OpenIntent Kit is an automated Multi-Agent System (MAS) orchestrator designed to
 
 ---
 
-## 2. Ultimate Goals ("Goal Akhir")
+## 2. Ultimate Goals
 
 Upon completing the bootstrap deployment, the target infrastructure should present:
 1. **Orchestrator Landing Panel**: Paperclip UI running on port `3100` linked to a Postgres database, reflecting active tasks, jobs schedules, and agent coordination trees.
@@ -98,7 +98,7 @@ When editing or updating this codebase, you must adhere to the following princip
 
 ## 4. Network & Security Architecture Patterns
 
-Depending on the environment requirements, the Niyatna multi-agent stack utilizes two distinct network access and hardening patterns:
+Depending on the environment requirements, the OpenIntent multi-agent stack utilizes two distinct network access and hardening patterns:
 
 ### 4.1 Staging / Developer Overlay (Our Active Reference Host)
 For isolated development sandbox testing (e.g. testing setups where only 1-2 key stakeholders access the environment), we utilize a **Cloudflare Zero Trust Mesh Network** overlay. This pattern enforces Zero public open ports.
