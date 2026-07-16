@@ -47,6 +47,14 @@ Spawns three isolated Hermes containers, gated behind the `--profile agents` com
 - **Database Bootstrap (bootstrap)**: Short-lived Python container that auto-seeds 9router's initial API credentials via secure HTTP handshakes on startup.
 - **Internal Proxy (headroom)**: Manages routing headroom, local proxy boundaries, and SSL mesh integrations.
 
+### 1.7 Pre-Seeded CLI & MCP Integrations
+The Operations Agent container automatically bootstraps and seeds the following NPM globally-installed tools and Python PIP modules on startup:
+- **Claude Code** (`@anthropic-ai/claude-code`): Global CLI tool that delegates code edits and PR reviews.
+- **CodeGraph** (`@colbymchenry/codegraph`): Global repository indexing tool to query symbol definitions and dependency trees.
+- **officecli** (`officecli`): CLI utility and helper script to create and alter Office documents (`.docx`, `.xlsx`, `.pptx`).
+- **notebooklm-mcp-cli**: Python MCP connector that interfaces with Google's NotebookLM for source-grounded file digestion.
+- **paperclip-mcp**: Python MCP connector to link tasks, budgets, and runs between Hermes and Paperclip HQ.
+
 ---
 
 ## 2. Infrastructure & System Requirements
