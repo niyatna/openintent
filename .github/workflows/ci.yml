@@ -1,7 +1,7 @@
 name: CI — Structure & Script Validation
 on:
   push:
-    branches: [main]
+    branches: [master, main]
     paths:
       - 'setup.sh'
       - 'install.sh'
@@ -11,7 +11,7 @@ on:
       - 'tests/**'
       - '.github/workflows/ci.yml'
   pull_request:
-    branches: [main]
+    branches: [master, main]
 
 jobs:
   # ─── Lint shell scripts ───────────────────────────────────────────
