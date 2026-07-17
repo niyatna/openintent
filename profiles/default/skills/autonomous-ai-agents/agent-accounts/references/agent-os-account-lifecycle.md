@@ -13,7 +13,7 @@ Core rule: **account access is not permission to act**. Each account needs owner
 - `references/x-cookie-web-ops.md` — operating agent-owned X accounts with saved web cookies: posting, profile/status verification, and follow-back handling.
 - `platform-operator-router` — operating the Default-owned Instagram/Threads accounts through browser login/session cookies with Meta checkpoint boundaries and confirmation-gated public actions.
 - `references/profile-backup-finalization.md` — final clean backup flow for Co-Founder/Default profile distribution repos: sync scope, secret/runtime exclusion, dedicated GitHub push, clone/readback verification, and concise report shape.
-- `references/companylabs-github-org-roles.md` — Owner-provided GitHub organization role baseline for `company-labs`, `co-founder`, and `developer-account`; verify live permissions before sensitive actions.
+- `references/company-github-org-roles.md` — Owner-provided GitHub organization role baseline for `company-labs`, `co-founder`, and `developer-account`; verify live permissions before sensitive actions.
 - `references/soul-guide-gutluc-comparison-2026-05-21.md` — reusable comparison notes for Gutluc's SOUL Guide: personal-agent `user account = agent account`, per-tool risk classification, busy/status UX, maintenance packaging, and verifier-drift lessons.
 
 ## Current lifecycle map
@@ -23,9 +23,9 @@ Core rule: **account access is not permission to act**. Each account needs owner
 | Google | login/session + TOTP baseline works | private `account.txt`, cookies mode `0o600`, status `login-active-*` |
 | GitHub web/2FA | browser login + authenticator configured | status `github-2fa-enabled`, `TOTP_STATUS=github-totp-registered` |
 | GitHub CLI/API | per-agent token validates expected login | `~/.hermes/scripts/{co-founder,default}-gh --check` |
-| Company GitHub org roles | `company-labs`: read+write+CI/CD Admin+Security manager; `co-founder`: read+maintain+CI/CD Admin+Security manager; Owner remains final owner | use `references/companylabs-github-org-roles.md` + live repo/API permission checks |
+| Company GitHub org roles | `company-labs`: read+write+CI/CD Admin+Security manager; `co-founder`: read+maintain+CI/CD Admin+Security manager; Owner remains final owner | use `references/company-github-org-roles.md` + live repo/API permission checks |
 | X | active X session/API access | status must be `x-login-active`; blocked statuses are not operational; if email-first login hits unusual activity, retry username-first in a dedicated Brave CDP profile and then save cookies; before claiming reusable access, run a cookie-only smoke test and never print cookie values; for public posting via cookies, verify the resulting profile/status links because X may show transient “Something went wrong” even after a post succeeds |
-| Instagram / Threads | Meta social session state for Company `companylabs.ai` | credentials are local-only in private account files; Instagram and Threads share credentials but cookies are surface-specific; status is `credential-stored-pending-login-session` until authenticated profile/session and cookie-only smoke test verify access |
+| Instagram / Threads | Meta social session state for Company `yourcompany` | credentials are local-only in private account files; Instagram and Threads share credentials but cookies are surface-specific; status is `credential-stored-pending-login-session` until authenticated profile/session and cookie-only smoke test verify access |
 | Wallet | read-only/funded/signing capability by policy | status, keystore mode, no funds/no signing until spend policy exists |
 | Profile backup | clean distribution repo under the dedicated account | private repo, branch, fresh clone/readback, secret boundary scan |
 

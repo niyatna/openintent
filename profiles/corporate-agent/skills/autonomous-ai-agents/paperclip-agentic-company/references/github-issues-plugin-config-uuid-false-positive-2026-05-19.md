@@ -35,7 +35,7 @@ Save the binding config WITHOUT `companyId`. The GitHub Issues worker defaults t
     "defaultPriority": "medium",
     "bindings": [{
       "id": "gh-ledger-main",
-      "owner": "companylabs",
+      "owner": "yourcompany",
       "repo": "default-ledger",
       "tokenRef": "<actual-github-pat>",
       "labelPrefix": "github:ledger",

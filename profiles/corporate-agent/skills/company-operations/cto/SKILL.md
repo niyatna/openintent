@@ -11,7 +11,7 @@ metadata:
     - elite-developer
     - default-ceo
     - default-cfo
-- default-coo
+    - default-coo
     - default-framework-router
     - default-financial-services-workflows
     tags:
