@@ -1,5 +1,5 @@
 ---
-name: openintent-onboarding
+name: onboarding
 description: Use when guiding first-time users, identifying chat users, checking environment setup, or bootstrapping the company Obsidian directory structure.
 version: 1.0.0
 author: Company Operations
@@ -32,11 +32,11 @@ Do not use for:
 - In shared chat rooms (like Discord), ask users to identify themselves or tag the agent, and match responses to their username.
 
 ### 2. Environment Verification
-- Run `python3 scripts/validate_onboarding.py --env` to check if all mandatory and optional variables are properly configured.
+- Run `python3 ~/.hermes/skills/company-operations/onboarding/scripts/validate_onboarding.py --env` to check if all mandatory and optional variables are properly configured.
 - Report the results to the user. Explain any missing variables.
 
 ### 3. Obsidian Bootstrapping
-- Run `python3 scripts/validate_onboarding.py --obsidian` to verify or create the company directory structure inside the Obsidian vault.
+- Run `python3 ~/.hermes/skills/company-operations/onboarding/scripts/validate_onboarding.py --obsidian` to verify or create the company directory structure inside the Obsidian vault.
 - Ensure folders exist for: `/company`, `/company/sdm`, `/departments/operations`, `/departments/corporate`, and `/departments/public`.
 
 ### 4. Company Profile Questionnaire

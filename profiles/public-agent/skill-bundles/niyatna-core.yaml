@@ -2,6 +2,7 @@ name: niyatna-core
 skills:
 - hermes-agent
 - obsidian
+- onboarding
 description: 'Lean Niyatna baseline bundle: company OS routing, tool grounding, Hermes
   runtime awareness, Obsidian memory, and normal-premium tone.'
 instruction: Use as Niyatna response-shaping baseline only. Do not preload broad domain

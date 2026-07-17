@@ -46,9 +46,13 @@ Verify the status of the following variables in `.env` or system environment:
 | `CAMOFOX_URL` | **Optional** | API endpoint for the headless browser. |
 
 ### 2.2 Verification Command
-To verify the environment, run:
+To verify the environment inside the container, run:
 ```bash
-python3 scripts/validate_onboarding.py --env
+python3 ~/.hermes/skills/company-operations/onboarding/scripts/validate_onboarding.py --env
+```
+Or from the host setup stage:
+```bash
+python3 profiles/default/skills/company-operations/onboarding/scripts/validate_onboarding.py --env
 ```
 Report any missing mandatory variables as an error. Report missing optional variables as a warning.
 
@@ -70,11 +74,14 @@ Ensure the following directories and baseline onboarding notes are generated:
 - `/hindsight/` — Continuous memory sync dumps.
 
 ### 3.2 Verification Command
-To check or bootstrap the directory structure, run:
+To check or bootstrap the directory structure inside the container, run:
 ```bash
-python3 scripts/validate_onboarding.py --obsidian
+python3 ~/.hermes/skills/company-operations/onboarding/scripts/validate_onboarding.py --obsidian
 ```
-
+Or from the host setup stage:
+```bash
+python3 profiles/default/skills/company-operations/onboarding/scripts/validate_onboarding.py --obsidian
+```
 ---
 
 ## 4. Company Profile Questionnaire

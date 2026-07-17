@@ -39,7 +39,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile-check all Python scripts
-        run: python3 -m py_compile scripts/discord_setup.py && python3 -m py_compile scripts/init_9router_db.py
+        run: |
+          python3 -m py_compile scripts/discord_setup.py
+          python3 -m py_compile scripts/init_9router_db.py
+          python3 -m py_compile profiles/default/skills/company-operations/onboarding/scripts/validate_onboarding.py
       - name: Import-check (no side effects)
         run: |
           cd $GITHUB_WORKSPACE
