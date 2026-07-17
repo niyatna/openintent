@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://github.com/niyatna/openintent">
-    <img src="public/niyatna.png" alt="OpenIntent Logo" width="120" />
-  </a>
+  <img src="public/openintent.jpg" alt="OpenIntent Banner" width="100%" />
 </p>
 
 <h1 align="center">OpenIntent — Multi-Agent Company</h1>
@@ -11,10 +9,6 @@
   <img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" alt="Python" />
   <img src="https://img.shields.io/badge/shell_script-%23121011.svg?style=flat-square&logo=gnu-bash&logoColor=white" alt="Shell Script" />
   <img src="https://img.shields.io/badge/yaml-%23ffffff.svg?style=flat-square&logo=yaml&logoColor=151515" alt="YAML" />
-</p>
-
-<p align="center">
-  <img src="public/openintent.jpg" alt="OpenIntent Banner" width="100%" />
 </p>
 OpenIntent is an open-source bootstrap orchestrator designed to instantiate a fully functioning "Agentic Company" structure for businesses. Instead of serving as isolated chatbots, the multi-agent stack operates as a collaborative, digital corporate workforce, executing task backlogs, analyzing markets, managing runways, and conducting repository audits under direct human oversight.
 
