@@ -106,7 +106,7 @@ WARNING: Never run installer scripts (install.sh, setup.sh), verify scripts, or 
 To install and bootstrap the Agentic Company infrastructure on your remote VPS, run the single command below:
 
 ```bash
-curl -fSsL https://raw.githubusercontent.com/niyatna/openintent/main/install.sh | bash
+curl -fSsL https://raw.githubusercontent.com/niyatna/openintent/master/install.sh | bash
 ```
 
 ### Cascading Post-Install Setup
