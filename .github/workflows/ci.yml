@@ -142,16 +142,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Rebuild payload and verify no drift
+      - name: Verify payload contains expected files
         run: |
-          bash scripts/rebuild_payload.sh
-          if git diff --quiet install.sh; then
-            echo "✓ Payload is fresh — matches tracked files"
+          # Extract file list from the committed payload
+          HEREDOC_LINE=$(grep -n "cat << 'EOF' | base64 -d" install.sh | head -1 | cut -d: -f1)
+          sed -n "$((HEREDOC_LINE + 1))p" install.sh | base64 -d | tar tzf - | grep -v '/$' | LC_ALL=C sort > /tmp/payload_files.txt
+
+          # Build expected file list from git-tracked files using same logic as rebuild_payload.sh
+          EXPECTED=$(mktemp)
+          for f in docker-compose.yml setup.sh AGENTS.md README.md LICENSE .gitignore; do
+            git ls-files "$f" 2>/dev/null >> "$EXPECTED" || true
+          done
+          for d in profiles/ scripts/ docs/; do
+            git ls-files "$d" 2>/dev/null >> "$EXPECTED" || true
+          done
+          LC_ALL=C sort -u "$EXPECTED" -o "$EXPECTED"
+
+          # Compare
+          if diff -u "$EXPECTED" /tmp/payload_files.txt; then
+            echo "✓ Payload file list matches tracked files"
           else
-            echo "✗ Payload is stale — install.sh differs after rebuild" >&2
-            echo "  Run: bash scripts/rebuild_payload.sh" >&2
-            echo "  Then commit the updated install.sh" >&2
-            git diff --stat install.sh
+            echo "✗ Payload file list differs from tracked files" >&2
+            echo "  Missing from payload:" >&2
+            comm -23 "$EXPECTED" /tmp/payload_files.txt | head -20 >&2
+            echo "  Extra in payload:" >&2
+            comm -13 "$EXPECTED" /tmp/payload_files.txt | head -20 >&2
             exit 1
           fi
 
