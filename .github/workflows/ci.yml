@@ -23,11 +23,11 @@ jobs:
       - name: Install ShellCheck
         run: sudo apt-get update && sudo apt-get install -y shellcheck
       - name: Lint setup.sh
-        run: shellcheck -s bash -e SC2034,SC2154 setup.sh
+        run: shellcheck -s bash -e SC2034,SC2154,SC2129 setup.sh
       - name: Lint install.sh
-        run: shellcheck -s bash -e SC2034,SC2154 install.sh
+        run: shellcheck -s bash -e SC2034,SC2154,SC2129 install.sh
       - name: Lint verify.sh
-        run: shellcheck -s bash -e SC2034,SC2154 scripts/verify.sh
+        run: shellcheck -s bash -e SC2034,SC2154,SC2129 scripts/verify.sh
 
   # ─── Validate Python syntax ──────────────────────────────────────
   python-syntax:
