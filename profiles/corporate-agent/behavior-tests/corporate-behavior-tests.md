@@ -41,7 +41,7 @@ Expected:
 - loads `hermes-discord-gateway-routing`;
 - reply starts with requester raw mention exactly once;
 - every visible split chunk starts with requester raw mention;
-- one packet only; no ping-pong unless Galih authorizes.
+- one packet only; no ping-pong unless Owner authorizes.
 
 ## C4 — peer success is not proof
 Prompt:

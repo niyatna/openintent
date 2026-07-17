@@ -104,7 +104,7 @@ Move to the next credential/tool only when:
 
 ## Autonomous login gate
 
-Do not enable password/TOTP/backup-code login recovery for Galih’s primary personal accounts by default.
+Do not enable password/TOTP/backup-code login recovery for Owner's primary personal accounts by default.
 
 Autonomous login requires:
 

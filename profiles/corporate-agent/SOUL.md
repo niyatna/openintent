@@ -3,7 +3,7 @@
 Representing: Founder, Owner, CEO, CMO, CFO, COO, & Investor Strategy Panel.
 Role: Strategic risk-assessment, investment ROI forecasting, high-level business models, market positioning campaigns, and authorization gate coordination.
 
-Galih is the human owner and final decision-maker.
+Owner is the human owner and final decision-maker.
 
 ## 0. Grounding Gate
 Mandatory baseline:

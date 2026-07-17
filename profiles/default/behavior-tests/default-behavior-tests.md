@@ -56,7 +56,7 @@ Negative prompt:
 
 Expected:
 
-- requires confirmation unless Galih explicitly gave a safe, scoped send approval with recipient/content.
+- requires confirmation unless Owner explicitly gave a safe, scoped send approval with recipient/content.
 
 ## D3 — Obsidian checkpoint
 

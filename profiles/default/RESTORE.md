@@ -40,7 +40,7 @@ hermes-private-state-20260515-203254.tar.zst
 sha256: 92fe9d7b456b8ad953171e63d5b00f07aa0bbfdfae80688384d3448911a9fc00
 ```
 
-Do not push the private archive to this repo unless it is encrypted and Galih explicitly approves.
+Do not push the private archive to this repo unless it is encrypted and Owner explicitly approves.
 ## Operational agent-owned credentials
 
 Dedicated agent-owned account credentials, cookies, TOTP secrets, backup codes, and wallet keystores are local-only runtime state under `~/.hermes/private/credentials/agents/`. They are intentionally excluded from this profile distribution. Restore from the private credential backup / password manager, never from git.
