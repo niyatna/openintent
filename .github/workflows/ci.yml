@@ -1,0 +1,222 @@
+name: CI — Structure & Script Validation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'setup.sh'
+      - 'install.sh'
+      - 'scripts/**'
+      - 'docker-compose.yml'
+      - 'profiles/**'
+      - 'tests/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ─── Lint shell scripts ───────────────────────────────────────────
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Lint setup.sh
+        run: shellcheck -s bash -e SC2034,SC2154 setup.sh
+      - name: Lint install.sh
+        run: shellcheck -s bash -e SC2034,SC2154 install.sh
+      - name: Lint verify.sh
+        run: shellcheck -s bash -e SC2034,SC2154 scripts/verify.sh
+
+  # ─── Validate Python syntax ──────────────────────────────────────
+  python-syntax:
+    name: Python Syntax & Import
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile-check all Python scripts
+        run: python3 -m py_compile scripts/discord_setup.py && python3 -m py_compile scripts/init_9router_db.py
+      - name: Import-check (no side effects)
+        run: |
+          cd $GITHUB_WORKSPACE
+          PYTHONPATH=. python3 -c "
+          import importlib, sys
+          # Both scripts guard execution behind __name__ == '__main__'
+          # so importing them is safe and validates all imports resolve
+          for mod in ['scripts.discord_setup', 'scripts.init_9router_db']:
+              importlib.import_module(mod)
+              print(f'  ✓ {mod}')
+          print('All imports OK')
+          "
+
+  # ─── Validate YAML / JSON / Compose ──────────────────────────────
+  config-validation:
+    name: Config & Compose Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - name: Validate docker-compose.yml syntax
+        run: python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))" && echo "✓ docker-compose.yml"
+      - name: Validate all profile YAML files
+        run: |
+          python3 -c "
+          import yaml, sys, glob
+          errors = 0
+          for f in sorted(glob.glob('profiles/**/*.yaml', recursive=True)):
+              try:
+                  yaml.safe_load(open(f))
+                  print(f'  ✓ {f}')
+              except yaml.YAMLError as e:
+                  print(f'  ✗ {f}: {e}', file=sys.stderr)
+                  errors += 1
+          sys.exit(errors)
+          "
+      - name: Validate all JSON files
+        run: |
+          python3 -c "
+          import json, sys, glob
+          errors = 0
+          for f in sorted(glob.glob('profiles/**/*.json', recursive=True)):
+              try:
+                  json.load(open(f))
+                  print(f'  ✓ {f}')
+              except json.JSONDecodeError as e:
+                  print(f'  ✗ {f}: {e}', file=sys.stderr)
+                  errors += 1
+          # Also check private credential templates
+          for f in sorted(glob.glob('profiles/**/private/**/*.json', recursive=True)):
+              try:
+                  json.load(open(f))
+                  print(f'  ✓ {f}')
+              except json.JSONDecodeError as e:
+                  print(f'  ✗ {f}: {e}', file=sys.stderr)
+                  errors += 1
+          sys.exit(errors)
+          "
+
+  # ─── Cross-profile parity checks ────────────────────────────────
+  profile-parity:
+    name: Cross-Profile Parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - name: Run profile parity tests
+        run: python3 tests/test_profiles.py
+
+  # ─── setup.sh dry-run (piped non-interactive) ───────────────────
+  setup-dry-run:
+    name: setup.sh Dry-Run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run setup.sh with mock inputs
+        run: bash tests/test_setup.sh
+
+
+  # ─── install.sh dry-run (piped non-interactive) ─────────────────
+  install-dry-run:
+    name: install.sh Dry-Run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run install.sh with mock inputs
+        run: bash tests/test_install.sh
+
+  # ─── Payload freshness check ────────────────────────────────────
+  payload-freshness:
+    name: Payload Freshness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild payload and verify no drift
+        run: |
+          bash scripts/rebuild_payload.sh
+          if git diff --quiet install.sh; then
+            echo "✓ Payload is fresh — matches tracked files"
+          else
+            echo "✗ Payload is stale — install.sh differs after rebuild" >&2
+            echo "  Run: bash scripts/rebuild_payload.sh" >&2
+            echo "  Then commit the updated install.sh" >&2
+            git diff --stat install.sh
+            exit 1
+          fi
+
+  # ─── Port parity & compose structure ─────────────────────────────
+  compose-structure:
+    name: Compose Structure Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - name: Validate port map parity
+        run: |
+          python3 -c "
+          import yaml, sys
+          compose = yaml.safe_load(open('docker-compose.yml'))
+          services = compose['services']
+
+          # Expected port mappings from AGENTS.md
+          EXPECTED = {
+              '9router':       '20128:20128',
+              'paperclip-hq':  '3100:3100',
+              'hindsight-api': '9177:8888',
+              'agent-operations': '8001:8000',
+              'agent-corporate':  '8002:8000',
+              'agent-public':     '8003:8000',
+          }
+
+          errors = 0
+          for svc, expected_port in EXPECTED.items():
+              if svc not in services:
+                  print(f'  ✗ Service {svc} missing from compose', file=sys.stderr)
+                  errors += 1
+                  continue
+              ports = services[svc].get('ports', [])
+              # Ports can be strings or contain host binding prefix
+              port_strs = [str(p).split(':')[-2] + ':' + str(p).split(':')[-1] if str(p).count(':') >= 2 else str(p) for p in ports]
+              if expected_port not in port_strs:
+                  print(f'  ✗ {svc}: expected {expected_port}, got {port_strs}', file=sys.stderr)
+                  errors += 1
+              else:
+                  print(f'  ✓ {svc}: {expected_port}')
+
+          # Verify agent lanes have profiles: [agents]
+          for lane in ['agent-operations', 'agent-corporate', 'agent-public']:
+              if lane in services:
+                  profiles = services[lane].get('profiles', [])
+                  if 'agents' not in profiles:
+                      print(f'  ✗ {lane}: missing profiles: [agents]', file=sys.stderr)
+                      errors += 1
+                  else:
+                      print(f'  ✓ {lane}: profiles: [agents]')
+
+          # Verify bootstrap depends_on for agent lanes
+          for lane in ['agent-operations', 'agent-corporate', 'agent-public']:
+              if lane in services:
+                  deps = services[lane].get('depends_on', {})
+                  if 'bootstrap' not in deps:
+                      print(f'  ✗ {lane}: missing depends_on bootstrap', file=sys.stderr)
+                      errors += 1
+                  else:
+                      print(f'  ✓ {lane}: depends_on bootstrap')
+
+          sys.exit(errors)
+          "
