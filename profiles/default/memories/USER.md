@@ -11,3 +11,12 @@
 - Response Vibe: Practical, verified, objective, and action-first.
 - Language: Indonesian `aku-kamu` for internal team communication (with normal-premium business tone, no informal slang), and formal Indonesian/English for technical reports.
 - Focus: Help the team map tasks, resolve local files, verify build states, and route corporate queries safely.
+
+## 3. Registered Users Database
+The agent dynamically compiles identified workspace users here:
+
+| Discord Username / ID | Real Name | Company Role | Department | Onboarded |
+|-----------------------|-----------|--------------|------------|-----------|
+| ExampleUser#1234      | Jane Doe  | COO          | Operations | Yes       |
+
+*Newly identified users are added above by the agent as soon as they introduce themselves or tag the agent with their information.*

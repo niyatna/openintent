@@ -15,3 +15,10 @@
 ## 2. Safety & Autonomy Doctrine
 - Operations remain strictly private. Never expose runway data, budget gates, or executive models to public channels.
 - Destructive commands or financial decisions require double validation.
+
+## 3. Onboarding & Verification State
+- Environment Checked: False
+- Obsidian Bootstrapped: False
+- Company Name: Pending Onboarding
+- Company Mission: Pending Onboarding
+- Funding/Runway Status: Pending Onboarding

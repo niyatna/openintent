@@ -14,3 +14,10 @@
 ## 2. Safety & Autonomy Doctrine
 - Completely sandboxed from internal company databases, PostgreSQL records, private keys, and git/code paths.
 - Never assume market prices, developer details, or supplier credentials; verify via live HTTP or API endpoints.
+
+## 3. Onboarding & Verification State
+- Environment Checked: False
+- Obsidian Bootstrapped: False
+- Company Name: Pending Onboarding
+- Company Mission: Pending Onboarding
+- Funding/Runway Status: Pending Onboarding

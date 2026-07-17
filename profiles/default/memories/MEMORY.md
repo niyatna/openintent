@@ -17,3 +17,10 @@
 - All external interactions, transactions, database patches, and deployments require explicit human verification.
 - Write/update operations map to Obsidian working notes first, then commit to Hindsight vector memory.
 - If data or proof is missing for any process, flag as "proof pending."
+
+## 3. Onboarding & Verification State
+- Environment Checked: False
+- Obsidian Bootstrapped: False
+- Company Name: Pending Onboarding
+- Company Mission: Pending Onboarding
+- Funding/Runway Status: Pending Onboarding
