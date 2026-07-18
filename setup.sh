@@ -283,7 +283,7 @@ chmod +x scripts/init_9router_db.py
 echo -e "\n${GREEN}===============================================${NC}"
 echo -e "${GREEN} OpenIntent Kit setup complete!               ${NC}"
 echo -e "${GREEN} Disetup langsung di: data/hermes/profiles/    ${NC}"
-echo -e "   1. Run: docker compose up -d                "
+echo -e "   1. Run: docker compose --profile agents up -d"
 echo -e "      (This pulls and spins up all containers, including the bootstrap"
 echo -e "       container that automatically sets up 9router credentials)"
 echo -e "   2. Run: ./scripts/verify.sh                 "
