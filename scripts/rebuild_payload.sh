@@ -66,7 +66,7 @@ echo -e "  ${GREEN}${FILE_COUNT} files to pack${NC}"
 echo -e "${YELLOW}2. Creating payload tarball...${NC}"
 
 TARBALL="$TMPDIR/payload.tar.gz"
-LC_ALL=C tar cf - --mtime='1970-01-01' --sort=name --owner=0 --group=0 --numeric-owner -T "$FILELIST" | gzip -n > "$TARBALL"
+LC_ALL=C tar cf - --mtime='2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -T "$FILELIST" | gzip -n > "$TARBALL"
 
 TARBALL_SIZE=$(stat -c%s "$TARBALL" 2>/dev/null || stat -f%z "$TARBALL")
 echo -e "  ${GREEN}Tarball: $(numfmt --to=iec "$TARBALL_SIZE" 2>/dev/null || echo "$TARBALL_SIZE bytes")${NC}"
