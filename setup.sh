@@ -238,6 +238,8 @@ echo -e "\nInitializing output directories..."
 mkdir -p data/hermes
 mkdir -p data/hermes/profiles/corporate-agent
 mkdir -p data/hermes/profiles/public-agent
+mkdir -p data/9router
+touch data/9router/.agent.env
 
 # Staging profile distributions templates
 cp -rf profiles/default/* data/hermes/ 2>/dev/null || true
