@@ -262,6 +262,8 @@ fi
 
 # Ensure writable permissions for non-root container users (UID 1000/70/etc.)
 chmod -R 777 data
+# PostgreSQL requires strict permissions (0700) on its data directory
+chmod -R 700 data/hindsight
 # Staging profile distributions templates
 cp -rf profiles/default/* data/hermes/ 2>/dev/null || true
 cp -rf profiles/corporate-agent/* data/hermes/profiles/corporate-agent/ 2>/dev/null || true
