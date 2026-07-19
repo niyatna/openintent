@@ -60,6 +60,7 @@ services:
       9ROUTER_KEY_NAME: niyatna-agent
       9ROUTER_KEY_FILE: /data/.niyatna-9router-key
       AGENT_ENV_FILE: /data/.agent.env
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
     volumes:
       - ./scripts/init_9router_db.py:/scripts/init_9router_db.py:ro
       - ./data/9router:/data
