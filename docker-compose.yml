@@ -83,8 +83,12 @@ services:
       HF_HUB_VERBOSITY: error
       TRANSFORMERS_VERBOSITY: error
       TOKENIZERS_PARALLELISM: "false"
+    env_file: ./data/9router/.agent.env
     volumes:
       - ./data/hindsight:/home/hindsight/.pg0
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
     networks:
       - openintent-network
     restart: unless-stopped
