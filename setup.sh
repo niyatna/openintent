@@ -69,6 +69,8 @@ if [ ! -f .env ]; then
     INITIAL_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
     DASHBOARD_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
     DASHBOARD_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
+    HOST_UID=$(id -u "${SUDO_USER:-$USER}")
+    HOST_GID=$(id -g "${SUDO_USER:-$USER}")
 
     cat <<ENVEOF > .env
 # =============================================================================
@@ -93,6 +95,8 @@ DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
 DASHBOARD_SECRET=${DASHBOARD_SECRET}
 PAPERCLIP_PUBLIC_URL=http://localhost:3100
 PAPERCLIP_ALLOWED_HOSTNAMES=localhost
+HERMES_UID=${HOST_UID}
+HERMES_GID=${HOST_GID}
 
 # =============================================================================
 # Internal Compose Network Endpoints
@@ -233,6 +237,12 @@ ENVEOF
     echo -e "${YELLOW}Default Admin Password for Dashboard: ${DASHBOARD_PASSWORD}${NC} (saved securely in .env)"
 else
     echo -e "${GREEN}-> .env file already exists. Skipping prompts.${NC}"
+    if ! grep -q "^HERMES_UID=" .env; then
+        echo "HERMES_UID=$(id -u "${SUDO_USER:-$USER}")" >> .env
+    fi
+    if ! grep -q "^HERMES_GID=" .env; then
+        echo "HERMES_GID=$(id -g "${SUDO_USER:-$USER}")" >> .env
+    fi
     
     # Ensure any new/missing variables are appended to the .env file
     echo "Updating existing .env file with missing template variables..."

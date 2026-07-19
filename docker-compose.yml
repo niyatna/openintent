@@ -126,6 +126,8 @@ services:
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: default
+      HERMES_UID: ${HERMES_UID:-1000}
+      HERMES_GID: ${HERMES_GID:-1000}
     env_file: ./data/9router/.agent.env
     volumes:
       - ./data/hermes:/opt/data
@@ -164,6 +166,8 @@ services:
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: corporate-agent
+      HERMES_UID: ${HERMES_UID:-1000}
+      HERMES_GID: ${HERMES_GID:-1000}
     env_file: ./data/9router/.agent.env
     volumes:
       - ./data/hermes:/opt/data
@@ -187,6 +191,8 @@ services:
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: public-agent
+      HERMES_UID: ${HERMES_UID:-1000}
+      HERMES_GID: ${HERMES_GID:-1000}
     env_file: ./data/9router/.agent.env
     volumes:
       - ./data/hermes:/opt/data
