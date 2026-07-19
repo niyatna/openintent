@@ -105,7 +105,6 @@ services:
       SERVE_UI: "true"
       PAPERCLIP_DEPLOYMENT_MODE: authenticated
       PAPERCLIP_DEPLOYMENT_EXPOSURE: private
-      PAPERCLIP_PUBLIC_URL: http://localhost:3100
       BETTER_AUTH_SECRET: better_auth_secret_key_random_replace_me
     volumes:
       - ./data/paperclip:/paperclip
