@@ -132,6 +132,7 @@ services:
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
       HERMES_DASHBOARD: "1"
+      GATEWAY_MULTIPLEX_PROFILES: "true"
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -164,14 +165,14 @@ services:
     profiles:
       - agents
     ports:
-      - "8002:8000"
-    command: ["gateway", "run"]
+    command: ["gateway", "run", "--no-supervise"]
     env_file: .env
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: corporate-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
+      S6_PROFILE_GATEWAY_SCANDIR: /tmp/empty-scandir
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -189,14 +190,14 @@ services:
     profiles:
       - agents
     ports:
-      - "8003:8000"
-    command: ["gateway", "run"]
+    command: ["gateway", "run", "--no-supervise"]
     env_file: .env
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: public-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
+      S6_PROFILE_GATEWAY_SCANDIR: /tmp/empty-scandir
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
