@@ -118,7 +118,7 @@ services:
   agent-operations:
     image: nousresearch/hermes-agent:latest
     container_name: openintent-default
-    entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph officecli @anthropic-ai/claude-code && (curl -fsSL https://d.officecli.ai/install.sh | bash) && export PATH=\"$$HOME/.local/bin:$$PATH\" && uv pip install --python /opt/hermes/.venv/bin/python3 --no-cache notebooklm-mcp-cli git+https://github.com/wizarck/paperclip-mcp.git && exec /init /opt/hermes/docker/main-wrapper.sh"]
+    entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph officecli @anthropic-ai/claude-code && (curl -fsSL https://d.officecli.ai/install.sh | bash) && export PATH=\"$$HOME/.local/bin:$$PATH\" && uv pip install --python /opt/hermes/.venv/bin/python3 --no-cache notebooklm-mcp-cli git+https://github.com/wizarck/paperclip-mcp.git && exec /init /opt/hermes/docker/main-wrapper.sh gateway run"]
     profiles:
       - agents
     ports:
@@ -160,6 +160,7 @@ services:
       - agents
     ports:
       - "8002:8000"
+    command: ["gateway", "run"]
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: corporate-agent
@@ -182,6 +183,7 @@ services:
       - agents
     ports:
       - "8003:8000"
+    command: ["gateway", "run"]
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: public-agent
