@@ -37,8 +37,8 @@ services:
       HOSTNAME: "0.0.0.0"
       DATA_DIR: /app/data
       HEADROOM_URL: http://headroom:8787
-      JWT_SECRET: jwt_secret_key_random_replace_me
-      INITIAL_PASSWORD: admin_password_replace_me
+      JWT_SECRET: ${JWT_SECRET}
+      INITIAL_PASSWORD: ${INITIAL_PASSWORD}
       API_KEY_SECRET: niyatna-9router-api-key-secret
       REQUIRE_API_KEY: "true"
       ENABLE_REQUEST_LOGS: "true"
