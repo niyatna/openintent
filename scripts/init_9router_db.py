@@ -139,6 +139,10 @@ def seed_9router_db():
         return
 
     import sqlite3
+    import uuid
+    import datetime
+    import json
+    
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
@@ -148,35 +152,39 @@ def seed_9router_db():
         tables = [row[0].lower() for row in cursor.fetchall()]
         print(f"[init] detected 9router tables: {tables}")
         
-        # 9router standard structures for keys/providers
-        if "keys" in tables:
-            # check if openrouter key needs update/insert
-            cursor.execute("SELECT id FROM keys WHERE provider='openrouter'")
+        now = datetime.datetime.utcnow().isoformat() + "Z"
+        
+        if "providerconnections" in tables:
+            # Check if openrouter key needs update/insert
+            cursor.execute("SELECT id, data FROM providerConnections WHERE provider='openrouter'")
             res = cursor.fetchone()
             if res:
-                cursor.execute("UPDATE keys SET credential=? WHERE provider='openrouter'", (or_key,))
-                print("[init] updated openrouter credential in 'keys' table")
+                conn_id, data_str = res
+                try:
+                    conn_data = json.loads(data_str)
+                except:
+                    conn_data = {}
+                conn_data["apiKey"] = or_key
+                cursor.execute(
+                    "UPDATE providerConnections SET data=?, updatedAt=? WHERE id=?", 
+                    (json.dumps(conn_data), now, conn_id)
+                )
+                print("[init] updated openrouter credential in 'providerConnections' table")
             else:
-                cursor.execute("INSERT OR REPLACE INTO keys (provider, credential) VALUES ('openrouter', ?)", (or_key,))
-                print("[init] inserted openrouter credential in 'keys' table")
-        elif "providers" in tables:
-            # check if openrouter key matches providers table structure
-            cursor.execute("SELECT id FROM providers WHERE name='openrouter'")
-            res = cursor.fetchone()
-            if res:
-                cursor.execute("UPDATE providers SET key=? WHERE name='openrouter'", (or_key,))
-                print("[init] updated openrouter key in 'providers' table")
-            else:
-                cursor.execute("INSERT OR REPLACE INTO providers (name, key) VALUES ('openrouter', ?)", (or_key,))
-                print("[init] inserted openrouter key in 'providers' table")
+                conn_id = str(uuid.uuid4())
+                conn_data = {"apiKey": or_key}
+                cursor.execute(
+                    "INSERT INTO providerConnections (id, provider, authType, name, email, priority, isActive, data, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (conn_id, "openrouter", "apikey", "OpenRouter API Key", None, 1, 1, json.dumps(conn_data), now, now)
+                )
+                print("[init] inserted openrouter credential in 'providerConnections' table")
         else:
-            print("[init] no matching providers/keys table found in 9router database schema")
+            print("[init] no matching providerConnections table found in 9router database schema")
             
         conn.commit()
         conn.close()
     except Exception as e:
         print(f"[init] WARNING: could not seed SQLite db: {e}")
-
 
 def main():
     key = None
