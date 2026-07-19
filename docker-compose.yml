@@ -161,11 +161,11 @@ services:
     ports:
       - "8002:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/corporate-agent
+      HERMES_HOME: /opt/data
       HERMES_PROFILE: corporate-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./data/hermes/profiles/corporate-agent:/opt/data/profiles/corporate-agent
+      - ./data/hermes:/opt/data
     depends_on:
       bootstrap:
         condition: service_completed_successfully
@@ -183,11 +183,11 @@ services:
     ports:
       - "8003:8000"
     environment:
-      HERMES_HOME: /opt/data/profiles/public-agent
+      HERMES_HOME: /opt/data
       HERMES_PROFILE: public-agent
     env_file: ./data/9router/.agent.env
     volumes:
-      - ./data/hermes/profiles/public-agent:/opt/data/profiles/public-agent
+      - ./data/hermes:/opt/data
     depends_on:
       bootstrap:
         condition: service_completed_successfully
