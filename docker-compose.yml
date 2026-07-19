@@ -112,7 +112,7 @@ services:
     restart: unless-stopped
 
   agent-operations:
-    image: ghcr.io/nousresearch/hermes-agent:latest
+    image: nousresearch/hermes-agent:latest
     container_name: openintent-default
     entrypoint: ["/bin/bash", "-c", "npm install -g @colbymchenry/codegraph officecli @anthropic-ai/claude-code && (curl -fsSL https://d.officecli.ai/install.sh | bash) && export PATH=\"$$HOME/.local/bin:$$PATH\" && pip install --no-cache-dir notebooklm-mcp-cli git+https://github.com/wizarck/paperclip-mcp.git && exec hermes"]
     profiles:
@@ -149,7 +149,7 @@ services:
       - openintent-network
       
   agent-corporate:
-    image: ghcr.io/nousresearch/hermes-agent:latest
+    image: nousresearch/hermes-agent:latest
     container_name: openintent-corporate-agent
     profiles:
       - agents
@@ -171,7 +171,7 @@ services:
     restart: unless-stopped
 
   agent-public:
-    image: ghcr.io/nousresearch/hermes-agent:latest
+    image: nousresearch/hermes-agent:latest
     container_name: openintent-public-agent
     profiles:
       - agents
