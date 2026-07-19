@@ -131,7 +131,8 @@ services:
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
       HERMES_DASHBOARD: "1"
-    env_file: ./data/9router/.agent.env
+      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
+      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -171,7 +172,8 @@ services:
       HERMES_PROFILE: corporate-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
-    env_file: ./data/9router/.agent.env
+      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
+      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -196,7 +198,8 @@ services:
       HERMES_PROFILE: public-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
-    env_file: ./data/9router/.agent.env
+      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
+      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
