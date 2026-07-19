@@ -70,7 +70,7 @@ services:
     restart: "no"
 
   hindsight-api:
-    image: ghcr.io/vectorize-io/hindsight:latest
+    image: ghcr.io/vectorize-io/hindsight:latest-slim
     container_name: openintent-hindsight
     ports:
       - "9177:8888"
@@ -99,8 +99,9 @@ services:
     ports:
       - "3100:3100"
     environment:
+      PAPERCLIP_ALLOWED_HOSTNAMES: ${PAPERCLIP_ALLOWED_HOSTNAMES:-localhost}
       DATABASE_URL: postgres://paperclip:paperclip_secure_password_replace_me@db:5432/paperclip
-      PORT: "3100"
+      PAPERCLIP_PUBLIC_URL: ${PAPERCLIP_PUBLIC_URL:-http://localhost:3100}
       SERVE_UI: "true"
       PAPERCLIP_DEPLOYMENT_MODE: authenticated
       PAPERCLIP_DEPLOYMENT_EXPOSURE: private

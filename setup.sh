@@ -91,6 +91,8 @@ INITIAL_PASSWORD=${INITIAL_PASSWORD}
 DASHBOARD_USERNAME=admin
 DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
 DASHBOARD_SECRET=${DASHBOARD_SECRET}
+PAPERCLIP_PUBLIC_URL=http://localhost:3100
+PAPERCLIP_ALLOWED_HOSTNAMES=localhost
 
 # =============================================================================
 # Internal Compose Network Endpoints
