@@ -55,12 +55,12 @@ services:
     image: python:3.11-slim
     container_name: openintent-bootstrap
     entrypoint: ["/scripts/init_9router_db.py"]
+    env_file: .env
     environment:
       9ROUTER_API_BASE: http://9router:20128
       9ROUTER_KEY_NAME: niyatna-agent
       9ROUTER_KEY_FILE: /data/.niyatna-9router-key
       AGENT_ENV_FILE: /data/.agent.env
-      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
     volumes:
       - ./scripts/init_9router_db.py:/scripts/init_9router_db.py:ro
       - ./data/9router:/data
@@ -84,7 +84,7 @@ services:
       HF_HUB_VERBOSITY: error
       TRANSFORMERS_VERBOSITY: error
       TOKENIZERS_PARALLELISM: "false"
-    env_file: ./data/9router/.agent.env
+    env_file: .env
     volumes:
       - ./data/hindsight:/home/hindsight/.pg0
     depends_on:
@@ -125,14 +125,13 @@ services:
     ports:
       - "8001:8000"
       - "9119:9119"
+    env_file: .env
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: default
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
       HERMES_DASHBOARD: "1"
-      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
-      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -167,13 +166,12 @@ services:
     ports:
       - "8002:8000"
     command: ["gateway", "run"]
+    env_file: .env
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: corporate-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
-      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
-      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
@@ -193,13 +191,12 @@ services:
     ports:
       - "8003:8000"
     command: ["gateway", "run"]
+    env_file: .env
     environment:
       HERMES_HOME: /opt/data
       HERMES_PROFILE: public-agent
       HERMES_UID: ${HERMES_UID:-1000}
       HERMES_GID: ${HERMES_GID:-1000}
-      9ROUTER_API_KEY: ${9ROUTER_API_KEY}
-      9ROUTER_API_BASE: ${9ROUTER_API_BASE}
     volumes:
       - ./data/hermes:/opt/data
     depends_on:
