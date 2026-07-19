@@ -179,22 +179,48 @@ def seed_9router_db():
 
 
 def main():
-    # Check if key already exists (idempotent)
+    key = None
+    # Check if key already exists (pre-created by setup.sh or previous run)
     if os.path.isfile(KEY_FILE):
         existing = open(KEY_FILE).read().strip()
         if existing and existing.startswith("sk-"):
-            print(f"[init] key already exists at {KEY_FILE}, skipping")
-            return 0
+            print(f"[init] key already exists at {KEY_FILE}: {existing}", flush=True)
+            key = existing
 
     if not wait_for_9router():
         return 1
 
-    key = create_api_key()
     if not key:
-        return 1
-
-    if not save_key(key):
-        return 1
+        key = create_api_key()
+        if not key:
+            return 1
+        if not save_key(key):
+            return 1
+    else:
+        # Ensure key is seeded in DB
+        import sqlite3
+        import datetime
+        db_path = "/data/db/data.sqlite"
+        key_id = "niyatna-agent-id"
+        created_at = datetime.datetime.utcnow().isoformat() + "Z"
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT id FROM apiKeys WHERE key = ?", (key,))
+            res = cursor.fetchone()
+            if not res:
+                cursor.execute(
+                    "INSERT INTO apiKeys (id, key, name, machineId, isActive, createdAt) VALUES (?, ?, ?, ?, ?, ?)",
+                    (key_id, key, KEY_NAME, "niyatna-bootstrap", 1, created_at)
+                )
+                conn.commit()
+                print(f"[init] key seeded to DB: {key}", flush=True)
+            else:
+                print(f"[init] key already present in DB: {key}", flush=True)
+            conn.close()
+        except Exception as e:
+            print(f"[init] error seeding key to DB: {e}", flush=True)
+            return 1
 
     # Inject OpenRouter key to sqlite DB
     seed_9router_db()

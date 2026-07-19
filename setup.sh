@@ -244,7 +244,19 @@ mkdir -p data/hindsight
 mkdir -p data/paperclip
 mkdir -p data/camoufox
 mkdir -p data/postgres
-touch data/9router/.agent.env
+if [ ! -f data/9router/.niyatna-9router-key ] || [ ! -f data/9router/.agent.env ]; then
+    AGENT_KEY=$(openssl rand -hex 12 2>/dev/null || python3 -c "import secrets; print(secrets.token_hex(12))")
+    NIYATNA_KEY="sk-niyatna-agent-${AGENT_KEY}"
+    echo "$NIYATNA_KEY" > data/9router/.niyatna-9router-key
+    chmod 644 data/9router/.niyatna-9router-key
+    cat << KEYEOF > data/9router/.agent.env
+9ROUTER_API_KEY=${NIYATNA_KEY}
+HINDSIGHT_API_KEY=${NIYATNA_KEY}
+HINDSIGHT_API_LLM_API_KEY=${NIYATNA_KEY}
+HINDSIGHT_LLM_API_KEY=${NIYATNA_KEY}
+KEYEOF
+    chmod 644 data/9router/.agent.env
+fi
 
 # Ensure writable permissions for non-root container users (UID 1000/70/etc.)
 chmod -R 777 data
