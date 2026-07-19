@@ -136,6 +136,7 @@ services:
 
   camoufox-browser:
     image: ghcr.io/redf0x1/camofox-browser:latest
+    platform: linux/amd64
     container_name: openintent-camoufox
     ports:
       - "9377:9377"

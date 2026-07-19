@@ -233,14 +233,21 @@ else
     echo -e "${GREEN}-> .env file already exists. Skipping prompts.${NC}"
 fi
 
+
 # 4. Bootstrap runtime profiles folders
 echo -e "\nInitializing output directories..."
 mkdir -p data/hermes
 mkdir -p data/hermes/profiles/corporate-agent
 mkdir -p data/hermes/profiles/public-agent
 mkdir -p data/9router
+mkdir -p data/hindsight
+mkdir -p data/paperclip
+mkdir -p data/camoufox
+mkdir -p data/postgres
 touch data/9router/.agent.env
 
+# Ensure writable permissions for non-root container users (UID 1000/70/etc.)
+chmod -R 777 data
 # Staging profile distributions templates
 cp -rf profiles/default/* data/hermes/ 2>/dev/null || true
 cp -rf profiles/corporate-agent/* data/hermes/profiles/corporate-agent/ 2>/dev/null || true

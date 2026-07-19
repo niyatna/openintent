@@ -26,42 +26,54 @@ RETRY_DELAY = 2
 
 
 def wait_for_9router():
-    """Poll 9router until it's ready."""
-    url = f"{API_BASE}/api/keys"
+    """Poll 9router database until it's initialized on disk."""
+    db_path = "/data/db/data.sqlite"
     for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            req = urllib.request.Request(url, method="GET")
-            with urllib.request.urlopen(req, timeout=5) as resp:
-                if resp.status == 200:
-                    print(f"[init] 9router ready (attempt {attempt})")
+        if os.path.exists(db_path):
+            try:
+                import sqlite3
+                conn = sqlite3.connect(db_path)
+                cursor = conn.cursor()
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+                tables = [row[0].lower() for row in cursor.fetchall()]
+                conn.close()
+                if "apikeys" in tables:
+                    print(f"[init] 9router SQLite database ready (attempt {attempt})", flush=True)
                     return True
-        except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
-            print(f"[init] waiting for 9router... ({attempt}/{MAX_RETRIES}) {type(e).__name__}")
+            except Exception as e:
+                print(f"[init] db exists but not ready: {e} ({attempt}/{MAX_RETRIES})", flush=True)
+        else:
+            print(f"[init] waiting for 9router database file... ({attempt}/{MAX_RETRIES})", flush=True)
         time.sleep(RETRY_DELAY)
-    print("[init] ERROR: 9router not ready after 60s", flush=True)
+    print("[init] ERROR: 9router database not ready after 60s", flush=True)
     return False
 
 
 def create_api_key():
-    """Create a new API key via POST /api/keys."""
-    url = f"{API_BASE}/api/keys"
-    body = json.dumps({"name": KEY_NAME}).encode()
-    req = urllib.request.Request(
-        url,
-        data=body,
-        method="POST",
-        headers={"Content-Type": "application/json"},
-    )
+    """Create a new API key directly in the SQLite database."""
+    import sqlite3
+    import uuid
+    import datetime
+    
+    db_path = "/data/db/data.sqlite"
+    key = "sk-niyatna-agent-" + uuid.uuid4().hex[:12]
+    key_id = str(uuid.uuid4())
+    created_at = datetime.datetime.utcnow().isoformat() + "Z"
+    
     try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode())
-            print(f"[init] key created: id={data.get('id')}, name={data.get('name')}")
-            return data.get("key")
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"[init] ERROR creating key: HTTP {e.code} — {body}", flush=True)
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT INTO apiKeys (id, key, name, machineId, isActive, createdAt) VALUES (?, ?, ?, ?, ?, ?)",
+            (key_id, key, KEY_NAME, "niyatna-bootstrap", 1, created_at)
+        )
+        conn.commit()
+        conn.close()
+        print(f"[init] direct DB: key created: id={key_id}, name={KEY_NAME}")
+        return key
+    except Exception as e:
+        print(f"[init] ERROR inserting key directly into database: {e}", flush=True)
         return None
-
 
 def save_key(key):
     """Persist the key and generate agent .env file."""
