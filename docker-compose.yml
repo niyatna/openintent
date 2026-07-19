@@ -143,7 +143,7 @@ services:
     environment:
       CAMOFOX_HOST: "0.0.0.0"
       CAMOFOX_PORT: "9377"
-      CAMOFOX_AUTH_MODE: "none"
+      CAMOFOX_AUTH_MODE: "disabled"
     volumes:
       - ./data/camoufox:/home/node/.camofox
     networks:

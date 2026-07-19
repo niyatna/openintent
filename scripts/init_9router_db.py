@@ -44,8 +44,8 @@ def wait_for_9router():
         print("[init] ERROR: 9router HTTP server not ready after 60s", flush=True)
         return False
 
-    # Second, trigger lazy database initialization by calling /v1/models (which runs DB migrations)
-    trigger_url = f"{API_BASE}/v1/models"
+    # Second, trigger lazy database initialization by calling /api/keys (which runs DB migrations)
+    trigger_url = f"{API_BASE}/api/keys"
     print(f"[init] triggering 9router database initialization at {trigger_url}...", flush=True)
     try:
         req = urllib.request.Request(trigger_url, method="GET")
