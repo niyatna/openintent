@@ -26,7 +26,37 @@ RETRY_DELAY = 2
 
 
 def wait_for_9router():
-    """Poll 9router database until it's initialized on disk."""
+    """Poll 9router endpoint until the server is running and the database is initialized."""
+    # First, make a public health check request to `/api/health` to wait for HTTP server readiness
+    health_url = f"{API_BASE}/api/health"
+    print(f"[init] waiting for 9router HTTP server at {health_url}...", flush=True)
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            req = urllib.request.Request(health_url, method="GET")
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                if resp.status == 200:
+                    print(f"[init] 9router HTTP server is up (attempt {attempt})", flush=True)
+                    break
+        except Exception as e:
+            pass
+        time.sleep(RETRY_DELAY)
+    else:
+        print("[init] ERROR: 9router HTTP server not ready after 60s", flush=True)
+        return False
+
+    # Second, trigger lazy database initialization by calling /v1/models (which runs DB migrations)
+    trigger_url = f"{API_BASE}/v1/models"
+    print(f"[init] triggering 9router database initialization at {trigger_url}...", flush=True)
+    try:
+        req = urllib.request.Request(trigger_url, method="GET")
+        # This will return 401 Unauthorized, but will trigger database migrations to run
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            pass
+    except Exception as e:
+        # Expected to fail with 401, which is fine
+        pass
+
+    # Third, wait for the database file to be written to disk
     db_path = "/data/db/data.sqlite"
     for attempt in range(1, MAX_RETRIES + 1):
         if os.path.exists(db_path):
@@ -38,14 +68,15 @@ def wait_for_9router():
                 tables = [row[0].lower() for row in cursor.fetchall()]
                 conn.close()
                 if "apikeys" in tables:
-                    print(f"[init] 9router SQLite database ready (attempt {attempt})", flush=True)
+                    print(f"[init] 9router SQLite database initialized (attempt {attempt})", flush=True)
                     return True
             except Exception as e:
-                print(f"[init] db exists but not ready: {e} ({attempt}/{MAX_RETRIES})", flush=True)
+                print(f"[init] db file exists but not fully migrated: {e} ({attempt}/{MAX_RETRIES})", flush=True)
         else:
-            print(f"[init] waiting for 9router database file... ({attempt}/{MAX_RETRIES})", flush=True)
+            print(f"[init] waiting for SQLite database file at {db_path}... ({attempt}/{MAX_RETRIES})", flush=True)
         time.sleep(RETRY_DELAY)
-    print("[init] ERROR: 9router database not ready after 60s", flush=True)
+        
+    print("[init] ERROR: 9router database file not found after 60s", flush=True)
     return False
 
 
