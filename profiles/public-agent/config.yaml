@@ -427,14 +427,6 @@ mcp_servers:
     enabled: true
     timeout: 120
     url: https://mcp.notion.com/mcp
-  9router:
-    auth_note: 9Router Streamable HTTP MCP.
-    connect_timeout: 60
-    enabled: true
-    headers:
-      Cookie: auth_token=${9ROUTER_MCP_AUTH_TOKEN}
-    timeout: 180
-    url: http://9router:20128/api/mcp/stream
   paperclip:
     command: paperclip-mcp --transport stdio
     connect_timeout: 30
