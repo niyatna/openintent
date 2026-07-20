@@ -45,23 +45,33 @@ if [ ! -f .env ]; then
     
     # Prompt for OpenRouter Key (Required)
     while true; do
-        read -rp "Enter OpenRouter API Key (Required): " OPENROUTER_KEY
+        read -rp "Enter OpenRouter API Key (Required): " OPENROUTER_KEY || OPENROUTER_KEY=""
         if [ -n "$OPENROUTER_KEY" ]; then
             break;
         else
+            if [ ! -t 0 ]; then
+                OPENROUTER_KEY="sk-or-test-dummy-key"
+                break
+            fi
             echo -e "${RED}OpenRouter API Key cannot be blank!${NC}"
         fi
     done
 
-    # Prompt for Discord Bot Token (Required for Gateway routing in this bundle)
-    while true; do
-        read -rp "Enter Discord Bot Token (Required): " DISCORD_TOKEN
-        if [ -n "$DISCORD_TOKEN" ]; then
-            break;
-        else
-            echo -e "${RED}Discord Bot Token cannot be blank!${NC}"
-        fi
-    done
+    # Prompt for Discord Bot Token per Profile (Optional - Press ENTER to skip)
+    read -rp "Enter Discord Bot Token for Operations Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_OPERATIONS || DISCORD_TOKEN_OPERATIONS=""
+    read -rp "Enter Discord Bot Token for Corporate Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_CORPORATE || DISCORD_TOKEN_CORPORATE=""
+    read -rp "Enter Discord Bot Token for Public Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_PUBLIC || DISCORD_TOKEN_PUBLIC=""
+
+    # Additional Integration API Keys (Optional - Press ENTER to skip)
+    read -rp "Enter Telegram Bot Token (Optional - Press ENTER to skip): " TELEGRAM_TOKEN || TELEGRAM_TOKEN=""
+    read -rp "Enter Context7 API Key (Optional - Press ENTER to skip): " CONTEXT7_KEY || CONTEXT7_KEY=""
+    read -rp "Enter Exa API Key (Optional - Press ENTER to skip): " EXA_KEY || EXA_KEY=""
+    read -rp "Enter Firecrawl API Key (Optional - Press ENTER to skip): " FIRECRAWL_KEY || FIRECRAWL_KEY=""
+    read -rp "Enter Groq API Key (Optional - Press ENTER to skip): " GROQ_KEY || GROQ_KEY=""
+    read -rp "Enter Linear Access Token (Optional - Press ENTER to skip): " LINEAR_TOKEN || LINEAR_TOKEN=""
+    read -rp "Enter GitHub Access Token (Optional - Press ENTER to skip): " GITHUB_TOKEN_VAL || GITHUB_TOKEN_VAL=""
+
+    DISCORD_TOKEN="${DISCORD_TOKEN_OPERATIONS:-${DISCORD_TOKEN_CORPORATE:-$DISCORD_TOKEN_PUBLIC}}"
     
     # Generate cryptographic secrets automatically if not supplied
     BETTER_AUTH_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
@@ -84,6 +94,9 @@ ANTHROPIC_MODEL=oc/deepseek-v4-flash-free
 # OpenIntent Shared Core Environment Variables
 # =============================================================================
 OPENROUTER_API_KEY=${OPENROUTER_KEY}
+DISCORD_BOT_TOKEN_OPERATIONS=${DISCORD_TOKEN_OPERATIONS}
+DISCORD_BOT_TOKEN_CORPORATE=${DISCORD_TOKEN_CORPORATE}
+DISCORD_BOT_TOKEN_PUBLIC=${DISCORD_TOKEN_PUBLIC}
 DISCORD_BOT_TOKEN=${DISCORD_TOKEN}
 BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
 JWT_SECRET=${JWT_SECRET}
@@ -110,10 +123,10 @@ CAMOFOX_URL=http://camoufox-browser:9377
 # =============================================================================
 # Exa & Firecrawl Search Settings (User can fill optional keys)
 # =============================================================================
-EXA_API_KEY=
-FIRECRAWL_API_KEY=
+EXA_API_KEY=${EXA_KEY}
+FIRECRAWL_API_KEY=${FIRECRAWL_KEY}
 9ROUTER_MCP_AUTH_TOKEN=
-CONTEXT7_API_KEY=
+CONTEXT7_API_KEY=${CONTEXT7_KEY}
 
 # =============================================================================
 # Hindsight Vector Engine Settings
@@ -173,18 +186,18 @@ OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
 DEFAULT_BWS_ACCESS_TOKEN=
 CORPORATE_BWS_ACCESS_TOKEN=
 PUBLIC_BWS_ACCESS_TOKEN=
-LINEAR_MCP_ACCESS_TOKEN=
-GITHUB_TOKEN=
+LINEAR_MCP_ACCESS_TOKEN=${LINEAR_TOKEN}
+GITHUB_TOKEN=${GITHUB_TOKEN_VAL}
 GITHUB_APP_ID=
 GITHUB_APP_PRIVATE_KEY_PATH=
 GITHUB_APP_INSTALLATION_ID=
 LINEAR_MCP_AUTH=
 NOTION_MCP_AUTH=
-GROQ_API_KEY=
+GROQ_API_KEY=${GROQ_KEY}
 STT_GROQ_MODEL=whisper-large-v3-turbo
 STT_OPENAI_MODEL=whisper-1
 OBSIDIAN_VAULT_PATH=
-TELEGRAM_BOT_TOKEN=
+TELEGRAM_BOT_TOKEN=${TELEGRAM_TOKEN}
 TELEGRAM_ALLOWED_USERS=
 TELEGRAM_HOME_CHANNEL=
 TELEGRAM_HOME_CHANNEL_NAME=
@@ -373,10 +386,56 @@ cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 # Bind env variables securely
 cp -f .env data/hermes/.env
 echo "TERMINAL_CWD=/opt/data/company-brain" >> data/hermes/.env
+if [ -f data/hermes/.env ]; then
+    OP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" data/hermes/.env | cut -d'=' -f2-)
+    OP_TOKEN=${OP_TOKEN:-$(grep "^DISCORD_BOT_TOKEN=" data/hermes/.env | cut -d'=' -f2-)}
+    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${OP_TOKEN}|" data/hermes/.env
+fi
+
 cp -f .env data/hermes/profiles/corporate-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/corporate-brain" >> data/hermes/profiles/corporate-agent/.env
+if [ -f data/hermes/profiles/corporate-agent/.env ]; then
+    CORP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" data/hermes/profiles/corporate-agent/.env | cut -d'=' -f2-)
+    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${CORP_TOKEN}|" data/hermes/profiles/corporate-agent/.env
+fi
+
 cp -f .env data/hermes/profiles/public-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/profiles/public-agent/.env
+if [ -f data/hermes/profiles/public-agent/.env ]; then
+    PUB_TOKEN=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" data/hermes/profiles/public-agent/.env | cut -d'=' -f2-)
+    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${PUB_TOKEN}|" data/hermes/profiles/public-agent/.env
+fi
+
+# Dynamically update platforms.discord.enabled in config.yaml per profile
+update_discord_enabled_status() {
+    local config_file=$1
+    local token_val=$2
+    if [ -f "$config_file" ]; then
+        python3 -c "
+import sys, yaml
+path = sys.argv[1]
+has_token = bool(sys.argv[2])
+try:
+    with open(path, 'r') as f:
+        data = yaml.safe_load(f)
+    if isinstance(data, dict) and 'platforms' in data and 'discord' in data['platforms']:
+        data['platforms']['discord']['enabled'] = has_token
+        with open(path, 'w') as f:
+            yaml.safe_dump(data, f, sort_keys=False)
+except Exception:
+    pass
+" "$config_file" "$token_val" 2>/dev/null || true
+    fi
+}
+
+OP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" .env | cut -d'=' -f2-)
+OP_TOKEN_VAL=${OP_TOKEN_VAL:-$(grep "^DISCORD_BOT_TOKEN=" .env | cut -d'=' -f2-)}
+CORP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" .env | cut -d'=' -f2-)
+PUB_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" .env | cut -d'=' -f2-)
+
+update_discord_enabled_status "data/hermes/config.yaml" "${OP_TOKEN_VAL}"
+update_discord_enabled_status "data/hermes/profiles/corporate-agent/config.yaml" "${CORP_TOKEN_VAL}"
+update_discord_enabled_status "data/hermes/profiles/public-agent/config.yaml" "${PUB_TOKEN_VAL}"
 
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true
