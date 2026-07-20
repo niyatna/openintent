@@ -254,7 +254,7 @@ HOST_GID=${EXISTING_HERMES_GID:-$(id -g "${SUDO_USER:-$USER}")}
 # Claude Code (CLI) Redirect Custom Variables
 # =============================================================================
 ANTHROPIC_BASE_URL=http://localhost:20128/v1
-ANTHROPIC_AUTH_TOKEN=niyatna-agent-token
+ANTHROPIC_API_KEY=${ROUTER_API_KEY}
 ANTHROPIC_MODEL=oc/deepseek-v4-flash-free
 
 # =============================================================================
@@ -345,7 +345,7 @@ DISCORD_HOME_CHANNEL_THREAD_ID=
 # OpenAI Compatible Image Settings
 # =============================================================================
 OPENAI_COMPATIBLE_IMAGE_BASE_URL=http://9router:20128/v1
-OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
+OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5-image
 
 # =============================================================================
 # Secrets Manager, Linear, Github, Telegram, Email, and WhatsApp Integrations
@@ -599,7 +599,7 @@ if [ -n "$SHELL_CONFIG" ]; then
     if ! grep -q "ANTHROPIC_BASE_URL" "$SHELL_CONFIG"; then
         echo -e "\n# Claude Code redirect configuration for OpenIntent" >> "$SHELL_CONFIG"
         echo 'export ANTHROPIC_BASE_URL="http://localhost:20128/v1"' >> "$SHELL_CONFIG"
-        echo 'export ANTHROPIC_AUTH_TOKEN="niyatna-agent-token"' >> "$SHELL_CONFIG"
+        echo "export ANTHROPIC_API_KEY=\"${ROUTER_API_KEY}\"" >> "$SHELL_CONFIG"
         echo 'export ANTHROPIC_MODEL="oc/deepseek-v4-flash-free"' >> "$SHELL_CONFIG"
         echo -e "${GREEN}-> Added Claude Code proxy redirects to $SHELL_CONFIG!${NC}"
     fi

@@ -360,10 +360,10 @@ human_delay:
 image_gen:
   api_key: ${9ROUTER_API_KEY}
   base_url: http://9router:20128/v1
-  model: cx/gpt-5.5
+  model: cx/gpt-5.5-image
   openai_compatible:
     base_url: http://9router:20128/v1
-    model: cx/gpt-5.5
+    model: cx/gpt-5.5-image
     timeout: 420
   provider: openai-compatible
   timeout: 420
