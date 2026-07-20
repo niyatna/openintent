@@ -387,22 +387,22 @@ cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 cp -f .env data/hermes/.env
 echo "TERMINAL_CWD=/opt/data/company-brain" >> data/hermes/.env
 if [ -f data/hermes/.env ]; then
-    OP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" data/hermes/.env | cut -d'=' -f2-)
-    OP_TOKEN=${OP_TOKEN:-$(grep "^DISCORD_BOT_TOKEN=" data/hermes/.env | cut -d'=' -f2-)}
+    OP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" data/hermes/.env 2>/dev/null | cut -d'=' -f2- || true)
+    OP_TOKEN=${OP_TOKEN:-$(grep "^DISCORD_BOT_TOKEN=" data/hermes/.env 2>/dev/null | cut -d'=' -f2- || true)}
     sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${OP_TOKEN}|" data/hermes/.env
 fi
 
 cp -f .env data/hermes/profiles/corporate-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/corporate-brain" >> data/hermes/profiles/corporate-agent/.env
 if [ -f data/hermes/profiles/corporate-agent/.env ]; then
-    CORP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" data/hermes/profiles/corporate-agent/.env | cut -d'=' -f2-)
+    CORP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" data/hermes/profiles/corporate-agent/.env 2>/dev/null | cut -d'=' -f2- || true)
     sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${CORP_TOKEN}|" data/hermes/profiles/corporate-agent/.env
 fi
 
 cp -f .env data/hermes/profiles/public-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/profiles/public-agent/.env
 if [ -f data/hermes/profiles/public-agent/.env ]; then
-    PUB_TOKEN=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" data/hermes/profiles/public-agent/.env | cut -d'=' -f2-)
+    PUB_TOKEN=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" data/hermes/profiles/public-agent/.env 2>/dev/null | cut -d'=' -f2- || true)
     sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${PUB_TOKEN}|" data/hermes/profiles/public-agent/.env
 fi
 
@@ -428,10 +428,10 @@ except Exception:
     fi
 }
 
-OP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" .env | cut -d'=' -f2-)
-OP_TOKEN_VAL=${OP_TOKEN_VAL:-$(grep "^DISCORD_BOT_TOKEN=" .env | cut -d'=' -f2-)}
-CORP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" .env | cut -d'=' -f2-)
-PUB_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" .env | cut -d'=' -f2-)
+OP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" .env 2>/dev/null | cut -d'=' -f2- || true)
+OP_TOKEN_VAL=${OP_TOKEN_VAL:-$(grep "^DISCORD_BOT_TOKEN=" .env 2>/dev/null | cut -d'=' -f2- || true)}
+CORP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" .env 2>/dev/null | cut -d'=' -f2- || true)
+PUB_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" .env 2>/dev/null | cut -d'=' -f2- || true)
 
 update_discord_enabled_status "data/hermes/config.yaml" "${OP_TOKEN_VAL}"
 update_discord_enabled_status "data/hermes/profiles/corporate-agent/config.yaml" "${CORP_TOKEN_VAL}"
