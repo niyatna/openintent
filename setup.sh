@@ -119,20 +119,59 @@ prompt_env_var "DISCORD_BOT_TOKEN_OPERATIONS" "Discord Bot Token for Operations 
 prompt_env_var "DISCORD_BOT_TOKEN_CORPORATE" "Discord Bot Token for Corporate Agent" "false"
 prompt_env_var "DISCORD_BOT_TOKEN_PUBLIC" "Discord Bot Token for Public Agent" "false"
 
-prompt_env_var "TELEGRAM_BOT_TOKEN" "Telegram Bot Token" "false"
+# Prompt for Telegram Bot Tokens per Profile (Optional)
+prompt_env_var "TELEGRAM_BOT_TOKEN_OPERATIONS" "Telegram Bot Token for Operations Agent" "false"
+prompt_env_var "TELEGRAM_BOT_TOKEN_CORPORATE" "Telegram Bot Token for Corporate Agent" "false"
+prompt_env_var "TELEGRAM_BOT_TOKEN_PUBLIC" "Telegram Bot Token for Public Agent" "false"
+
+# Prompt for Email Address/Password per Profile (Optional)
+prompt_env_var "EMAIL_ADDRESS_OPERATIONS" "Email Address for Operations Agent" "false"
+prompt_env_var "EMAIL_PASSWORD_OPERATIONS" "Email Password for Operations Agent" "false"
+prompt_env_var "EMAIL_ADDRESS_CORPORATE" "Email Address for Corporate Agent" "false"
+prompt_env_var "EMAIL_PASSWORD_CORPORATE" "Email Password for Corporate Agent" "false"
+prompt_env_var "EMAIL_ADDRESS_PUBLIC" "Email Address for Public Agent" "false"
+prompt_env_var "EMAIL_PASSWORD_PUBLIC" "Email Password for Public Agent" "false"
+
+# Prompt for Slack Integration per Profile (Optional)
+prompt_env_var "SLACK_BOT_TOKEN_OPERATIONS" "Slack Bot Token for Operations Agent" "false"
+prompt_env_var "SLACK_APP_TOKEN_OPERATIONS" "Slack App Token for Operations Agent" "false"
+prompt_env_var "SLACK_BOT_TOKEN_CORPORATE" "Slack Bot Token for Corporate Agent" "false"
+prompt_env_var "SLACK_APP_TOKEN_CORPORATE" "Slack App Token for Corporate Agent" "false"
+prompt_env_var "SLACK_BOT_TOKEN_PUBLIC" "Slack Bot Token for Public Agent" "false"
+prompt_env_var "SLACK_APP_TOKEN_PUBLIC" "Slack App Token for Public Agent" "false"
+
+# Prompt for Bitwarden Access Tokens per Profile (Optional)
+prompt_env_var "DEFAULT_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Operations Agent" "false"
+prompt_env_var "CORPORATE_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Corporate Agent" "false"
+prompt_env_var "PUBLIC_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Public Agent" "false"
+
+# Prompt for GitHub Tokens per Profile (Optional)
+prompt_env_var "GITHUB_TOKEN_OPERATIONS" "GitHub Token for Operations Agent" "false"
+prompt_env_var "GITHUB_TOKEN_CORPORATE" "GitHub Token for Corporate Agent" "false"
+prompt_env_var "GITHUB_TOKEN_PUBLIC" "GitHub Token for Public Agent" "false"
+
+# Prompt for Linear Tokens per Profile (Optional)
+prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_OPERATIONS" "Linear Token for Operations Agent" "false"
+prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_CORPORATE" "Linear Token for Corporate Agent" "false"
+prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_PUBLIC" "Linear Token for Public Agent" "false"
+
+# Global Integration Keys
 prompt_env_var "CONTEXT7_API_KEY" "Context7 API Key" "false"
 prompt_env_var "EXA_API_KEY" "Exa API Key" "false"
 prompt_env_var "FIRECRAWL_API_KEY" "Firecrawl API Key" "false"
 prompt_env_var "GROQ_API_KEY" "Groq API Key" "false"
-prompt_env_var "LINEAR_MCP_ACCESS_TOKEN" "Linear Access Token" "false"
-prompt_env_var "GITHUB_TOKEN" "GitHub Access Token" "false"
 
-# Build fallback Discord Bot Token
+# Build fallback variables for orchestration
 DISCORD_TOKEN="${DISCORD_BOT_TOKEN_OPERATIONS:-${DISCORD_BOT_TOKEN_CORPORATE:-$DISCORD_BOT_TOKEN_PUBLIC}}"
-# Fallback OpenRouter Key for default setup checks
+TELEGRAM_TOKEN="${TELEGRAM_BOT_TOKEN_OPERATIONS:-${TELEGRAM_BOT_TOKEN_CORPORATE:-$TELEGRAM_BOT_TOKEN_PUBLIC}}"
+EMAIL_ADDRESS="${EMAIL_ADDRESS_OPERATIONS:-${EMAIL_ADDRESS_CORPORATE:-$EMAIL_ADDRESS_PUBLIC}}"
+EMAIL_PASSWORD="${EMAIL_PASSWORD_OPERATIONS:-${EMAIL_PASSWORD_CORPORATE:-$EMAIL_PASSWORD_PUBLIC}}"
+SLACK_BOT_TOKEN="${SLACK_BOT_TOKEN_OPERATIONS:-${SLACK_BOT_TOKEN_CORPORATE:-$SLACK_BOT_TOKEN_PUBLIC}}"
+SLACK_APP_TOKEN="${SLACK_APP_TOKEN_OPERATIONS:-${SLACK_APP_TOKEN_CORPORATE:-$SLACK_APP_TOKEN_PUBLIC}}"
+GITHUB_TOKEN="${GITHUB_TOKEN_OPERATIONS:-${GITHUB_TOKEN_CORPORATE:-$GITHUB_TOKEN_PUBLIC}}"
+LINEAR_MCP_ACCESS_TOKEN="${LINEAR_MCP_ACCESS_TOKEN_OPERATIONS:-${LINEAR_MCP_ACCESS_TOKEN_CORPORATE:-$LINEAR_MCP_ACCESS_TOKEN_PUBLIC}}"
 OPENROUTER_KEY="${OPENROUTER_API_KEY}"
 
-# Generate cryptographic secrets automatically if not supplied
 BETTER_AUTH_SECRET=${EXISTING_BETTER_AUTH_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
 JWT_SECRET=${EXISTING_JWT_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
 INITIAL_PASSWORD=${EXISTING_INITIAL_PASSWORD:-$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)}
@@ -241,9 +280,36 @@ OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
 # =============================================================================
 # Secrets Manager, Linear, Github, Telegram, Email, and WhatsApp Integrations
 # =============================================================================
-DEFAULT_BWS_ACCESS_TOKEN=
-CORPORATE_BWS_ACCESS_TOKEN=
-PUBLIC_BWS_ACCESS_TOKEN=
+DEFAULT_BWS_ACCESS_TOKEN=${DEFAULT_BWS_ACCESS_TOKEN:-}
+CORPORATE_BWS_ACCESS_TOKEN=${CORPORATE_BWS_ACCESS_TOKEN:-}
+PUBLIC_BWS_ACCESS_TOKEN=${PUBLIC_BWS_ACCESS_TOKEN:-}
+
+TELEGRAM_BOT_TOKEN_OPERATIONS=${TELEGRAM_BOT_TOKEN_OPERATIONS:-}
+TELEGRAM_BOT_TOKEN_CORPORATE=${TELEGRAM_BOT_TOKEN_CORPORATE:-}
+TELEGRAM_BOT_TOKEN_PUBLIC=${TELEGRAM_BOT_TOKEN_PUBLIC:-}
+
+EMAIL_ADDRESS_OPERATIONS=${EMAIL_ADDRESS_OPERATIONS:-}
+EMAIL_PASSWORD_OPERATIONS=${EMAIL_PASSWORD_OPERATIONS:-}
+EMAIL_ADDRESS_CORPORATE=${EMAIL_ADDRESS_CORPORATE:-}
+EMAIL_PASSWORD_CORPORATE=${EMAIL_PASSWORD_CORPORATE:-}
+EMAIL_ADDRESS_PUBLIC=${EMAIL_ADDRESS_PUBLIC:-}
+EMAIL_PASSWORD_PUBLIC=${EMAIL_PASSWORD_PUBLIC:-}
+
+SLACK_BOT_TOKEN_OPERATIONS=${SLACK_BOT_TOKEN_OPERATIONS:-}
+SLACK_APP_TOKEN_OPERATIONS=${SLACK_APP_TOKEN_OPERATIONS:-}
+SLACK_BOT_TOKEN_CORPORATE=${SLACK_BOT_TOKEN_CORPORATE:-}
+SLACK_APP_TOKEN_CORPORATE=${SLACK_APP_TOKEN_CORPORATE:-}
+SLACK_BOT_TOKEN_PUBLIC=${SLACK_BOT_TOKEN_PUBLIC:-}
+SLACK_APP_TOKEN_PUBLIC=${SLACK_APP_TOKEN_PUBLIC:-}
+
+GITHUB_TOKEN_OPERATIONS=${GITHUB_TOKEN_OPERATIONS:-}
+GITHUB_TOKEN_CORPORATE=${GITHUB_TOKEN_CORPORATE:-}
+GITHUB_TOKEN_PUBLIC=${GITHUB_TOKEN_PUBLIC:-}
+
+LINEAR_MCP_ACCESS_TOKEN_OPERATIONS=${LINEAR_MCP_ACCESS_TOKEN_OPERATIONS:-}
+LINEAR_MCP_ACCESS_TOKEN_CORPORATE=${LINEAR_MCP_ACCESS_TOKEN_CORPORATE:-}
+LINEAR_MCP_ACCESS_TOKEN_PUBLIC=${LINEAR_MCP_ACCESS_TOKEN_PUBLIC:-}
+
 LINEAR_MCP_ACCESS_TOKEN=${LINEAR_MCP_ACCESS_TOKEN:-}
 GITHUB_TOKEN=${GITHUB_TOKEN:-}
 GITHUB_APP_ID=
@@ -255,18 +321,18 @@ GROQ_API_KEY=${GROQ_API_KEY:-}
 STT_GROQ_MODEL=whisper-large-v3-turbo
 STT_OPENAI_MODEL=whisper-1
 OBSIDIAN_VAULT_PATH=
-TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+TELEGRAM_BOT_TOKEN=${TELEGRAM_TOKEN:-}
 TELEGRAM_ALLOWED_USERS=
 TELEGRAM_HOME_CHANNEL=
 TELEGRAM_HOME_CHANNEL_NAME=
 TELEGRAM_WEBHOOK_URL=
 TELEGRAM_WEBHOOK_PORT=8443
 TELEGRAM_WEBHOOK_SECRET=
-SLACK_BOT_TOKEN=
-SLACK_APP_TOKEN=
+SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN:-}
+SLACK_APP_TOKEN=${SLACK_APP_TOKEN:-}
 SLACK_ALLOWED_USERS=
-EMAIL_ADDRESS=
-EMAIL_PASSWORD=
+EMAIL_ADDRESS=${EMAIL_ADDRESS:-}
+EMAIL_PASSWORD=${EMAIL_PASSWORD:-}
 EMAIL_SMTP_PORT=587
 EMAIL_IMAP_PORT=993
 EMAIL_HOME_ADDRESS=
@@ -345,58 +411,101 @@ cp -rf profiles/public-agent/* data/hermes/profiles/public-agent/ 2>/dev/null ||
 cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 
 # Bind env variables securely
+map_profile_env() {
+    local env_file=$1
+    local pfx=$2 # OPERATIONS, CORPORATE, PUBLIC
+
+    if [ -f "$env_file" ]; then
+        # Map Discord
+        local disc_tok=$(grep "^DISCORD_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        if [ "$pfx" = "OPERATIONS" ]; then
+            disc_tok=${disc_tok:-$(grep "^DISCORD_BOT_TOKEN=" .env 2>/dev/null | cut -d'=' -f2- || true)}
+        fi
+        sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${disc_tok}|" "$env_file"
+
+        # Map Telegram
+        local tg_tok=$(grep "^TELEGRAM_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        sed -i "s|^TELEGRAM_BOT_TOKEN=.*|TELEGRAM_BOT_TOKEN=${tg_tok}|" "$env_file"
+
+        # Map Email
+        local mail_addr=$(grep "^EMAIL_ADDRESS_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        local mail_pwd=$(grep "^EMAIL_PASSWORD_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        sed -i "s|^EMAIL_ADDRESS=.*|EMAIL_ADDRESS=${mail_addr}|" "$env_file"
+        sed -i "s|^EMAIL_PASSWORD=.*|EMAIL_PASSWORD=${mail_pwd}|" "$env_file"
+
+        # Map Slack
+        local sl_bot=$(grep "^SLACK_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        local sl_app=$(grep "^SLACK_APP_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        sed -i "s|^SLACK_BOT_TOKEN=.*|SLACK_BOT_TOKEN=${sl_bot}|" "$env_file"
+        sed -i "s|^SLACK_APP_TOKEN=.*|SLACK_APP_TOKEN=${sl_app}|" "$env_file"
+
+        # Map Bitwarden Secrets Manager
+        local bws_var="DEFAULT_BWS_ACCESS_TOKEN"
+        if [ "$pfx" = "CORPORATE" ]; then bws_var="CORPORATE_BWS_ACCESS_TOKEN"; fi
+        if [ "$pfx" = "PUBLIC" ]; then bws_var="PUBLIC_BWS_ACCESS_TOKEN"; fi
+        local bws_tok=$(grep "^${bws_var}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        sed -i "s|^BWS_ACCESS_TOKEN=.*|BWS_ACCESS_TOKEN=${bws_tok}|" "$env_file" || echo "BWS_ACCESS_TOKEN=${bws_tok}" >> "$env_file"
+
+        # Map GitHub & Linear
+        local gh_tok=$(grep "^GITHUB_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        local lin_tok=$(grep "^LINEAR_MCP_ACCESS_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+        sed -i "s|^GITHUB_TOKEN=.*|GITHUB_TOKEN=${gh_tok}|" "$env_file"
+        sed -i "s|^LINEAR_MCP_ACCESS_TOKEN=.*|LINEAR_MCP_ACCESS_TOKEN=${lin_tok}|" "$env_file"
+    fi
+}
+
 cp -f .env data/hermes/.env
 echo "TERMINAL_CWD=/opt/data/company-brain" >> data/hermes/.env
-if [ -f data/hermes/.env ]; then
-    OP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" data/hermes/.env 2>/dev/null | cut -d'=' -f2- || true)
-    OP_TOKEN=${OP_TOKEN:-$(grep "^DISCORD_BOT_TOKEN=" data/hermes/.env 2>/dev/null | cut -d'=' -f2- || true)}
-    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${OP_TOKEN}|" data/hermes/.env
-fi
+map_profile_env "data/hermes/.env" "OPERATIONS"
 
 cp -f .env data/hermes/profiles/corporate-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/corporate-brain" >> data/hermes/profiles/corporate-agent/.env
-if [ -f data/hermes/profiles/corporate-agent/.env ]; then
-    CORP_TOKEN=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" data/hermes/profiles/corporate-agent/.env 2>/dev/null | cut -d'=' -f2- || true)
-    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${CORP_TOKEN}|" data/hermes/profiles/corporate-agent/.env
-fi
+map_profile_env "data/hermes/profiles/corporate-agent/.env" "CORPORATE"
 
 cp -f .env data/hermes/profiles/public-agent/.env
 echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/profiles/public-agent/.env
-if [ -f data/hermes/profiles/public-agent/.env ]; then
-    PUB_TOKEN=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" data/hermes/profiles/public-agent/.env 2>/dev/null | cut -d'=' -f2- || true)
-    sed -i "s|^DISCORD_BOT_TOKEN=.*|DISCORD_BOT_TOKEN=${PUB_TOKEN}|" data/hermes/profiles/public-agent/.env
-fi
+map_profile_env "data/hermes/profiles/public-agent/.env" "PUBLIC"
 
-# Dynamically update platforms.discord.enabled in config.yaml per profile
-update_discord_enabled_status() {
+# Dynamically update platforms status in config.yaml per profile
+update_platforms_status() {
     local config_file=$1
-    local token_val=$2
+    local pfx=$2
+
+    local discord_token=$(grep "^DISCORD_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+    if [ "$pfx" = "OPERATIONS" ]; then
+        discord_token=${discord_token:-$(grep "^DISCORD_BOT_TOKEN=" .env 2>/dev/null | cut -d'=' -f2- || true)}
+    fi
+    local telegram_token=$(grep "^TELEGRAM_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+    local email_addr=$(grep "^EMAIL_ADDRESS_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
+
     if [ -f "$config_file" ]; then
         python3 -c "
 import sys, yaml
 path = sys.argv[1]
-has_token = bool(sys.argv[2])
+has_discord = bool(sys.argv[2])
+has_telegram = bool(sys.argv[3])
+has_email = bool(sys.argv[4])
 try:
     with open(path, 'r') as f:
         data = yaml.safe_load(f)
-    if isinstance(data, dict) and 'platforms' in data and 'discord' in data['platforms']:
-        data['platforms']['discord']['enabled'] = has_token
+    if isinstance(data, dict) and 'platforms' in data:
+        if 'discord' in data['platforms']:
+            data['platforms']['discord']['enabled'] = has_discord
+        if 'telegram' in data['platforms']:
+            data['platforms']['telegram']['enabled'] = has_telegram
+        if 'email' in data['platforms']:
+            data['platforms']['email']['enabled'] = has_email
         with open(path, 'w') as f:
             yaml.safe_dump(data, f, sort_keys=False)
 except Exception:
     pass
-" "$config_file" "$token_val" 2>/dev/null || true
+" "$config_file" "${discord_token}" "${telegram_token}" "${email_addr}" 2>/dev/null || true
     fi
 }
 
-OP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_OPERATIONS=" .env 2>/dev/null | cut -d'=' -f2- || true)
-OP_TOKEN_VAL=${OP_TOKEN_VAL:-$(grep "^DISCORD_BOT_TOKEN=" .env 2>/dev/null | cut -d'=' -f2- || true)}
-CORP_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_CORPORATE=" .env 2>/dev/null | cut -d'=' -f2- || true)
-PUB_TOKEN_VAL=$(grep "^DISCORD_BOT_TOKEN_PUBLIC=" .env 2>/dev/null | cut -d'=' -f2- || true)
-
-update_discord_enabled_status "data/hermes/config.yaml" "${OP_TOKEN_VAL}"
-update_discord_enabled_status "data/hermes/profiles/corporate-agent/config.yaml" "${CORP_TOKEN_VAL}"
-update_discord_enabled_status "data/hermes/profiles/public-agent/config.yaml" "${PUB_TOKEN_VAL}"
+update_platforms_status "data/hermes/config.yaml" "OPERATIONS"
+update_platforms_status "data/hermes/profiles/corporate-agent/config.yaml" "CORPORATE"
+update_platforms_status "data/hermes/profiles/public-agent/config.yaml" "PUBLIC"
 
 # Clean junk/orphaned profile YAML placeholders if left in config folder
 rm -f config/*-profile.yaml 2>/dev/null || true
