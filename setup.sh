@@ -40,48 +40,106 @@ check_dep "curl"
 check_dep "python3"
 
 # 1. Environment Configurations Setup
-if [ ! -f .env ]; then
-    echo -e "\n${YELLOW}Provisioning environment configuration credentials (.env)...${NC}"
+# Load existing environment configuration variables if .env exists
+if [ -f .env ]; then
+    echo -e "${BLUE}-> Existing .env configuration detected. Loading current values...${NC}"
+    while IFS= read -r line || [ -n "$line" ]; do
+        if [[ "$line" =~ ^[A-Za-z0-9_]+= ]]; then
+            key=$(echo "$line" | cut -d= -f1)
+            val=$(echo "$line" | cut -d= -f2-)
+            # Strip outer single/double quotes
+            val="${val#\"}"
+            val="${val%\"}"
+            val="${val#\'}"
+            val="${val%\'}"
+            eval "EXISTING_${key}=\"\$val\""
+        fi
+    done < .env
+fi
+
+echo -e "\n${YELLOW}Provisioning environment configuration credentials (.env)...${NC}"
+
+prompt_env_var() {
+    local var_name=$1
+    local prompt_label=$2
+    local is_required=$3
     
-    # Prompt for OpenRouter Key (Required)
+    local lookup="EXISTING_${var_name}"
+    local existing_val="${!lookup:-}"
+    local result_val=""
+    local input_val=""
+    
     while true; do
-        read -rp "Enter OpenRouter API Key (Required): " OPENROUTER_KEY || OPENROUTER_KEY=""
-        if [ -n "$OPENROUTER_KEY" ]; then
-            break;
-        else
-            if [ ! -t 0 ]; then
-                OPENROUTER_KEY="sk-or-test-dummy-key"
+        if [ -n "$existing_val" ]; then
+            local masked=""
+            if [ ${#existing_val} -gt 8 ]; then
+                masked="${existing_val:0:4}...${existing_val: -4}"
+            else
+                masked="******"
+            fi
+            read -rp "Enter $prompt_label (Current: $masked, ENTER to keep): " input_val || input_val=""
+            if [ -z "$input_val" ]; then
+                result_val="$existing_val"
+                break
+            else
+                result_val="$input_val"
                 break
             fi
-            echo -e "${RED}OpenRouter API Key cannot be blank!${NC}"
+        else
+            local req_suffix=""
+            if [ "$is_required" = "true" ]; then
+                req_suffix=" (Required)"
+            else
+                req_suffix=" (Optional - Press ENTER to skip)"
+            fi
+            read -rp "Enter $prompt_label$req_suffix: " input_val || input_val=""
+            if [ -n "$input_val" ]; then
+                result_val="$input_val"
+                break
+            elif [ "$is_required" = "false" ]; then
+                result_val=""
+                break
+            else
+                if [ ! -t 0 ]; then
+                    result_val="dummy-test-key-fallback"
+                    break
+                fi
+                echo -e "${RED}$prompt_label is required and cannot be blank!${NC}"
+            fi
         fi
     done
-
-    # Prompt for Discord Bot Token per Profile (Optional - Press ENTER to skip)
-    read -rp "Enter Discord Bot Token for Operations Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_OPERATIONS || DISCORD_TOKEN_OPERATIONS=""
-    read -rp "Enter Discord Bot Token for Corporate Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_CORPORATE || DISCORD_TOKEN_CORPORATE=""
-    read -rp "Enter Discord Bot Token for Public Agent (Optional - Press ENTER to skip): " DISCORD_TOKEN_PUBLIC || DISCORD_TOKEN_PUBLIC=""
-
-    # Additional Integration API Keys (Optional - Press ENTER to skip)
-    read -rp "Enter Telegram Bot Token (Optional - Press ENTER to skip): " TELEGRAM_TOKEN || TELEGRAM_TOKEN=""
-    read -rp "Enter Context7 API Key (Optional - Press ENTER to skip): " CONTEXT7_KEY || CONTEXT7_KEY=""
-    read -rp "Enter Exa API Key (Optional - Press ENTER to skip): " EXA_KEY || EXA_KEY=""
-    read -rp "Enter Firecrawl API Key (Optional - Press ENTER to skip): " FIRECRAWL_KEY || FIRECRAWL_KEY=""
-    read -rp "Enter Groq API Key (Optional - Press ENTER to skip): " GROQ_KEY || GROQ_KEY=""
-    read -rp "Enter Linear Access Token (Optional - Press ENTER to skip): " LINEAR_TOKEN || LINEAR_TOKEN=""
-    read -rp "Enter GitHub Access Token (Optional - Press ENTER to skip): " GITHUB_TOKEN_VAL || GITHUB_TOKEN_VAL=""
-
-    DISCORD_TOKEN="${DISCORD_TOKEN_OPERATIONS:-${DISCORD_TOKEN_CORPORATE:-$DISCORD_TOKEN_PUBLIC}}"
     
-    # Generate cryptographic secrets automatically if not supplied
-    BETTER_AUTH_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
-    JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
-    INITIAL_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
-    DASHBOARD_PASSWORD=$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)
-    DASHBOARD_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)
-    HOST_UID=$(id -u "${SUDO_USER:-$USER}")
-    HOST_GID=$(id -g "${SUDO_USER:-$USER}")
+    eval "$var_name=\"\$result_val\""
+}
 
+# Prompting standard orchestration variables
+prompt_env_var "OPENROUTER_API_KEY" "OpenRouter API Key" "true"
+
+prompt_env_var "DISCORD_BOT_TOKEN_OPERATIONS" "Discord Bot Token for Operations Agent" "false"
+prompt_env_var "DISCORD_BOT_TOKEN_CORPORATE" "Discord Bot Token for Corporate Agent" "false"
+prompt_env_var "DISCORD_BOT_TOKEN_PUBLIC" "Discord Bot Token for Public Agent" "false"
+
+prompt_env_var "TELEGRAM_BOT_TOKEN" "Telegram Bot Token" "false"
+prompt_env_var "CONTEXT7_API_KEY" "Context7 API Key" "false"
+prompt_env_var "EXA_API_KEY" "Exa API Key" "false"
+prompt_env_var "FIRECRAWL_API_KEY" "Firecrawl API Key" "false"
+prompt_env_var "GROQ_API_KEY" "Groq API Key" "false"
+prompt_env_var "LINEAR_MCP_ACCESS_TOKEN" "Linear Access Token" "false"
+prompt_env_var "GITHUB_TOKEN" "GitHub Access Token" "false"
+
+# Build fallback Discord Bot Token
+DISCORD_TOKEN="${DISCORD_BOT_TOKEN_OPERATIONS:-${DISCORD_BOT_TOKEN_CORPORATE:-$DISCORD_BOT_TOKEN_PUBLIC}}"
+# Fallback OpenRouter Key for default setup checks
+OPENROUTER_KEY="${OPENROUTER_API_KEY}"
+
+# Generate cryptographic secrets automatically if not supplied
+BETTER_AUTH_SECRET=${EXISTING_BETTER_AUTH_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
+JWT_SECRET=${EXISTING_JWT_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
+INITIAL_PASSWORD=${EXISTING_INITIAL_PASSWORD:-$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)}
+DASHBOARD_PASSWORD=${EXISTING_DASHBOARD_PASSWORD:-$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)}
+DASHBOARD_SECRET=${EXISTING_DASHBOARD_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
+HOST_UID=${EXISTING_HERMES_UID:-$(id -u "${SUDO_USER:-$USER}")}
+HOST_GID=${EXISTING_HERMES_GID:-$(id -g "${SUDO_USER:-$USER}")}
     cat <<ENVEOF > .env
 # =============================================================================
 # Claude Code (CLI) Redirect Custom Variables
@@ -93,11 +151,11 @@ ANTHROPIC_MODEL=oc/deepseek-v4-flash-free
 # =============================================================================
 # OpenIntent Shared Core Environment Variables
 # =============================================================================
-OPENROUTER_API_KEY=${OPENROUTER_KEY}
-DISCORD_BOT_TOKEN_OPERATIONS=${DISCORD_TOKEN_OPERATIONS}
-DISCORD_BOT_TOKEN_CORPORATE=${DISCORD_TOKEN_CORPORATE}
-DISCORD_BOT_TOKEN_PUBLIC=${DISCORD_TOKEN_PUBLIC}
-DISCORD_BOT_TOKEN=${DISCORD_TOKEN}
+OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+DISCORD_BOT_TOKEN_OPERATIONS=${DISCORD_BOT_TOKEN_OPERATIONS:-}
+DISCORD_BOT_TOKEN_CORPORATE=${DISCORD_BOT_TOKEN_CORPORATE:-}
+DISCORD_BOT_TOKEN_PUBLIC=${DISCORD_BOT_TOKEN_PUBLIC:-}
+DISCORD_BOT_TOKEN=${DISCORD_TOKEN:-}
 BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
 JWT_SECRET=${JWT_SECRET}
 INITIAL_PASSWORD=${INITIAL_PASSWORD}
@@ -123,10 +181,10 @@ CAMOFOX_URL=http://camoufox-browser:9377
 # =============================================================================
 # Exa & Firecrawl Search Settings (User can fill optional keys)
 # =============================================================================
-EXA_API_KEY=${EXA_KEY}
-FIRECRAWL_API_KEY=${FIRECRAWL_KEY}
+EXA_API_KEY=${EXA_API_KEY:-}
+FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY:-}
 9ROUTER_MCP_AUTH_TOKEN=
-CONTEXT7_API_KEY=${CONTEXT7_KEY}
+CONTEXT7_API_KEY=${CONTEXT7_API_KEY:-}
 
 # =============================================================================
 # Hindsight Vector Engine Settings
@@ -186,18 +244,18 @@ OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
 DEFAULT_BWS_ACCESS_TOKEN=
 CORPORATE_BWS_ACCESS_TOKEN=
 PUBLIC_BWS_ACCESS_TOKEN=
-LINEAR_MCP_ACCESS_TOKEN=${LINEAR_TOKEN}
-GITHUB_TOKEN=${GITHUB_TOKEN_VAL}
+LINEAR_MCP_ACCESS_TOKEN=${LINEAR_MCP_ACCESS_TOKEN:-}
+GITHUB_TOKEN=${GITHUB_TOKEN:-}
 GITHUB_APP_ID=
 GITHUB_APP_PRIVATE_KEY_PATH=
 GITHUB_APP_INSTALLATION_ID=
 LINEAR_MCP_AUTH=
 NOTION_MCP_AUTH=
-GROQ_API_KEY=${GROQ_KEY}
+GROQ_API_KEY=${GROQ_API_KEY:-}
 STT_GROQ_MODEL=whisper-large-v3-turbo
 STT_OPENAI_MODEL=whisper-1
 OBSIDIAN_VAULT_PATH=
-TELEGRAM_BOT_TOKEN=${TELEGRAM_TOKEN}
+TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
 TELEGRAM_ALLOWED_USERS=
 TELEGRAM_HOME_CHANNEL=
 TELEGRAM_HOME_CHANNEL_NAME=
@@ -244,107 +302,10 @@ NUMEXPR_NUM_THREADS=1
 TOKENIZERS_PARALLELISM=false
 ENVEOF
     
-    echo -e "${GREEN}-> .env file created successfully!${NC}"
+    echo -e "${GREEN}-> .env file configured successfully!${NC}"
     echo -e "${YELLOW}Default Admin Password generated for 9router: ${INITIAL_PASSWORD}${NC}"
     echo -e "${YELLOW}Default Admin Username for Dashboard: admin${NC}"
     echo -e "${YELLOW}Default Admin Password for Dashboard: ${DASHBOARD_PASSWORD}${NC} (saved securely in .env)"
-else
-    echo -e "${GREEN}-> .env file already exists. Skipping prompts.${NC}"
-    if ! grep -q "^HERMES_UID=" .env; then
-        echo "HERMES_UID=$(id -u "${SUDO_USER:-$USER}")" >> .env
-    fi
-    if ! grep -q "^HERMES_GID=" .env; then
-        echo "HERMES_GID=$(id -g "${SUDO_USER:-$USER}")" >> .env
-    fi
-    
-    # Ensure any new/missing variables are appended to the .env file
-    echo "Updating existing .env file with missing template variables..."
-    while IFS= read -r line; do
-        if [[ "$line" =~ ^[A-Za-z0-9_]+= ]]; then
-            key=$(echo "$line" | cut -d= -f1)
-            if ! grep -q "^${key}=" .env; then
-                echo "$line" >> .env
-            fi
-        fi
-    done << 'EOF'
-PAPERCLIP_PUBLIC_URL=http://localhost:3100
-PAPERCLIP_ALLOWED_HOSTNAMES=localhost
-DISCORD_ALLOWED_USERS=
-DISCORD_ALLOWED_CHANNELS=*
-DISCORD_FREE_RESPONSE_CHANNELS=
-DISCORD_IGNORED_CHANNELS=
-DISCORD_THREAD_REQUIRE_MENTION=true
-DISCORD_NO_THREAD_CHANNELS=*
-DISCORD_REQUIRE_MENTION=true
-DISCORD_AUTO_THREAD=false
-DISCORD_IGNORE_NO_MENTION=true
-DISCORD_ALLOW_BOTS=mentions
-DISCORD_ALLOW_MENTION_REPLIED_USER=false
-DISCORD_REPEAT_MENTIONS_ON_SPLIT=false
-HERMES_DISCORD_BOT_TEXT_BATCH_DELAY_SECONDS=2.5
-DISCORD_HOME_CHANNEL=
-DISCORD_HOME_CHANNEL_THREAD_ID=
-OPENAI_COMPATIBLE_IMAGE_BASE_URL=http://9router:20128/v1
-OPENAI_COMPATIBLE_IMAGE_MODEL=cx/gpt-5.5
-DEFAULT_BWS_ACCESS_TOKEN=
-CORPORATE_BWS_ACCESS_TOKEN=
-PUBLIC_BWS_ACCESS_TOKEN=
-LINEAR_MCP_ACCESS_TOKEN=
-GITHUB_TOKEN=
-GITHUB_APP_ID=
-GITHUB_APP_PRIVATE_KEY_PATH=
-GITHUB_APP_INSTALLATION_ID=
-LINEAR_MCP_AUTH=
-NOTION_MCP_AUTH=
-GROQ_API_KEY=
-STT_GROQ_MODEL=whisper-large-v3-turbo
-STT_OPENAI_MODEL=whisper-1
-OBSIDIAN_VAULT_PATH=
-TELEGRAM_BOT_TOKEN=
-TELEGRAM_ALLOWED_USERS=
-TELEGRAM_HOME_CHANNEL=
-TELEGRAM_HOME_CHANNEL_NAME=
-TELEGRAM_WEBHOOK_URL=
-TELEGRAM_WEBHOOK_PORT=8443
-TELEGRAM_WEBHOOK_SECRET=
-SLACK_BOT_TOKEN=
-SLACK_APP_TOKEN=
-SLACK_ALLOWED_USERS=
-EMAIL_ADDRESS=
-EMAIL_PASSWORD=
-EMAIL_SMTP_PORT=587
-EMAIL_IMAP_PORT=993
-EMAIL_HOME_ADDRESS=
-EMAIL_HOME_ADDRESS_NAME=
-EMAIL_POLL_INTERVAL=90
-EMAIL_IMAP_HOST=imap.gmail.com
-EMAIL_SMTP_HOST=smtp.gmail.com
-EMAIL_ALLOWED_USERS=
-WHATSAPP_MODE=self-chat
-WHATSAPP_ENABLED=false
-WHATSAPP_ALLOWED_USERS=
-API_SERVER_ENABLED=true
-API_SERVER_HOST=127.0.0.1
-API_SERVER_PORT=8642
-API_SERVER_KEY=
-SUDO_PASSWORD=
-TERMINAL_ENV=docker
-TERMINAL_TIMEOUT=60
-TERMINAL_LIFETIME_SECONDS=300
-HERMES_HUMAN_DELAY_MIN_MS=800
-TERMINAL_SSH_HOST=
-TERMINAL_SSH_USER=
-TERMINAL_SSH_PORT=22
-TERMINAL_SSH_KEY=~/.ssh/id_rsa
-TINKER_API_KEY=
-WANDB_API_KEY=
-OMP_NUM_THREADS=1
-OPENBLAS_NUM_THREADS=1
-MKL_NUM_THREADS=1
-NUMEXPR_NUM_THREADS=1
-TOKENIZERS_PARALLELISM=false
-EOF
-fi
 
 
 # 4. Bootstrap runtime profiles folders
