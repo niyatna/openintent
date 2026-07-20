@@ -115,46 +115,91 @@ prompt_env_var() {
 # Prompting standard orchestration variables
 prompt_env_var "OPENROUTER_API_KEY" "OpenRouter API Key" "true"
 
-prompt_env_var "DISCORD_BOT_TOKEN_OPERATIONS" "Discord Bot Token for Operations Agent" "false"
-prompt_env_var "DISCORD_BOT_TOKEN_CORPORATE" "Discord Bot Token for Corporate Agent" "false"
-prompt_env_var "DISCORD_BOT_TOKEN_PUBLIC" "Discord Bot Token for Public Agent" "false"
+# Prompt to select which agent lanes to activate (ENTER/Default is Yes)
+SETUP_OPERATIONS="true"
+SETUP_CORPORATE="true"
+SETUP_PUBLIC="true"
 
-# Prompt for Telegram Bot Tokens per Profile (Optional)
-prompt_env_var "TELEGRAM_BOT_TOKEN_OPERATIONS" "Telegram Bot Token for Operations Agent" "false"
-prompt_env_var "TELEGRAM_BOT_TOKEN_CORPORATE" "Telegram Bot Token for Corporate Agent" "false"
-prompt_env_var "TELEGRAM_BOT_TOKEN_PUBLIC" "Telegram Bot Token for Public Agent" "false"
+if [ -t 0 ]; then
+    echo -e "\n${YELLOW}Which Agent Lanes would you like to set up and enable?${NC}"
+    read -rp "1. Enable Operations/Default Agent (y/n) [Default: y]: " ans_op
+    if [ "${ans_op,,}" = "n" ] || [ "${ans_op,,}" = "no" ]; then SETUP_OPERATIONS="false"; fi
+    
+    read -rp "2. Enable Corporate Agent (y/n) [Default: y]: " ans_corp
+    if [ "${ans_corp,,}" = "n" ] || [ "${ans_corp,,}" = "no" ]; then SETUP_CORPORATE="false"; fi
+    
+    read -rp "3. Enable Public Agent (y/n) [Default: y]: " ans_pub
+    if [ "${ans_pub,,}" = "n" ] || [ "${ans_pub,,}" = "no" ]; then SETUP_PUBLIC="false"; fi
+fi
 
-# Prompt for Email Address/Password per Profile (Optional)
-prompt_env_var "EMAIL_ADDRESS_OPERATIONS" "Email Address for Operations Agent" "false"
-prompt_env_var "EMAIL_PASSWORD_OPERATIONS" "Email Password for Operations Agent" "false"
-prompt_env_var "EMAIL_ADDRESS_CORPORATE" "Email Address for Corporate Agent" "false"
-prompt_env_var "EMAIL_PASSWORD_CORPORATE" "Email Password for Corporate Agent" "false"
-prompt_env_var "EMAIL_ADDRESS_PUBLIC" "Email Address for Public Agent" "false"
-prompt_env_var "EMAIL_PASSWORD_PUBLIC" "Email Password for Public Agent" "false"
+if [ "$SETUP_OPERATIONS" = "true" ]; then
+    echo -e "\n${BLUE}--- Operations/Default Agent Configuration ---${NC}"
+    prompt_env_var "DISCORD_BOT_TOKEN_OPERATIONS" "Discord Bot Token for Operations Agent" "false"
+    prompt_env_var "TELEGRAM_BOT_TOKEN_OPERATIONS" "Telegram Bot Token for Operations Agent" "false"
+    prompt_env_var "EMAIL_ADDRESS_OPERATIONS" "Email Address for Operations Agent" "false"
+    prompt_env_var "EMAIL_PASSWORD_OPERATIONS" "Email Password for Operations Agent" "false"
+    prompt_env_var "SLACK_BOT_TOKEN_OPERATIONS" "Slack Bot Token for Operations Agent" "false"
+    prompt_env_var "SLACK_APP_TOKEN_OPERATIONS" "Slack App Token for Operations Agent" "false"
+    prompt_env_var "DEFAULT_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Operations Agent" "false"
+    prompt_env_var "GITHUB_TOKEN_OPERATIONS" "GitHub Token for Operations Agent" "false"
+    prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_OPERATIONS" "Linear Token for Operations Agent" "false"
+else
+    DISCORD_BOT_TOKEN_OPERATIONS=""
+    TELEGRAM_BOT_TOKEN_OPERATIONS=""
+    EMAIL_ADDRESS_OPERATIONS=""
+    EMAIL_PASSWORD_OPERATIONS=""
+    SLACK_BOT_TOKEN_OPERATIONS=""
+    SLACK_APP_TOKEN_OPERATIONS=""
+    DEFAULT_BWS_ACCESS_TOKEN=""
+    GITHUB_TOKEN_OPERATIONS=""
+    LINEAR_MCP_ACCESS_TOKEN_OPERATIONS=""
+fi
 
-# Prompt for Slack Integration per Profile (Optional)
-prompt_env_var "SLACK_BOT_TOKEN_OPERATIONS" "Slack Bot Token for Operations Agent" "false"
-prompt_env_var "SLACK_APP_TOKEN_OPERATIONS" "Slack App Token for Operations Agent" "false"
-prompt_env_var "SLACK_BOT_TOKEN_CORPORATE" "Slack Bot Token for Corporate Agent" "false"
-prompt_env_var "SLACK_APP_TOKEN_CORPORATE" "Slack App Token for Corporate Agent" "false"
-prompt_env_var "SLACK_BOT_TOKEN_PUBLIC" "Slack Bot Token for Public Agent" "false"
-prompt_env_var "SLACK_APP_TOKEN_PUBLIC" "Slack App Token for Public Agent" "false"
+if [ "$SETUP_CORPORATE" = "true" ]; then
+    echo -e "\n${BLUE}--- Corporate Agent Configuration ---${NC}"
+    prompt_env_var "DISCORD_BOT_TOKEN_CORPORATE" "Discord Bot Token for Corporate Agent" "false"
+    prompt_env_var "TELEGRAM_BOT_TOKEN_CORPORATE" "Telegram Bot Token for Corporate Agent" "false"
+    prompt_env_var "EMAIL_ADDRESS_CORPORATE" "Email Address for Corporate Agent" "false"
+    prompt_env_var "EMAIL_PASSWORD_CORPORATE" "Email Password for Corporate Agent" "false"
+    prompt_env_var "SLACK_BOT_TOKEN_CORPORATE" "Slack Bot Token for Corporate Agent" "false"
+    prompt_env_var "SLACK_APP_TOKEN_CORPORATE" "Slack App Token for Corporate Agent" "false"
+    prompt_env_var "CORPORATE_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Corporate Agent" "false"
+    prompt_env_var "GITHUB_TOKEN_CORPORATE" "GitHub Token for Corporate Agent" "false"
+    prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_CORPORATE" "Linear Token for Corporate Agent" "false"
+else
+    DISCORD_BOT_TOKEN_CORPORATE=""
+    TELEGRAM_BOT_TOKEN_CORPORATE=""
+    EMAIL_ADDRESS_CORPORATE=""
+    EMAIL_PASSWORD_CORPORATE=""
+    SLACK_BOT_TOKEN_CORPORATE=""
+    SLACK_APP_TOKEN_CORPORATE=""
+    CORPORATE_BWS_ACCESS_TOKEN=""
+    GITHUB_TOKEN_CORPORATE=""
+    LINEAR_MCP_ACCESS_TOKEN_CORPORATE=""
+fi
 
-# Prompt for Bitwarden Access Tokens per Profile (Optional)
-prompt_env_var "DEFAULT_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Operations Agent" "false"
-prompt_env_var "CORPORATE_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Corporate Agent" "false"
-prompt_env_var "PUBLIC_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Public Agent" "false"
-
-# Prompt for GitHub Tokens per Profile (Optional)
-prompt_env_var "GITHUB_TOKEN_OPERATIONS" "GitHub Token for Operations Agent" "false"
-prompt_env_var "GITHUB_TOKEN_CORPORATE" "GitHub Token for Corporate Agent" "false"
-prompt_env_var "GITHUB_TOKEN_PUBLIC" "GitHub Token for Public Agent" "false"
-
-# Prompt for Linear Tokens per Profile (Optional)
-prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_OPERATIONS" "Linear Token for Operations Agent" "false"
-prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_CORPORATE" "Linear Token for Corporate Agent" "false"
-prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_PUBLIC" "Linear Token for Public Agent" "false"
-
+if [ "$SETUP_PUBLIC" = "true" ]; then
+    echo -e "\n${BLUE}--- Public Agent Configuration ---${NC}"
+    prompt_env_var "DISCORD_BOT_TOKEN_PUBLIC" "Discord Bot Token for Public Agent" "false"
+    prompt_env_var "TELEGRAM_BOT_TOKEN_PUBLIC" "Telegram Bot Token for Public Agent" "false"
+    prompt_env_var "EMAIL_ADDRESS_PUBLIC" "Email Address for Public Agent" "false"
+    prompt_env_var "EMAIL_PASSWORD_PUBLIC" "Email Password for Public Agent" "false"
+    prompt_env_var "SLACK_BOT_TOKEN_PUBLIC" "Slack Bot Token for Public Agent" "false"
+    prompt_env_var "SLACK_APP_TOKEN_PUBLIC" "Slack App Token for Public Agent" "false"
+    prompt_env_var "PUBLIC_BWS_ACCESS_TOKEN" "Bitwarden Access Token for Public Agent" "false"
+    prompt_env_var "GITHUB_TOKEN_PUBLIC" "GitHub Token for Public Agent" "false"
+    prompt_env_var "LINEAR_MCP_ACCESS_TOKEN_PUBLIC" "Linear Token for Public Agent" "false"
+else
+    DISCORD_BOT_TOKEN_PUBLIC=""
+    TELEGRAM_BOT_TOKEN_PUBLIC=""
+    EMAIL_ADDRESS_PUBLIC=""
+    EMAIL_PASSWORD_PUBLIC=""
+    SLACK_BOT_TOKEN_PUBLIC=""
+    SLACK_APP_TOKEN_PUBLIC=""
+    PUBLIC_BWS_ACCESS_TOKEN=""
+    GITHUB_TOKEN_PUBLIC=""
+    LINEAR_MCP_ACCESS_TOKEN_PUBLIC=""
+fi
 # Global Integration Keys
 prompt_env_var "CONTEXT7_API_KEY" "Context7 API Key" "false"
 prompt_env_var "EXA_API_KEY" "Exa API Key" "false"
