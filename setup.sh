@@ -217,6 +217,31 @@ GITHUB_TOKEN="${GITHUB_TOKEN_OPERATIONS:-${GITHUB_TOKEN_CORPORATE:-$GITHUB_TOKEN
 LINEAR_MCP_ACCESS_TOKEN="${LINEAR_MCP_ACCESS_TOKEN_OPERATIONS:-${LINEAR_MCP_ACCESS_TOKEN_CORPORATE:-$LINEAR_MCP_ACCESS_TOKEN_PUBLIC}}"
 OPENROUTER_KEY="${OPENROUTER_API_KEY}"
 
+# Resolve or generate 9router API key
+EXISTING_9ROUTER_KEY="${EXISTING_9ROUTER_API_KEY:-}"
+if [ -z "$EXISTING_9ROUTER_KEY" ] && [ -f data/9router/.niyatna-9router-key ]; then
+    EXISTING_9ROUTER_KEY=$(cat data/9router/.niyatna-9router-key 2>/dev/null || true)
+fi
+
+if [ -n "$EXISTING_9ROUTER_KEY" ]; then
+    ROUTER_API_KEY="$EXISTING_9ROUTER_KEY"
+else
+    AGENT_KEY=$(openssl rand -hex 12 2>/dev/null || python3 -c "import secrets; print(secrets.token_hex(12))")
+    ROUTER_API_KEY="sk-niyatna-agent-${AGENT_KEY}"
+fi
+
+# Write key configuration files for 9router & Hindsight API dependencies
+mkdir -p data/9router
+echo "$ROUTER_API_KEY" > data/9router/.niyatna-9router-key
+chmod 644 data/9router/.niyatna-9router-key
+cat << KEYEOF > data/9router/.agent.env
+9ROUTER_API_KEY=${ROUTER_API_KEY}
+HINDSIGHT_API_KEY=${ROUTER_API_KEY}
+HINDSIGHT_API_LLM_API_KEY=${ROUTER_API_KEY}
+HINDSIGHT_LLM_API_KEY=${ROUTER_API_KEY}
+KEYEOF
+chmod 644 data/9router/.agent.env
+
 BETTER_AUTH_SECRET=${EXISTING_BETTER_AUTH_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
 JWT_SECRET=${EXISTING_JWT_SECRET:-$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | xargs -0 | sha256sum | cut -d' ' -f1)}
 INITIAL_PASSWORD=${EXISTING_INITIAL_PASSWORD:-$(openssl rand -hex 12 2>/dev/null || head -c 12 /dev/urandom | xargs -0 | sha256sum | cut -c 1-12)}
@@ -235,7 +260,8 @@ ANTHROPIC_MODEL=oc/deepseek-v4-flash-free
 # =============================================================================
 # OpenIntent Shared Core Environment Variables
 # =============================================================================
-OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+OPENROUTER_API_KEY=${OPENROUTER_KEY}
+9ROUTER_API_KEY=${ROUTER_API_KEY}
 DISCORD_BOT_TOKEN_OPERATIONS=${DISCORD_BOT_TOKEN_OPERATIONS:-}
 DISCORD_BOT_TOKEN_CORPORATE=${DISCORD_BOT_TOKEN_CORPORATE:-}
 DISCORD_BOT_TOKEN_PUBLIC=${DISCORD_BOT_TOKEN_PUBLIC:-}
@@ -267,7 +293,6 @@ CAMOFOX_URL=http://camoufox-browser:9377
 # =============================================================================
 EXA_API_KEY=${EXA_API_KEY:-}
 FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY:-}
-9ROUTER_MCP_AUTH_TOKEN=
 CONTEXT7_API_KEY=${CONTEXT7_API_KEY:-}
 
 # =============================================================================
@@ -429,19 +454,6 @@ mkdir -p data/hindsight
 mkdir -p data/paperclip
 mkdir -p data/camoufox
 mkdir -p data/postgres
-if [ ! -f data/9router/.niyatna-9router-key ] || [ ! -f data/9router/.agent.env ]; then
-    AGENT_KEY=$(openssl rand -hex 12 2>/dev/null || python3 -c "import secrets; print(secrets.token_hex(12))")
-    NIYATNA_KEY="sk-niyatna-agent-${AGENT_KEY}"
-    echo "$NIYATNA_KEY" > data/9router/.niyatna-9router-key
-    chmod 644 data/9router/.niyatna-9router-key
-    cat << KEYEOF > data/9router/.agent.env
-9ROUTER_API_KEY=${NIYATNA_KEY}
-HINDSIGHT_API_KEY=${NIYATNA_KEY}
-HINDSIGHT_API_LLM_API_KEY=${NIYATNA_KEY}
-HINDSIGHT_LLM_API_KEY=${NIYATNA_KEY}
-KEYEOF
-    chmod 644 data/9router/.agent.env
-fi
 
 # Ensure writable permissions for non-root container users (UID 1000/70/etc.)
 chmod -R 777 data
