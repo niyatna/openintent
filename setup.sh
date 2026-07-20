@@ -457,10 +457,26 @@ cp -f scripts/discord_setup.py data/hermes/discord_setup.py 2>/dev/null || true
 
 # Bind env variables securely
 map_profile_env() {
-    local env_file=$1
-    local pfx=$2 # OPERATIONS, CORPORATE, PUBLIC
+    local example_file=$1
+    local env_file=$2
+    local pfx=$3 # OPERATIONS, CORPORATE, PUBLIC
 
-    if [ -f "$env_file" ]; then
+    if [ -f "$example_file" ]; then
+        # 1. Start with a clean copy of the profile's EXAMPLE
+        cp -f "$example_file" "$env_file"
+
+        # 2. Fill standard keys matching from root .env
+        while IFS= read -r line || [ -n "$line" ]; do
+            if [[ "$line" =~ ^[A-Za-z0-9_]+= ]]; then
+                local key=$(echo "$line" | cut -d= -f1)
+                local val=$(echo "$line" | cut -d= -f2-)
+                if grep -q "^${key}=" "$env_file" 2>/dev/null; then
+                    sed -i "s|^${key}=.*|${key}=${val}|" "$env_file"
+                fi
+            fi
+        done < .env
+
+        # 3. Map profile-specific platform credentials to standard Hermes names
         # Map Discord
         local disc_tok=$(grep "^DISCORD_BOT_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
         if [ "$pfx" = "OPERATIONS" ]; then
@@ -484,12 +500,19 @@ map_profile_env() {
         sed -i "s|^SLACK_BOT_TOKEN=.*|SLACK_BOT_TOKEN=${sl_bot}|" "$env_file"
         sed -i "s|^SLACK_APP_TOKEN=.*|SLACK_APP_TOKEN=${sl_app}|" "$env_file"
 
-        # Map Bitwarden Secrets Manager
+        # Map Bitwarden Secrets Manager (BWS_ACCESS_TOKEN)
         local bws_var="DEFAULT_BWS_ACCESS_TOKEN"
         if [ "$pfx" = "CORPORATE" ]; then bws_var="CORPORATE_BWS_ACCESS_TOKEN"; fi
         if [ "$pfx" = "PUBLIC" ]; then bws_var="PUBLIC_BWS_ACCESS_TOKEN"; fi
         local bws_tok=$(grep "^${bws_var}=" .env 2>/dev/null | cut -d'=' -f2- || true)
-        sed -i "s|^BWS_ACCESS_TOKEN=.*|BWS_ACCESS_TOKEN=${bws_tok}|" "$env_file" || echo "BWS_ACCESS_TOKEN=${bws_tok}" >> "$env_file"
+        
+        if grep -q "^BWS_ACCESS_TOKEN=" "$env_file" 2>/dev/null; then
+            sed -i "s|^BWS_ACCESS_TOKEN=.*|BWS_ACCESS_TOKEN=${bws_tok}|" "$env_file"
+        elif grep -q "^${bws_var}=" "$env_file" 2>/dev/null; then
+            sed -i "s|^${bws_var}=.*|${bws_var}=${bws_tok}|" "$env_file"
+        else
+            echo "BWS_ACCESS_TOKEN=${bws_tok}" >> "$env_file"
+        fi
 
         # Map GitHub & Linear
         local gh_tok=$(grep "^GITHUB_TOKEN_${pfx}=" .env 2>/dev/null | cut -d'=' -f2- || true)
@@ -499,17 +522,14 @@ map_profile_env() {
     fi
 }
 
-cp -f .env data/hermes/.env
+map_profile_env "profiles/default/.env.EXAMPLE" "data/hermes/.env" "OPERATIONS"
 echo "TERMINAL_CWD=/opt/data/company-brain" >> data/hermes/.env
-map_profile_env "data/hermes/.env" "OPERATIONS"
 
-cp -f .env data/hermes/profiles/corporate-agent/.env
+map_profile_env "profiles/corporate-agent/.env.EXAMPLE" "data/hermes/profiles/corporate-agent/.env" "CORPORATE"
 echo "TERMINAL_CWD=/opt/data/profiles/corporate-agent/corporate-brain" >> data/hermes/profiles/corporate-agent/.env
-map_profile_env "data/hermes/profiles/corporate-agent/.env" "CORPORATE"
 
-cp -f .env data/hermes/profiles/public-agent/.env
+map_profile_env "profiles/public-agent/.env.EXAMPLE" "data/hermes/profiles/public-agent/.env" "PUBLIC"
 echo "TERMINAL_CWD=/opt/data/profiles/public-agent/public-brain" >> data/hermes/profiles/public-agent/.env
-map_profile_env "data/hermes/profiles/public-agent/.env" "PUBLIC"
 
 # Dynamically update platforms status in config.yaml per profile
 update_platforms_status() {
