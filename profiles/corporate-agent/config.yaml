@@ -439,6 +439,11 @@ mcp_servers:
     enabled: true
     timeout: 120
     connect_timeout: 60
+  hindsight:
+    url: http://hindsight-api:8888/mcp/
+    enabled: true
+    timeout: 120
+    connect_timeout: 60
 platform_toolsets:
   cli:
   - browser

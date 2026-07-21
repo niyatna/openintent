@@ -48,6 +48,12 @@
       "timeout": 120,
       "connect_timeout": 60,
       "auth_note": "Official hosted Notion remote MCP. OAuth user connection required; no headless bearer token for hosted MCP."
+    },
+    "hindsight": {
+      "url": "http://hindsight-api:8888/mcp/",
+      "enabled": true,
+      "timeout": 120,
+      "connect_timeout": 60
     }
   }
 }
