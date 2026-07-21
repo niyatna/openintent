@@ -71,7 +71,7 @@ services:
     restart: "no"
 
   hindsight-api:
-    image: ghcr.io/vectorize-io/hindsight:latest
+    image: ghcr.io/vectorize-io/hindsight-api:latest-slim
     container_name: openintent-hindsight
     ports:
       - "9177:8888"
