@@ -56,6 +56,9 @@ if [ -f .env ]; then
         fi
     done < .env
 fi
+if [ "${EXISTING_HINDSIGHT_API_RERANKER_PROVIDER:-}" = "none" ] || [ "${EXISTING_HINDSIGHT_API_RERANKER_PROVIDER:-}" = "none" ]; then
+    EXISTING_HINDSIGHT_API_RERANKER_PROVIDER=""
+fi
 
 echo -e "\n${YELLOW}Provisioning environment configuration credentials (.env)...${NC}"
 
