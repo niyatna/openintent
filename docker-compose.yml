@@ -84,6 +84,7 @@ services:
       HF_HUB_VERBOSITY: error
       TRANSFORMERS_VERBOSITY: error
       TOKENIZERS_PARALLELISM: "false"
+      HINDSIGHT_API_RERANKER_PROVIDER: "rrf"
     env_file: .env
     volumes:
       - ./data/hindsight:/home/hindsight/.pg0
